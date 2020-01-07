@@ -6,7 +6,7 @@ date: 2019-10-22 14:45:24
 tags: 支付
 ---
 # 对支付宝支付接口的使用做一个简单总结
-#### 1、条件有限，我是在支付宝的沙箱环境下进行开发测试的，整个流程就是用户下单，然后跳转到支付页面，用户扫二维码，跳转回系统，完成下单操作
+#### 1、条件有限，我是在支付宝的沙箱环境下进行开发测试的，整个流程就是用户下单，然后跳转到支付页面，用户扫二维码，跳转回系统，完成下单操作。demo地址在文章结尾。
 >产品特点：
  用户仅出示手机扫码即可完成付款，方便快捷；
  资金实时到账，无现金流压力。
@@ -157,5 +157,5 @@ public class AlipayConfigurtion {
 >更多相关信息参考:   
 [官方文档](https://docs.open.alipay.com/194/105322/)  
 [支付宝支付接口、支付宝订单查询接口 前端为APP](https://blog.csdn.net/qq_34139510/article/details/83009977)  
-[github alipayTest](https://github.com/sqf576052249/alipayTest.git)  
-[github alipayTest2](https://github.com/jianlong-sun/alipayTest.git)
+[原作者源码地址](https://github.com/sqf576052249/alipayTest.git)  
+[fork后在基础上加上了查询](https://github.com/jianlong-sun/alipayTest.git)

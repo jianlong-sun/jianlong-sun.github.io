@@ -13,7 +13,7 @@ tags: Issu
 ```
 ## 2.问题描述
 ### 如下代码会输出什么
-![ww](../images/issue.png)
+![ww](/images/issue.png)
 ```
     private static Random rnd = new Random();
 
