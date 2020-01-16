@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="jianlong_sun的博客">
 <meta property="og:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-16T09:18:13.110Z">
+<meta property="og:updated_time" content="2020-01-16T09:27:18.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jpa OneToOne OneToMany等注解及属性的详细使用说明">
 <meta name="twitter:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
@@ -227,7 +227,7 @@ var _hmt = _hmt || [];
 <p>其余类似：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CascadeType.REMOVE</span><br><span class="line">Cascade remove operation，级联删除操作。</span><br><span class="line">删除当前实体时，与它有映射关系的实体也会跟着被删除。</span><br><span class="line">CascadeType.MERGE</span><br><span class="line">Cascade merge operation，级联更新（合并）操作。</span><br><span class="line">当Student中的数据改变，会相应地更新Course中的数据。</span><br><span class="line">CascadeType.DETACH</span><br><span class="line">Cascade detach operation，级联脱管/游离操作。</span><br><span class="line">如果你要删除一个实体，但是它有外键无法删除，你就需要这个级联权限了。它会撤销所有相关的外键关联。</span><br><span class="line">CascadeType.REFRESH </span><br><span class="line">Cascade refresh operation，级联刷新操作。</span><br><span class="line">假设场景 有一个订单,订单里面关联了许多商品,这个订单可以被很多人操作,那么这个时候A对此订单和关联的商品进行了修改,与此同时,B也进行了相同的操作,但是B先一步比A保存了数据,那么当A保存数据的时候,就需要先刷新订单信息及关联的商品信息后,再将订单及商品保存。(来自良心会痛的评论)</span><br><span class="line">CascadeType.ALL</span><br><span class="line">Cascade all operations，清晰明确，拥有以上所有级联操作权限。</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-FetchType解释"><a href="#5-FetchType解释" class="headerlink" title="5.FetchType解释"></a><a id="FetchType">5.FetchType解释</a></h2><h3 id="5-1-看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？"><a href="#5-1-看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？" class="headerlink" title="5.1 看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？"></a>5.1 看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    如果是EAGER，那么表示取出这条数据时，它关联的数据也同时取出放入内存中</span><br><span class="line">    </span><br><span class="line">    如果是LAZY，那么取出这条数据时，它关联的数据并不取出来，在同一个session中，什么时候要用，就什么时候取(再次访问数据库)。</span><br><span class="line">    </span><br><span class="line">    但是，在session外，就不能再取了。用EAGER时，因为在内存里，所以在session外也可以取。</span><br><span class="line">    </span><br><span class="line">    注意：</span><br><span class="line">@OneToOne、ManyToOne  FetchType 默认为EAGER</span><br><span class="line"></span><br><span class="line">理解：如果你设置成了FetchType为LAZY 那么如果想要在service中获取多方的数据，那么这个方法要加上@Transactional否则是要报错的。</span><br></pre></td></tr></table></figure>
+<h2 id="5-FetchType解释"><a href="#5-FetchType解释" class="headerlink" title="5.FetchType解释"></a><a id="FetchType">5.FetchType解释</a></h2><h3 id="5-1-看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？"><a href="#5-1-看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？" class="headerlink" title="5.1 看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？"></a>5.1 看了好多都是两句话完事解释完事，感觉还不是很明白，到底该怎么解释好呢？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    如果是EAGER，那么表示取出这条数据时，它关联的数据也同时取出放入内存中</span><br><span class="line">    </span><br><span class="line">    如果是LAZY，那么取出这条数据时，它关联的数据并不取出来，在同一个session中，什么时候要用，就什么时候取(再次访问数据库)。</span><br><span class="line">    </span><br><span class="line">    但是，在session外，就不能再取了。用EAGER时，因为在内存里，所以在session外也可以取。</span><br><span class="line">    </span><br><span class="line">    注意：</span><br><span class="line">@OneToOne、ManyToOne  FetchType 默认为EAGER</span><br><span class="line"></span><br><span class="line">理解：如果你设置成了FetchType为LAZY 那么如果想要在service中获取多方的数据，那么这个方法要加上@Transactional否则是要报错的。</span><br><span class="line">一次会话可以包含多次事务</span><br><span class="line"></span><br><span class="line">一次事务必然属于同一会话</span><br><span class="line">https://blog.csdn.net/silyvin/article/details/79322167</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>本文引用参考自：<a href="https://www.jianshu.com/u/edee856014f6" target="_blank" rel="noopener">https://www.jianshu.com/u/edee856014f6</a></p>
@@ -525,15 +525,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,6 +538,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,10 +558,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
