@@ -17,7 +17,7 @@
 <meta property="og:description" content="使用websocket搭建一个简单的聊天室">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://jianlong-sun.github.io/images/socket/socket.png">
-<meta property="og:updated_time" content="2020-06-01T08:13:57.180Z">
+<meta property="og:updated_time" content="2020-06-01T08:17:29.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用websocket搭建一个简单的聊天室">
 <meta name="twitter:description" content="使用websocket搭建一个简单的聊天室">
@@ -206,7 +206,7 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>WebSocket是一种在单个TCP连接上进行全双工通信的协议。  WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。<br>WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。</p>
 </blockquote>
-<h3 id="2-2-传统“即使通讯”"><a href="#2-2-传统“即使通讯”" class="headerlink" title="2.2 传统“即使通讯”"></a>2.2 传统“即使通讯”</h3><p> <em>HTTP 协议有一个缺陷：通信只能由客户端发起。</em><br>很多网站为了实现即时通讯(real-time)，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔(time interval)（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。这种传统的HTTP request d的模式带来很明显的缺点 – 浏览器需要不断的向服务器发出请求(request)，然而HTTP request 的header是非常长的，里面包含的数据可能只是一个很小的值，这样会占用很多的带宽。</p>
+<h3 id="2-2-传统“即时通讯”"><a href="#2-2-传统“即时通讯”" class="headerlink" title="2.2 传统“即时通讯”"></a>2.2 传统“即时通讯”</h3><p> <em>HTTP 协议有一个缺陷：通信只能由客户端发起。</em><br>很多网站为了实现即时通讯(real-time)，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔(time interval)（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。这种传统的HTTP request d的模式带来很明显的缺点 – 浏览器需要不断的向服务器发出请求(request)，然而HTTP request 的header是非常长的，里面包含的数据可能只是一个很小的值，这样会占用很多的带宽。</p>
 <a id="more"></a>
 <h3 id="2-3-两者的比较"><a href="#2-3-两者的比较" class="headerlink" title="2.3 两者的比较"></a>2.3 两者的比较</h3><p><img src="/images/socket/socket.png" alt="socket"></p>
 <p>特点：</p>
@@ -362,7 +362,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-上半年回顾"><span class="toc-number">1.</span> <span class="toc-text">1.上半年回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-websocket"><span class="toc-number">2.</span> <span class="toc-text">2.websocket</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-websocket简单介绍"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 websocket简单介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-传统“即使通讯”"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 传统“即使通讯”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-两者的比较"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 两者的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-服务端实现"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 服务端实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-前端简单示例"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 前端简单示例</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-上半年回顾"><span class="toc-number">1.</span> <span class="toc-text">1.上半年回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-websocket"><span class="toc-number">2.</span> <span class="toc-text">2.websocket</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-websocket简单介绍"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 websocket简单介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-传统“即时通讯”"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 传统“即时通讯”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-两者的比较"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 两者的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-服务端实现"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 服务端实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-前端简单示例"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 前端简单示例</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -502,10 +502,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
@@ -519,6 +515,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
