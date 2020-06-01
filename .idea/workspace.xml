@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87258732-eab8-4971-9b26-cf31b82f8cf0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringBootJpa自动生成实体、service、repo.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/compile/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/compile/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/jpa/jpa1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/jpa/jpa2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/jpa/jpa3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/jpa/jpa4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Vue-ElementUi-简单使用.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/使用websocket搭建一个简单的聊天室.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/socket/socket.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/ControllerIssu.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/ControllerIssu.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Spring-Security.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Spring-Security.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/alipay.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/alipay.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/yilia" beforeDir="false" afterPath="$PROJECT_DIR$/themes/yilia" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/yilia/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/yilia/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/yilia/layout/_partial/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/yilia/layout/_partial/footer.ejs" afterDir="false" />
@@ -33,45 +24,11 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>favicon.png</find>
-      <find>menu</find>
-      <find>live2d</find>
-      <find>post_asset_folde</find>
-      <find>more</find>
-      <find>只做了一点微小的</find>
-      <find>很惭愧</find>
-      <find>http://localhost:4000/</find>
-      <find>favicon</find>
-      <find>min</find>
-      <find>gh-oauth.imsun.net</find>
-      <find>gh-oauth-server</find>
-      <find>https://gh-oauth.imsun.net/</find>
-      <find>一个记录技术的网站</find>
-      <find>Sun</find>
-      <find>img</find>
-      <find>../</find>
-      <find>yoursite.com</find>
-      <find>cn.e</find>
-      <find>toc_hide_index</find>
-      <find>tooltip</find>
-      <find>wrap-side-operation</find>
-      <find>og:type</find>
-      <find>baidu_analytics</find>
-      <find>litten.me:9005</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>#</replace>
-      <replace>/</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>S:\blog\public</dir>
-      <dir>S:\blog\public\2019</dir>
-    </dirStrings>
+  <component name="FavoritesManager">
+    <favorites_list name="blog" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/yilia" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="ProjectId" id="1W3XllVlFvY9UAfljBsAPxdmQCS" />
@@ -91,33 +48,37 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="只做了一点微小的&#9;null&#9;null&#10;pho&#9;FILE&#9;file://S:/blog/themes/yilia/source/js/photo.js&#10;photo.js&#9;FILE&#9;file://S:/blog/public/js/photo.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/tools" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/images/socket" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="S:\blog\source\tools" />
-      <recent name="S:\blog\source\images\compile" />
-      <recent name="S:\blog\source\images\jpa" />
-      <recent name="S:\blog\source\images" />
-      <recent name="S:\blog\themes\yilia\source\img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="S:\blog\source\images" />
       <recent name="S:\blog\themes\yilia\source\js" />
       <recent name="S:\blog\photos" />
       <recent name="S:\blog" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="S:\blog\source\images\socket" />
+      <recent name="S:\blog\source\tools" />
+      <recent name="S:\blog\source\images\compile" />
+      <recent name="S:\blog\source\images\jpa" />
+      <recent name="S:\blog\source\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -206,18 +167,43 @@
       <workItem from="1572834440678" duration="3089000" />
       <workItem from="1572940933518" duration="1429000" />
       <workItem from="1575446959981" duration="7062000" />
-      <workItem from="1578379412132" duration="2514000" />
+      <workItem from="1578379412132" duration="3284000" />
+      <workItem from="1578382711207" duration="3127000" />
+      <workItem from="1579165741897" duration="882000" />
+      <workItem from="1579166826303" duration="3061000" />
+      <workItem from="1579488776515" duration="2809000" />
+      <workItem from="1590995879963" duration="1975000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1578381585145">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="457" y="167" width="621" height="490" key="find.popup" timestamp="1590997882211">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578381585145" />
+    <state x="457" y="167" width="621" height="490" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1590997882211" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1590997414679">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1590997414679" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
