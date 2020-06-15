@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://jianlong-sun.github.io">
   <title>jianlong_sun的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+  <meta name="description" content="title: jpa Issuescategories: javadescription: jpa的使用问题,service事务中先删除后更新，主键冲突，解决方式date: 2019-09-03 18:11:50 tags: jpa1.问题描述今天遇到了个jpa的使用问题，在一个service事务中我想先删除一条数据，然后再进行更新操作，由于数据库设置有唯一键约束，而且delete操作会在整个事">
 <meta name="keywords" content="Java,Git,Linux,Spring">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="jianlong_sun的博客">
-<meta property="og:url" content="https://jianlong-sun.github.io/page/2/index.html">
+<meta property="og:url" content="https://jianlong-sun.github.io/2019/09/04/jpa-Issues/index.html">
 <meta property="og:site_name" content="jianlong_sun的博客">
-<meta property="og:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta property="og:description" content="title: jpa Issuescategories: javadescription: jpa的使用问题,service事务中先删除后更新，主键冲突，解决方式date: 2019-09-03 18:11:50 tags: jpa1.问题描述今天遇到了个jpa的使用问题，在一个service事务中我想先删除一条数据，然后再进行更新操作，由于数据库设置有唯一键约束，而且delete操作会在整个事">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-06-15T07:29:52.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jianlong_sun的博客">
-<meta name="twitter:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta name="twitter:description" content="title: jpa Issuescategories: javadescription: jpa的使用问题,service事务中先删除后更新，主键冲突，解决方式date: 2019-09-03 18:11:50 tags: jpa1.问题描述今天遇到了个jpa的使用问题，在一个service事务中我想先删除一条数据，然后再进行更新操作，由于数据库设置有唯一键约束，而且delete操作会在整个事">
   
     <link rel="alternative" href="/atom.xml" title="jianlong_sun的博客" type="application/atom+xml">
   
@@ -176,9 +177,7 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-jpa-Issues" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-jpa-Issues" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -194,6 +193,27 @@ var _hmt = _hmt || [];
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -201,16 +221,84 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/jpa-Issues/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2019/09/04/jpa-Issues/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/09/18/Spring-Security/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Spring Security
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/29/单例模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">单例模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -225,691 +313,49 @@ var _hmt = _hmt || [];
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/单例模式/">单例模式</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/08/29/单例模式/" class="archive-article-date">
-  	<time datetime="2019-08-29T03:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>引用参考自：汪文君 Java高并发编程详解</p>
-</blockquote>
-<p> <strong>推荐使用volatile + double check 方式</strong></p>
-<h1 id="1-饿汉式单例模式"><a href="#1-饿汉式单例模式" class="headerlink" title="1.饿汉式单例模式"></a>1.饿汉式单例模式</h1><h2 id="1-1先上代码"><a href="#1-1先上代码" class="headerlink" title="1.1先上代码"></a>1.1先上代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonObject1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * can't lazy load.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonObject1 instance = <span class="keyword">new</span> SingletonObject1();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonObject1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//empty</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonObject1 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-2优缺点"><a href="#1-2优缺点" class="headerlink" title="1.2优缺点"></a>1.2优缺点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">饿汉式单例模式可以保证多个线程下的唯一实例，getInstance方法性能也比较高，但是无法进行懒加载</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-懒汉式-同步"><a href="#2-懒汉式-同步" class="headerlink" title="2.懒汉式+同步"></a>2.懒汉式+同步</h1><h2 id="2-1代码如下"><a href="#2-1代码如下" class="headerlink" title="2.1代码如下"></a>2.1代码如下</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonObject3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonObject3 instance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonObject3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//empty</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> SingletonObject3 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance)</span><br><span class="line">            instance = <span class="keyword">new</span> SingletonObject3();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> SingletonObject3.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2优缺点"><a href="#2-2优缺点" class="headerlink" title="2.2优缺点"></a>2.2优缺点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">synchronized 关键字天生排他性导致getInstance方法只能在同一时刻被一个线程访问，性能低下。</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/08/29/单例模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单例模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/单例模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-jpa"><span class="toc-number">1.</span> <span class="toc-text">tags: jpa</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-问题描述"><span class="toc-number"></span> <span class="toc-text">1.问题描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#今天遇到了个jpa的使用问题，在一个service事务中我想先删除一条数据，然后再进行更新操作，由于数据库设置有唯一键约束，而且delete操作会在整个事务完了之后删除，会导致唯一键冲突，后经过查询资料验证后可以使用flush-这个方法解决。"><span class="toc-number">0.1.</span> <span class="toc-text">今天遇到了个jpa的使用问题，在一个service事务中我想先删除一条数据，然后再进行更新操作，由于数据库设置有唯一键约束，而且delete操作会在整个事务完了之后删除，会导致唯一键冲突，后经过查询资料验证后可以使用flush()这个方法解决。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-代码如下"><span class="toc-number"></span> <span class="toc-text">2.代码如下</span></a>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-Thread-volatile" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/23/Thread-volatile/">Thread volatile</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/08/23/Thread-volatile/" class="archive-article-date">
-  	<time datetime="2019-08-23T03:35:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Thread-中-volatile-的解析"><a href="#1-Thread-中-volatile-的解析" class="headerlink" title="1.Thread 中 volatile 的解析"></a>1.Thread 中 volatile 的解析</h1><h2 id="先上一段代码，猜猜会输出什么"><a href="#先上一段代码，猜猜会输出什么" class="headerlink" title="先上一段代码，猜猜会输出什么"></a>先上一段代码，猜猜会输出什么</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> INIT_VALUE = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MAX_LIMIT = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">int</span> localValue = INIT_VALUE;</span><br><span class="line">            <span class="keyword">while</span> (localValue &lt; MAX_LIMIT) &#123;</span><br><span class="line">                <span class="keyword">if</span> (localValue != INIT_VALUE) &#123;</span><br><span class="line">                    System.out.printf(<span class="string">"The value updated to [%d]\n"</span>, INIT_VALUE);</span><br><span class="line">                    localValue = INIT_VALUE;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"READER"</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">int</span> localValue = INIT_VALUE;</span><br><span class="line">            <span class="keyword">while</span> (INIT_VALUE &lt; MAX_LIMIT) &#123;</span><br><span class="line">                System.out.printf(<span class="string">"Update the value to [%d]\n"</span>, ++localValue);</span><br><span class="line">                INIT_VALUE = localValue;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"UPDATER"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="然后加上volatile会与上面的有何不同"><a href="#然后加上volatile会与上面的有何不同" class="headerlink" title="然后加上volatile会与上面的有何不同"></a>然后加上volatile会与上面的有何不同</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">int</span> INIT_VALUE = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MAX_LIMIT = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">int</span> localValue = INIT_VALUE;</span><br><span class="line">            <span class="keyword">while</span> (localValue &lt; MAX_LIMIT) &#123;</span><br><span class="line">                <span class="keyword">if</span> (localValue != INIT_VALUE) &#123;</span><br><span class="line">                    System.out.printf(<span class="string">"The value updated to [%d]\n"</span>, INIT_VALUE);</span><br><span class="line">                    localValue = INIT_VALUE;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"READER"</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">int</span> localValue = INIT_VALUE;</span><br><span class="line">            <span class="keyword">while</span> (INIT_VALUE &lt; MAX_LIMIT) &#123;</span><br><span class="line">                System.out.printf(<span class="string">"Update the value to [%d]\n"</span>, ++localValue);</span><br><span class="line">                INIT_VALUE = localValue;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"UPDATER"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/08/23/Thread-volatile/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Thread</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/23/Thread-volatile/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-lamda" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/21/lamda/">lamda</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/08/21/lamda/" class="archive-article-date">
-  	<time datetime="2019-08-21T09:14:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>引用自 <a href="https://www.processon.com/special/template/5c6caeefe4b03334b521f752#map" target="_blank" rel="noopener">Java 8 函数式编程</a></p>
-</blockquote>
-<h1 id="1-Lambda表达式"><a href="#1-Lambda表达式" class="headerlink" title="1.Lambda表达式"></a>1.Lambda表达式</h1><h2 id="1-1-去除大量模板代码，使代码变得紧凑，增强可读性"><a href="#1-1-去除大量模板代码，使代码变得紧凑，增强可读性" class="headerlink" title="1.1 去除大量模板代码，使代码变得紧凑，增强可读性"></a>1.1 去除大量模板代码，使代码变得紧凑，增强可读性</h2><ul>
-<li><p>1.2 表现形式</p>
-<ul>
-<li><p>(类型 参数) -&gt; {方法体}</p>
-<ul>
-<li><p>例如 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BinaryOperator&lt;Long&gt; add = (x, y) -&gt; x + y;</span><br><span class="line">BinaryOperator&lt;Long&gt; addExplicit = (Long x, Long y) -&gt; x + y;</span><br><span class="line">Runnable task = () -&gt; &#123;System.out.println(<span class="string">"hello lambda"</span>);&#125;;</span><br><span class="line">ActionListener oneArgument = event -&gt; System.out.println(<span class="string">"button clicked"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>类型可选，一般javac会自动推断出参数类型（也存在无法推断的情况） 没有参数时，省略类型和参数<br>有且仅有一个参数时，参数括号可省略<br>方法体如果只有一行语句，可省略花括号</p>
-<ul>
-<li>方法引用</li>
-</ul>
-</li>
-<li><p>类名::方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String&gt; intToStr = String::valueOf; // 等同于 e -&gt; String.valueOf(e)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当参数仅有一个，且返回值为类的一个方法(静态或非静态均可)返回值时，可省略参数，使用 类名::方法名 的方式描述</p>
-</li>
-<li><p>使用 类名::new 来引用类的构造方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;char[], String&gt; newStrFromCharArray = String::new; // 调用的是 new String(char[] cs)构造方法 String[]::new 来引用数组的构造方法</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>值引用</p>
-<ul>
-<li><p>同匿名内部类类似，在Lambda表达式中引用的变量，需要声明为final或在既成事实上为final 即终态变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String name = &quot;Alex&quot;; // name自声明以来仅赋值一次，</span><br><span class="line">//     虽然没有显式声明为final，但为既成事实上的final变量</span><br><span class="line">button.addActionListener(event -&gt; System.out.println(&quot;hi &quot; + name));</span><br><span class="line">name = &quot;Jack&quot;; // 再次赋值会导致上一行lambda表达式报错</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>此特性表明lambda表达式中变量实际上为值引用</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>函数式接口</p>
-<ul>
-<li>一元接口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Predicate&lt;T&gt;:</span><br><span class="line">    boolean test(T t) 谓词函数，传入一个变量，根据一定规则进行布尔判断</span><br><span class="line">Function&lt;T, R&gt;</span><br><span class="line">    R apply(T t) 一般函数，传入一个变量，输出另一个变量</span><br><span class="line">UnaryOperator&lt;T&gt;</span><br><span class="line">    T apply(T t) 算子函数，输入输出同类型</span><br><span class="line">    形如XXOperator的接口均为算子函数式接口，入参出参类型相同</span><br><span class="line">Consumer&lt;T&gt;:</span><br><span class="line">     void accept(T t) 消费函数，传入一个变量，执行无返回值的操作</span><br><span class="line">Supplier&lt;T&gt;</span><br><span class="line">      T get() 生产函数，没有输入，输出一个变量</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>java</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/21/lamda/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-日常项目中经验积累-RequestBody" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/日常项目中经验积累-RequestBody/">日常项目中经验积累-RequestBody</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/08/13/日常项目中经验积累-RequestBody/" class="archive-article-date">
-  	<time datetime="2019-08-13T10:28:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-RequestBody"><a href="#1-RequestBody" class="headerlink" title="1.@RequestBody"></a>1.@RequestBody</h1><h2 id="1-1注意bindingresult-位置"><a href="#1-1注意bindingresult-位置" class="headerlink" title="1.1注意bindingresult 位置"></a>1.1注意bindingresult 位置</h2><p>使用 @RequestBody @Validated，后面<strong>紧跟</strong>bindingresult 可以接收到错误信息</p>
-<h2 id="1-2-一些常用的判断方式"><a href="#1-2-一些常用的判断方式" class="headerlink" title="1.2 一些常用的判断方式"></a>1.2 一些常用的判断方式</h2><p>@NotNull://CharSequence, Collection, Map 和 Array 对象不能是 null, 但可以是空集（size = 0）。<br>@NotEmpty://CharSequence, Collection, Map 和 Array 对象不能是 null 并且相关对象的 size 大于 0。<br>@NotBlank://String 不是 null 且去除两端空白字符后的长度（trimmed length）大于 0。</p>
-<p>@Null  被注释的元素必须为null<br>@NotNull  被注释的元素不能为null<br>@AssertTrue  被注释的元素必须为true<br>@AssertFalse  被注释的元素必须为false<br>@Min(value)  被注释的元素必须是一个数字，其值必须大于等于指定的最小值<br>@Max(value)  被注释的元素必须是一个数字，其值必须小于等于指定的最大值 </p>
-        
-          <a class="article-more-a" href="/2019/08/13/日常项目中经验积累-RequestBody/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/13/日常项目中经验积累-RequestBody/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第一个hexo文档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/第一个hexo文档/">第一个hexo文档</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/08/13/第一个hexo文档/" class="archive-article-date">
-  	<time datetime="2019-08-13T06:25:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello,World"></a>Hello,World</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello,World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/13/第一个hexo文档/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-随便写点啥" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/随便写点啥/">随便写点什么</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/08/13/随便写点啥/" class="archive-article-date">
-  	<time datetime="2019-08-13T06:25:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-说一下Java工程师上手的基本条件吧："><a href="#1-说一下Java工程师上手的基本条件吧：" class="headerlink" title="1.说一下Java工程师上手的基本条件吧："></a>1.说一下Java工程师上手的基本条件吧：</h1><h3 id="1-JavaSE-也就是Java基础。另外会了基础后最好把Java8新特性看下。还有着重看下集合部分，无论面试还是日常开发都会用到这些。"><a href="#1-JavaSE-也就是Java基础。另外会了基础后最好把Java8新特性看下。还有着重看下集合部分，无论面试还是日常开发都会用到这些。" class="headerlink" title="1.JavaSE 也就是Java基础。另外会了基础后最好把Java8新特性看下。还有着重看下集合部分，无论面试还是日常开发都会用到这些。"></a>1.JavaSE 也就是Java基础。另外会了基础后最好把Java8新特性看下。还有着重看下集合部分，无论面试还是日常开发都会用到这些。</h3><h3 id="2-然后就是常用的框架了，Spring-、Spring-MVC、MyBatis、最好会点安全框架例如SpringSecurity。"><a href="#2-然后就是常用的框架了，Spring-、Spring-MVC、MyBatis、最好会点安全框架例如SpringSecurity。" class="headerlink" title="2.然后就是常用的框架了，Spring 、Spring MVC、MyBatis、最好会点安全框架例如SpringSecurity。"></a>2.然后就是常用的框架了，Spring 、Spring MVC、MyBatis、最好会点安全框架例如SpringSecurity。</h3><h3 id="3-然后就是也是非常重要的sql命令了，有的公司用Mysql有的是Oracle-一般的公司还是用Mysql的比较多，毕竟免费。"><a href="#3-然后就是也是非常重要的sql命令了，有的公司用Mysql有的是Oracle-一般的公司还是用Mysql的比较多，毕竟免费。" class="headerlink" title="3.然后就是也是非常重要的sql命令了，有的公司用Mysql有的是Oracle,一般的公司还是用Mysql的比较多，毕竟免费。"></a>3.然后就是也是非常重要的sql命令了，有的公司用Mysql有的是Oracle,一般的公司还是用Mysql的比较多，毕竟免费。</h3><h3 id="4-然后就是linux的一些基本的东西。比如说用什么命令看日志啊、用什么命令关闭防火墙啊等等。会点基础的就行、剩下的工作中再学也行。"><a href="#4-然后就是linux的一些基本的东西。比如说用什么命令看日志啊、用什么命令关闭防火墙啊等等。会点基础的就行、剩下的工作中再学也行。" class="headerlink" title="4.然后就是linux的一些基本的东西。比如说用什么命令看日志啊、用什么命令关闭防火墙啊等等。会点基础的就行、剩下的工作中再学也行。"></a>4.然后就是linux的一些基本的东西。比如说用什么命令看日志啊、用什么命令关闭防火墙啊等等。会点基础的就行、剩下的工作中再学也行。</h3><h3 id="5-然后就是前端的一些基础了。html、js、jquery。现在公司还是用前端框架啥的比较多了，不过我说的前面是比较基础的，最好还是会些比较好。现在我们主要用Vue-Element。"><a href="#5-然后就是前端的一些基础了。html、js、jquery。现在公司还是用前端框架啥的比较多了，不过我说的前面是比较基础的，最好还是会些比较好。现在我们主要用Vue-Element。" class="headerlink" title="5.然后就是前端的一些基础了。html、js、jquery。现在公司还是用前端框架啥的比较多了，不过我说的前面是比较基础的，最好还是会些比较好。现在我们主要用Vue+Element。"></a>5.然后就是前端的一些基础了。html、js、jquery。现在公司还是用前端框架啥的比较多了，不过我说的前面是比较基础的，最好还是会些比较好。现在我们主要用Vue+Element。</h3><h3 id="总结下：如果你掌握了我说的前3条的大部分内容，恭喜你你已经差不多可以去面试试试了。加油！programmer"><a href="#总结下：如果你掌握了我说的前3条的大部分内容，恭喜你你已经差不多可以去面试试试了。加油！programmer" class="headerlink" title="总结下：如果你掌握了我说的前3条的大部分内容，恭喜你你已经差不多可以去面试试试了。加油！programmer!"></a>总结下：如果你掌握了我说的前3条的大部分内容，恭喜你你已经差不多可以去面试试试了。加油！programmer!</h3><p>如有错误或者疏漏还望指正。</p>
-<h2 id="更新：忘了说了Git、Maven也要会些。"><a href="#更新：忘了说了Git、Maven也要会些。" class="headerlink" title="更新：忘了说了Git、Maven也要会些。"></a>更新：忘了说了Git、Maven也要会些。</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/13/随便写点啥/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hello-World" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/Hello-World/">Hello,World</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/08/13/Hello-World/" class="archive-article-date">
-  	<time datetime="2019-08-13T06:23:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="在偶然的机会下，知道了hexo-然后开始了解hexo的使用，看了一个个的主题，最后相中了这款，简介大方又不失逼格，感谢前人的努力。"><a href="#在偶然的机会下，知道了hexo-然后开始了解hexo的使用，看了一个个的主题，最后相中了这款，简介大方又不失逼格，感谢前人的努力。" class="headerlink" title="在偶然的机会下，知道了hexo,然后开始了解hexo的使用，看了一个个的主题，最后相中了这款，简介大方又不失逼格，感谢前人的努力。"></a>在偶然的机会下，知道了hexo,然后开始了解hexo的使用，看了一个个的主题，最后相中了这款，简介大方又不失逼格，感谢前人的努力。</h3><h3 id="那记录世界、记录美好就从“Hello-World”开始吧"><a href="#那记录世界、记录美好就从“Hello-World”开始吧" class="headerlink" title="那记录世界、记录美好就从“Hello,World”开始吧!"></a>那记录世界、记录美好就从“Hello,World”开始吧!</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    System.out.println(&quot;Hello,World&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/13/Hello-World/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "{{ page.date }}",
+  owner: 'jianlong-sun',
+  repo: 'blogDiscuss',
+  oauth: {
+    client_id: 'a2465bea6addbd11ad6f',
+    client_secret: 'd4310ea440f8aa245656f8424278b765c53a4255',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+
   
 
 
@@ -943,8 +389,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
