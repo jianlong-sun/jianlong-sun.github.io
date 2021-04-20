@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://jianlong-sun.github.io/images/docker/mysql-2.png">
 <meta property="og:image" content="https://jianlong-sun.github.io/images/docker/mysql-3.png">
 <meta property="og:image" content="https://jianlong-sun.github.io/images/docker/mysql-4.png">
-<meta property="og:updated_time" content="2021-04-20T09:28:37.758Z">
+<meta property="og:updated_time" content="2021-04-20T09:33:05.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sharding-JDBC实现读写分离,Springboot,docker,mysql8(一)">
 <meta name="twitter:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
@@ -204,7 +204,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-前提"><a href="#1-前提" class="headerlink" title="1.前提"></a>1.前提</h2><p>根据项目需要对项目进行读写分离，主库负责处理事务性的增删改操作，从库负责处理查询操作，改善查询性能，使用 mysql的主从同步配置实现数据同步</p>
+        <h2 id="1-前提"><a href="#1-前提" class="headerlink" title="1.前提"></a>1.前提</h2><p>根据项目需要对数据库进行读写分离，主库负责处理事务性的增删改操作，从库负责处理查询操作，改善查询性能，使用 mysql的主从同步配置实现数据同步</p>
 <h3 id="2-首先说一下遇到的小问题，防止再次入坑。"><a href="#2-首先说一下遇到的小问题，防止再次入坑。" class="headerlink" title="2 首先说一下遇到的小问题，防止再次入坑。"></a>2 首先说一下遇到的小问题，防止再次入坑。</h3><h3 id="2-1-mysql版本"><a href="#2-1-mysql版本" class="headerlink" title="2.1 mysql版本"></a>2.1 mysql版本</h3><p>使用docker拉去的是mysql8的版本，关于密码验证这部分有了较大变动，详见<a href="https://zhuanlan.zhihu.com/p/65638193" target="_blank" rel="noopener">Mysql8</a>,<br>创建用户的时候可以用</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> superadmin@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">'123456'</span>;</span><br></pre></td></tr></table></figure>
 
@@ -568,15 +568,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,6 +588,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
@@ -596,7 +600,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,10 +609,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,15 +624,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
