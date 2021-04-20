@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://jianlong-sun.github.io/images/docker/mysql-2.png">
 <meta property="og:image" content="https://jianlong-sun.github.io/images/docker/mysql-3.png">
 <meta property="og:image" content="https://jianlong-sun.github.io/images/docker/mysql-4.png">
-<meta property="og:updated_time" content="2021-04-20T08:22:08.040Z">
+<meta property="og:updated_time" content="2021-04-20T09:28:37.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sharding-JDBC实现读写分离,Springboot,docker,mysql8(一)">
 <meta name="twitter:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
@@ -217,13 +217,13 @@ var _hmt = _hmt || [];
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql-3307 /bin/bash</span><br></pre></td></tr></table></figure>
 
 <p>2.查看一下当前配置文件（截图是已经配置好了的）<br><img src="/images/docker/mysql-1.png" alt="docker容器"><br>主要添加以下内容</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开启 MySQL 日志</span></span><br><span class="line">log-bin = mysql-bin</span><br><span class="line"><span class="comment">#设置服务 id  主从不能一致</span></span><br><span class="line">server-id = 1</span><br><span class="line"><span class="comment">#设置需要主从同步的数据库名称</span></span><br><span class="line">binlog-<span class="keyword">do</span>-db = user_db</span><br><span class="line"><span class="comment">#屏幕系统数据库同步</span></span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = mysql</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = information_schema</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = performance_schema</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开启 MySQL 日志</span></span><br><span class="line">log-bin = mysql-bin</span><br><span class="line"><span class="comment">#设置服务 id  主从不能一致</span></span><br><span class="line">server-id = 1</span><br><span class="line"><span class="comment">#设置需要主从同步的数据库名称</span></span><br><span class="line">binlog-<span class="keyword">do</span>-db = user_db</span><br><span class="line"><span class="comment">#屏蔽系统数据库同步</span></span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = mysql</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = information_schema</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = performance_schema</span><br></pre></td></tr></table></figure>
 
-<p>3.相对应的修改从库数据库配置文件</p>
+<p>3.相对应的修改从库数据库配置文件<br>/etc/mysql/my.cnf</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql-3308 /bin/bash</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/docker/mysql-2.png" alt="docker容器"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开启 MySQL 日志</span></span><br><span class="line">log-bin = mysql-bin</span><br><span class="line"><span class="comment">#设置服务 id  主从不能一致</span></span><br><span class="line">server-id = 2</span><br><span class="line"><span class="comment">#设置需要主从同步的表</span></span><br><span class="line">binlog-<span class="keyword">do</span>-db = user_db</span><br><span class="line"><span class="comment">#屏幕系统数据库同步</span></span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = mysql.%</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = information_schema.%</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = performance_schema.%</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开启 MySQL 日志</span></span><br><span class="line">log-bin = mysql-bin</span><br><span class="line"><span class="comment">#设置服务 id  主从不能一致</span></span><br><span class="line">server-id = 2</span><br><span class="line"><span class="comment">#设置需要主从同步的数据库</span></span><br><span class="line">binlog-<span class="keyword">do</span>-db = user_db</span><br><span class="line"><span class="comment">#屏蔽系统数据库同步</span></span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = mysql.%</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = information_schema.%</span><br><span class="line"><span class="keyword">binlog</span>-<span class="keyword">ignore</span>-db = performance_schema.%</span><br></pre></td></tr></table></figure>
 
 <p>4.修改完后，退出容器，重启容器<br>退出：使用exit命令退出</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
@@ -260,7 +260,7 @@ var _hmt = _hmt || [];
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CHANGE</span> <span class="keyword">MASTER</span> <span class="keyword">TO</span> </span><br><span class="line">	 	master_host = <span class="string">'172.17.0.2'</span>,  <span class="comment">#指定主库 IP 地址,可以通过 docker inspect mysql-3307 命令查看主库 IPAdress</span></span><br><span class="line">	 	master_port = <span class="number">3306</span>,  <span class="comment">#这个端口为主库容器内的 mysql 端口,不是宿主机映射容器的端口</span></span><br><span class="line">		master_user = <span class="string">'sync_user'</span>,  <span class="comment">#主库创建的复制用户</span></span><br><span class="line">		master_password = <span class="string">'123456'</span>, <span class="comment">#复制用户密码</span></span><br><span class="line">	    master_log_file = <span class="string">'mysql‐bin.000005'</span>,  <span class="comment">#主库文件名</span></span><br><span class="line">	    master_log_pos = <span class="number">42854</span>;  <span class="comment">#主库位点</span></span><br></pre></td></tr></table></figure>
 
 <p>4.启动同步</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">slave</span> <span class="string">''</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">slave</span>;</span><br></pre></td></tr></table></figure>
 
 <p>5.查看启动是否成功,查看Slave_IO_Runing和Slave_SQL_Runing都为Yes说明同步成功</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">slave</span> <span class="keyword">status</span>;</span><br></pre></td></tr></table></figure>
@@ -568,15 +568,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,10 +592,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -600,15 +600,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,15 +624,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
