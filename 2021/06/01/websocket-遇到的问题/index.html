@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jianlong-sun.github.io">
-  <title>Tag: 支付 | jianlong_sun的博客</title>
+  <title>websocket 遇到的问题 | jianlong_sun的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
-<meta name="keywords" content="Java,Git,Linux,Spring">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jianlong_sun的博客">
-<meta property="og:url" content="https://jianlong-sun.github.io/tags/支付/index.html">
+  <meta name="description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
+<meta name="keywords" content="websocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="websocket 遇到的问题">
+<meta property="og:url" content="https://jianlong-sun.github.io/2021/06/01/websocket-遇到的问题/index.html">
 <meta property="og:site_name" content="jianlong_sun的博客">
-<meta property="og:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta property="og:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-06-01T09:36:00.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jianlong_sun的博客">
-<meta name="twitter:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta name="twitter:title" content="websocket 遇到的问题">
+<meta name="twitter:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
   
     <link rel="alternative" href="/atom.xml" title="jianlong_sun的博客" type="application/atom+xml">
   
@@ -170,50 +171,84 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-websocket-遇到的问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2019/10/22/alipay/" class="archive-article-date">
-  	<time datetime="2019-10-22T06:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/alipay/">alipay</a>
+    <h1 class="article-title" itemprop="name">
+      websocket 遇到的问题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/2021/06/01/websocket-遇到的问题/" class="archive-article-date">
+  	<time datetime="2021-06-01T09:23:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="总结下在使用websocket中遇到的问题及解决方法"><a href="#总结下在使用websocket中遇到的问题及解决方法" class="headerlink" title="总结下在使用websocket中遇到的问题及解决方法"></a>总结下在使用websocket中遇到的问题及解决方法</h1><p>下面都是在下面都是在@onOpen 方法中设置的</p>
+<h3 id="1-使用websocket发送10000字的文本，导致掉线。"><a href="#1-使用websocket发送10000字的文本，导致掉线。" class="headerlink" title="1.使用websocket发送10000字的文本，导致掉线。"></a>1.使用websocket发送10000字的文本，导致掉线。</h3><p>解决方法：调整websocket缓冲区大小，websocket中MaxTextMessageBufferSize默认为 <strong>8192</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> MAX_SIZE = <span class="number">200</span> * <span class="number">1024</span>;</span><br><span class="line"><span class="comment">// 最大缓冲区</span></span><br><span class="line">session.setMaxTextMessageBufferSize(MAX_SIZE);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session-open-仍为true"><a href="#2-客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session-open-仍为true" class="headerlink" title="2.客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session open 仍为true"></a>2.客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session open 仍为true</h3><p>一开始是将客户端发送的ping消息保存到数据库中，服务器定时查询看有多久没发ping消息了，这样的实现不好<br>解决方法：客户端发送ping消息，维持与服务端心跳，服务端设置session的MaxIdleTimeout超时时间，我这客户端设置了每60s发送ping消息，服务端设置了90s超时时间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setMaxIdleTimeout(TimeUnit.SECONDS.toMillis(<span class="number">90</span>));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>由于水平有限，所使用的的方法可能有误，仅供参考</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">支付</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -226,17 +261,134 @@ var _hmt = _hmt || [];
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2021/06/01/websocket-遇到的问题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/04/23/imageTest/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">imageTest</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#总结下在使用websocket中遇到的问题及解决方法"><span class="toc-number">1.</span> <span class="toc-text">总结下在使用websocket中遇到的问题及解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用websocket发送10000字的文本，导致掉线。"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.使用websocket发送10000字的文本，导致掉线。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session-open-仍为true"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session open 仍为true</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "{{ page.date }}",
+  owner: 'jianlong-sun',
+  repo: 'blogDiscuss',
+  oauth: {
+    client_id: 'a2465bea6addbd11ad6f',
+    client_secret: 'd4310ea440f8aa245656f8424278b765c53a4255',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+
+  
 
 
           </div>
@@ -270,9 +422,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
