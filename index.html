@@ -195,8 +195,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="总结下在使用websocket中遇到的问题及解决方法"><a href="#总结下在使用websocket中遇到的问题及解决方法" class="headerlink" title="总结下在使用websocket中遇到的问题及解决方法"></a>总结下在使用websocket中遇到的问题及解决方法</h1><p>下面都是在下面都是在@onOpen 方法中设置的</p>
-<h3 id="1-使用websocket发送10000字的文本，导致掉线。"><a href="#1-使用websocket发送10000字的文本，导致掉线。" class="headerlink" title="1.使用websocket发送10000字的文本，导致掉线。"></a>1.使用websocket发送10000字的文本，导致掉线。</h3><p>解决方法：调整websocket缓冲区大小，websocket中MaxTextMessageBufferSize默认为 <strong>8192</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> MAX_SIZE = <span class="number">200</span> * <span class="number">1024</span>;</span><br><span class="line"><span class="comment">// 最大缓冲区</span></span><br><span class="line">session.setMaxTextMessageBufferSize(MAX_SIZE);</span><br></pre></td></tr></table></figure>
+<h3 id="1-使用websocket发送10000字的文本，导致掉线。"><a href="#1-使用websocket发送10000字的文本，导致掉线。" class="headerlink" title="1.使用websocket发送10000字的文本，导致掉线。"></a>1.使用websocket发送10000字的文本，导致掉线。</h3><p>解决方法：调整websocket缓冲区大小，websocket中MaxTextMessageBufferSize默认为 <strong>8192</strong> （8*1024）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 200K</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> MAX_SIZE = <span class="number">200</span> * <span class="number">1024</span>;</span><br><span class="line"><span class="comment">// 最大缓冲区</span></span><br><span class="line">session.setMaxTextMessageBufferSize(MAX_SIZE);</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session-open-仍为true"><a href="#2-客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session-open-仍为true" class="headerlink" title="2.客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session open 仍为true"></a>2.客户端断网断电等异常情况，服务端session感知不到，其他客户端及服务端认为其仍在线，session open 仍为true</h3><p>一开始是将客户端发送的ping消息保存到数据库中，服务器定时查询看有多久没发ping消息了，这样的实现不好<br>解决方法：客户端发送ping消息，维持与服务端心跳，服务端设置session的MaxIdleTimeout超时时间，我这客户端设置了每60s发送ping消息，服务端设置了90s超时时间。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setMaxIdleTimeout(TimeUnit.SECONDS.toMillis(<span class="number">90</span>));</span><br></pre></td></tr></table></figure>
@@ -1217,6 +1217,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
@@ -1225,15 +1229,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1241,11 +1237,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1257,10 +1265,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
@@ -1269,19 +1273,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1289,7 +1281,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1298,14 +1306,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
