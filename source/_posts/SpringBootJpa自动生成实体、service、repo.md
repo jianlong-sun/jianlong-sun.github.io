@@ -7,20 +7,24 @@ tags: jpa
 ---
 ## 1.前言
 正如我们知道的Spring data jpa 可以自动生成表结构，但是有时候也想通过现有的数据库表来生成实体。demo地址在文章结尾。
+
+![](https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141944294.png)
+
 ## 2.步骤
 ### 2.1 我这里用的是IDEA+MySql。
 ### 2.2 创建一个springboot项目
 ### 2.3 在IDEA中连上MySql数据库。
-![连接数据库](/images/jpa/jpa1.png)
+![连接数据库](https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141942255.png)
 ### 2.4 切换到如下目录。
-![切换目录](/images/jpa/jpa2.png)
+![切换目录](https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141942654.png)
 ### 2.4 打开如下文件。
-![打开文件](/images/jpa/jpa3.png)
+![打开文件](https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141942914.png)
 <!--more-->
+
 ### 2.4 将内容替换为如下代码块1。
 ### 2.5 我的BaseEntity如下代码块2。
 ### 2.6 如下方式生成，点击后会让你选择要保存到哪个文件夹下
-![生成文件](/images/jpa/jpa4.png)
+![生成文件](https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141942397.png)
 ##### 代码块1
 ```
 import com.intellij.database.model.DasTable

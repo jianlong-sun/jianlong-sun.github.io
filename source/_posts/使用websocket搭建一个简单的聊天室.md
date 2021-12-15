@@ -15,12 +15,12 @@ tags: websocket
 > WebSocket是一种在单个TCP连接上进行全双工通信的协议。  WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。  
 WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
 
-### 2.2 传统“即使通讯”
+### 2.2 传统“即时通讯”
  *HTTP 协议有一个缺陷：通信只能由客户端发起。*  
 很多网站为了实现即时通讯(real-time)，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔(time interval)（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。这种传统的HTTP request d的模式带来很明显的缺点 – 浏览器需要不断的向服务器发出请求(request)，然而HTTP request 的header是非常长的，里面包含的数据可能只是一个很小的值，这样会占用很多的带宽。
 <!--more-->
 ### 2.3 两者的比较
-![socket](/images/socket/socket.png)
+![socket](https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141940759.png)
 
 特点：
 > （1）建立在 TCP 协议之上，服务器端的实现比较容易。  
@@ -291,3 +291,5 @@ public class WebSocketConfig {
 </html>
 
 ```
+参考：
+[Spring Boot学习分享(七)——整合WebSocket开发多个聊天室多人在线实时通信](https://blog.csdn.net/madonghyu/article/details/80474240?utm_source=blogkpcl9)

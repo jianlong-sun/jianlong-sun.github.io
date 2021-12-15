@@ -79,7 +79,8 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/jianlong-sun/jianlong-sun.github.io.git
+#  repo: https://github.com/jianlong-sun/jianlong-sun.github.io.git
+  repo: git@github.com:jianlong-sun/jianlong-sun.github.io.git
 # Live2D
 ## https://github.com/EYHN/hexo-helper-live2d
 ## https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
@@ -102,7 +103,7 @@ live2d:
     # use: ./wives/wanko # 相对于博客根目录的路径
     # use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url
   display:
-    position: right
+    position: left
     width: 145
     height: 315
   mobile:
@@ -129,3 +130,6 @@ jsonContent:
       excerpt: false
       categories: false
       tags: true
+marked:
+  prependRoot: true
+  postAsset: true

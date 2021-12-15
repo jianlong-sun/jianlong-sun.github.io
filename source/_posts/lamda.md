@@ -3,7 +3,7 @@ title: lamda
 categories: 默认分类
 description: java8新特性：包括lambda、stream等
 date: 2019-08-21 17:14:20
-tags: java
+tags: java8
 ---
 > 引用自 [Java 8 函数式编程](https://www.processon.com/special/template/5c6caeefe4b03334b521f752#map)
 # 1.Lambda表达式
@@ -22,17 +22,17 @@ tags: java
           方法体如果只有一行语句，可省略花括号
      - 方法引用
         - 类名::方法
-        ```java
+        ```
            Function<Integer, String> intToStr = String::valueOf; // 等同于 e -> String.valueOf(e)
         ```
         - 当参数仅有一个，且返回值为类的一个方法(静态或非静态均可)返回值时，可省略参数，使用 类名::方法名 的方式描述
         - 使用 类名::new 来引用类的构造方法
-        ```java
+        ```
            Function<char[], String> newStrFromCharArray = String::new; // 调用的是 new String(char[] cs)构造方法 String[]::new 来引用数组的构造方法
         ```
 - 值引用
    - 同匿名内部类类似，在Lambda表达式中引用的变量，需要声明为final或在既成事实上为final 即终态变量
-   ```java
+   ```
       String name = "Alex"; // name自声明以来仅赋值一次，
       //     虽然没有显式声明为final，但为既成事实上的final变量
       button.addActionListener(event -> System.out.println("hi " + name));
@@ -41,7 +41,7 @@ tags: java
     - 此特性表明lambda表达式中变量实际上为值引用
 - 函数式接口
     - 一元接口
-    ```java
+    ```
       Predicate<T>:
           boolean test(T t) 谓词函数，传入一个变量，根据一定规则进行布尔判断
       Function<T, R>

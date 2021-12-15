@@ -13,7 +13,7 @@ tags: Issu
 ```
 ## 2.问题描述
 ### 如下代码会输出什么
-![ww](/images/issue.png)
+![ww](https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141941039.png)
 ```
     private static Random rnd = new Random();
 
