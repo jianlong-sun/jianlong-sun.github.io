@@ -190,19 +190,44 @@ var _hmt = _hmt || [];
   	<time datetime="2021-12-15T00:35:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-15</time>
 </a>
         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">486字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Hexo主题yilia增加gitalk评论插件-github-io"><a href="#Hexo主题yilia增加gitalk评论插件-github-io" class="headerlink" title="Hexo主题yilia增加gitalk评论插件-github.io"></a>Hexo主题yilia增加gitalk评论插件-github.io</h3><h4 id="1-在layout-partial-post目录下新增gitalk-ejs文件"><a href="#1-在layout-partial-post目录下新增gitalk-ejs文件" class="headerlink" title="1.在layout/_partial/post目录下新增gitalk.ejs文件"></a>1.在<code>layout/_partial/post</code>目录下新增<strong>gitalk.ejs</strong>文件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitalk-container"</span> <span class="attr">style</span>=<span class="string">"padding: 0px 30px 0px 30px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">if(<span class="tag">&lt;<span class="name">%=theme.gitalk.enable%</span>&gt;</span>)&#123;</span></span><br><span class="line">	var gitalk = new Gitalk(&#123;</span><br><span class="line"><span class="xml">  	clientID: '<span class="tag">&lt;<span class="name">%=theme.gitalk.ClientID%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	clientSecret: '<span class="tag">&lt;<span class="name">%=theme.gitalk.ClientSecret%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	repo: '<span class="tag">&lt;<span class="name">%=theme.gitalk.repo%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	owner: '<span class="tag">&lt;<span class="name">%=theme.gitalk.githubID%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	admin: ['<span class="tag">&lt;<span class="name">%=theme.gitalk.adminUser%</span>&gt;</span>'],</span></span><br><span class="line"><span class="xml">  	id: '<span class="tag">&lt;<span class="name">%=</span> <span class="attr">page.date</span> %&gt;</span>',</span></span><br><span class="line"><span class="xml">  	distractionFreeMode: '<span class="tag">&lt;<span class="name">%=theme.gitalk.distractionFreeMode%</span>&gt;</span>'</span></span><br><span class="line">&#125;)</span><br><span class="line">gitalk.render('gitalk-container') </span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h3 id="Hexo主题yilia增加gitalk评论插件-github-io"><a href="#Hexo主题yilia增加gitalk评论插件-github-io" class="headerlink" title="Hexo主题yilia增加gitalk评论插件-github.io"></a>Hexo主题yilia增加gitalk评论插件-github.io</h3><h4 id="1-第一步"><a href="#1-第一步" class="headerlink" title="1.第一步"></a>1.第一步</h4><p>在layout/_partial/post目录下新增 gitalk.ejs 文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitalk-container"</span> <span class="attr">style</span>=<span class="string">"padding: 0px 30px 0px 30px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">if(<span class="tag">&lt;<span class="name">%=theme.gitalk.enable%</span>&gt;</span>)&#123;</span></span><br><span class="line">	var gitalk = new Gitalk(&#123;</span><br><span class="line"><span class="xml">  	clientID: '<span class="tag">&lt;<span class="name">%=theme.gitalk.ClientID%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	clientSecret: '<span class="tag">&lt;<span class="name">%=theme.gitalk.ClientSecret%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	repo: '<span class="tag">&lt;<span class="name">%=theme.gitalk.repo%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	owner: '<span class="tag">&lt;<span class="name">%=theme.gitalk.githubID%</span>&gt;</span>',</span></span><br><span class="line"><span class="xml">  	admin: ['<span class="tag">&lt;<span class="name">%=theme.gitalk.adminUser%</span>&gt;</span>'],</span></span><br><span class="line"><span class="xml">  	id: '<span class="tag">&lt;<span class="name">%=</span> <span class="attr">page.date</span> %&gt;</span>',</span></span><br><span class="line"><span class="xml">  	distractionFreeMode: '<span class="tag">&lt;<span class="name">%=theme.gitalk.distractionFreeMode%</span>&gt;</span>'</span></span><br><span class="line">&#125;)</span><br><span class="line">gitalk.render('gitalk-container') </span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="2-修改source-src-css-目录下comment-scss文件"><a href="#2-修改source-src-css-目录下comment-scss文件" class="headerlink" title="2.修改source-src/css/目录下comment.scss文件"></a>2.修改<code>source-src/css</code>/目录下<strong>comment.scss</strong>文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#disqus_thread, .duoshuo, .cloud-tie-wrapper, #SOHUCS, #gitment-ctn, #gitalk-container &#123;</span><br><span class="line">	padding: 0 30px !important;</span><br><span class="line">	min-height: 20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#SOHUCS &#123;</span><br><span class="line">	#SOHU_MAIN .module-cmt-list .block-cont-gw &#123;</span><br><span class="line">		border-bottom: 1px dashed #c8c8c8 !important;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-第二步"><a href="#2-第二步" class="headerlink" title="2.第二步"></a>2.第二步</h4><p>修改source-src/css目录下comment.scss文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#disqus_thread, .duoshuo, .cloud-tie-wrapper, #SOHUCS, #gitment-ctn, #gitalk-container &#123;</span><br><span class="line">	padding: 0 30px !important;</span><br><span class="line">	min-height: 20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#SOHUCS &#123;</span><br><span class="line">	#SOHU_MAIN .module-cmt-list .block-cont-gw &#123;</span><br><span class="line">		border-bottom: 1px dashed #c8c8c8 !important;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-在layout-partial目录下的article-ejs文件内新增gitalk相关的配置代码："><a href="#3-在layout-partial目录下的article-ejs文件内新增gitalk相关的配置代码：" class="headerlink" title="3.在layout/_partial目录下的article.ejs文件内新增gitalk相关的配置代码："></a>3.在<code>layout/_partial</code>目录下的<strong>article.ejs</strong>文件内新增gitalk相关的配置代码：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.gitalk.enable)&#123; %&gt;</span><br><span class="line">       &lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">       &lt;%- include post/gitalk.ejs %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-第三步"><a href="#3-第三步" class="headerlink" title="3.第三步"></a>3.第三步</h4><p>在layout/_partial目录下的article.ejs文件内新增gitalk相关的配置代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.gitalk.enable)&#123; %&gt;</span><br><span class="line">       &lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">       &lt;%- include post/gitalk.ejs %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 
-<h4 id="4-最后在yilia主题配置文件中新增gitalk相关的配置："><a href="#4-最后在yilia主题配置文件中新增gitalk相关的配置：" class="headerlink" title="4.最后在yilia主题配置文件中新增gitalk相关的配置："></a>4.最后在<code>yilia</code>主题配置文件中新增<code>gitalk</code>相关的配置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#gitalk评论</span><br><span class="line">gitalk:</span><br><span class="line">  enable:  true</span><br><span class="line">  githubID: 写自己github的ID</span><br><span class="line">  repo: 新建存放评论的仓库名</span><br><span class="line">  ClientID:  下面讲述如何书写 需要注册 OAuth Application</span><br><span class="line">  ClientSecret:  下面讲述如何书 需要注册 OAuth Application</span><br><span class="line">#不这样书写容易报错</span><br><span class="line">  adminUser: &quot;[&apos;仓库名&apos;,&apos;仓库名&apos;]&quot;</span><br><span class="line">  labels: gitalk</span><br><span class="line">  perPage: 15</span><br><span class="line">  pagerDirection: last</span><br><span class="line">  createIssueManually: true</span><br><span class="line">  distractionFreeMode: true</span><br></pre></td></tr></table></figure>
+<h4 id="4-第四步"><a href="#4-第四步" class="headerlink" title="4.第四步"></a>4.第四步</h4><p>最后在<code>yilia</code>主题配置文件中新增<code>gitalk</code>相关的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#gitalk评论</span><br><span class="line">gitalk:</span><br><span class="line">  enable:  true</span><br><span class="line">  githubID: 写自己github的ID</span><br><span class="line">  repo: 新建存放评论的仓库名</span><br><span class="line">  ClientID:  下面讲述如何书写 需要注册 OAuth Application</span><br><span class="line">  ClientSecret:  下面讲述如何书 需要注册 OAuth Application</span><br><span class="line">#不这样书写容易报错</span><br><span class="line">  adminUser: &quot;[&apos;仓库名&apos;,&apos;仓库名&apos;]&quot;</span><br><span class="line">  labels: gitalk</span><br><span class="line">  perPage: 15</span><br><span class="line">  pagerDirection: last</span><br><span class="line">  createIssueManually: true</span><br><span class="line">  distractionFreeMode: true</span><br></pre></td></tr></table></figure>
 
-<h4 id="5-第四步的ClientId-和ClientSecret获取方式"><a href="#5-第四步的ClientId-和ClientSecret获取方式" class="headerlink" title="5.第四步的ClientId 和ClientSecret获取方式"></a>5.第四步的ClientId 和ClientSecret获取方式</h4><p><a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a></p>
+<h4 id="5-第五步"><a href="#5-第五步" class="headerlink" title="5.第五步"></a>5.第五步</h4><p>第四步的ClientId 和ClientSecret获取方式<br><a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a></p>
 <p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112150842566.png" alt="image-20211215084255150"></p>
 <p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112150844098.png" alt="image-20211215084419015"></p>
 <h4 id="6-遇到的问题"><a href="#6-遇到的问题" class="headerlink" title="6.遇到的问题"></a>6.遇到的问题</h4><h5 id="6-1-如果自己的博客用的是-github-io，那么不再需要重新建评论库，需要稍微注意下。"><a href="#6-1-如果自己的博客用的是-github-io，那么不再需要重新建评论库，需要稍微注意下。" class="headerlink" title="6.1 如果自己的博客用的是***.github.io，那么不再需要重新建评论库，需要稍微注意下。"></a>6.1 如果自己的博客用的是***.github.io，那么不再需要重新建评论库，需要稍微注意下。</h5><h5 id="6-2-未找到相关的issue评论，请联系xxx初始化创建"><a href="#6-2-未找到相关的issue评论，请联系xxx初始化创建" class="headerlink" title="6.2 未找到相关的issue评论，请联系xxx初始化创建"></a>6.2 未找到相关的issue评论，请联系xxx初始化创建</h5><p>这个问题还是要看下第四步的配置是否正确</p>
@@ -299,6 +324,27 @@ var _hmt = _hmt || [];
 <a href="/2021/12/14/typora文内链接跳转/" class="archive-article-date">
   	<time datetime="2021-12-14T09:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
 </a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">985字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+
+          
         
       </header>
     
@@ -725,6 +771,27 @@ var _hmt = _hmt || [];
   	<time datetime="2021-12-14T08:32:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
 </a>
         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">170字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -829,6 +896,27 @@ var _hmt = _hmt || [];
 <a href="/2021/10/09/typora+picgo+sm.ms实现自动上传/" class="archive-article-date">
   	<time datetime="2021-10-09T09:28:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-09</time>
 </a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">359字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
         
       </header>
     
@@ -935,6 +1023,27 @@ var _hmt = _hmt || [];
   	<time datetime="2021-10-09T08:03:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-09</time>
 </a>
         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -1017,6 +1126,27 @@ var _hmt = _hmt || [];
 <a href="/2021/06/01/websocket-遇到的问题/" class="archive-article-date">
   	<time datetime="2021-06-01T09:23:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
 </a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">252字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
         
       </header>
     
@@ -1114,6 +1244,27 @@ var _hmt = _hmt || [];
   	<time datetime="2021-04-23T04:34:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-23</time>
 </a>
         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">0字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -1201,6 +1352,27 @@ var _hmt = _hmt || [];
 <a href="/2021/04/20/idea插件easyYApi/" class="archive-article-date">
   	<time datetime="2021-04-20T08:24:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
 </a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">449字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
         
       </header>
     
@@ -1312,6 +1484,27 @@ var _hmt = _hmt || [];
   	<time datetime="2021-04-20T07:40:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
 </a>
         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">414字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -1407,6 +1600,27 @@ var _hmt = _hmt || [];
 <a href="/2021/04/20/Sharding-JDBC实现读写分离-Springboot-docker-mysql8/" class="archive-article-date">
   	<time datetime="2021-04-20T05:56:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
 </a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">880字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+
+          
         
       </header>
     
@@ -1618,7 +1832,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1626,15 +1840,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1643,6 +1849,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hutool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1666,11 +1880,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1694,11 +1908,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1710,11 +1924,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
             <div class="clearfix"></div>
