@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jianlong-sun.github.io">
-  <title>Tag: yilia | jianlong_sun的博客</title>
+  <title>mysql备份文件记录 | jianlong_sun的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
-<meta name="keywords" content="Java,Git,Linux,Spring">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jianlong_sun的博客">
-<meta property="og:url" content="https://jianlong-sun.github.io/tags/yilia/index.html">
+  <meta name="description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
+<meta name="keywords" content="mysql,备份">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql备份文件记录">
+<meta property="og:url" content="https://jianlong-sun.github.io/2021/12/21/mysql备份文件记录/index.html">
 <meta property="og:site_name" content="jianlong_sun的博客">
-<meta property="og:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta property="og:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-12-21T02:16:45.309Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jianlong_sun的博客">
-<meta name="twitter:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta name="twitter:title" content="mysql备份文件记录">
+<meta name="twitter:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
   
     <link rel="alternative" href="/atom.xml" title="jianlong_sun的博客" type="application/atom+xml">
   
@@ -170,81 +171,263 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mysql备份文件记录" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2021/12/15/Hexo主题yilia增加gitalk评论插件/" class="archive-article-date">
-  	<time datetime="2021-12-15T00:35:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/15/Hexo主题yilia增加gitalk评论插件/">Hexo主题yilia增加gitalk评论插件</a>
+    <h1 class="article-title" itemprop="name">
+      mysql备份文件记录
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/2021/12/21/mysql备份文件记录/" class="archive-article-date">
+  	<time datetime="2021-12-21T01:56:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">730字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+
           
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-对多个数据库进行备份"><a href="#1-对多个数据库进行备份" class="headerlink" title="1.对多个数据库进行备份"></a>1.对多个数据库进行备份</h4><h5 id="1-1-创建备份脚本文件-backup-sh"><a href="#1-1-创建备份脚本文件-backup-sh" class="headerlink" title="1.1 创建备份脚本文件 backup.sh"></a>1.1 创建备份脚本文件 backup.sh</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd home/</span><br><span class="line">mkdir msql-backup</span><br><span class="line">touch backup.sh</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-修改如下脚本中的username、password、database-names-改成自己的"><a href="#1-2-修改如下脚本中的username、password、database-names-改成自己的" class="headerlink" title="1.2 修改如下脚本中的username、password、database_names 改成自己的"></a>1.2 修改如下脚本中的username、password、database_names 改成自己的</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>保存备份个数，备份10天数据</span><br><span class="line">number=10</span><br><span class="line"><span class="meta">#</span>备份保存路径</span><br><span class="line">backup_dir=/home/mysql-backup</span><br><span class="line"><span class="meta">#</span>日期</span><br><span class="line">dd=`date +%Y%m%d`</span><br><span class="line">minute=`date +%H%M`</span><br><span class="line"><span class="meta">#</span>备份工具</span><br><span class="line">tool=mysqldump</span><br><span class="line"><span class="meta">#</span>用户名</span><br><span class="line">username=数据库用户名</span><br><span class="line"><span class="meta">#</span>密码</span><br><span class="line">password=数据库密码</span><br><span class="line"><span class="meta">#</span>将要备份的数据库,逗号分隔</span><br><span class="line">database_names="数据库1,数据库2,...."</span><br><span class="line">function backupMysql()&#123;</span><br><span class="line">    OLD_IFS="$IFS"</span><br><span class="line">    IFS=","</span><br><span class="line"><span class="meta">   #</span>代表第一个参数</span><br><span class="line">    arr=($1)</span><br><span class="line">    IFS="$OLD_IFS"</span><br><span class="line">    for database_name in $&#123;arr[@]&#125; </span><br><span class="line">    do</span><br><span class="line">            echo $database_name 'start backup....'</span><br><span class="line">           #如果文件夹不存在则创建</span><br><span class="line">            if [ ! -d $backup_dir/$database_name/$dd ]; </span><br><span class="line">            then     </span><br><span class="line">                mkdir -p $backup_dir/$database_name/$dd/;</span><br><span class="line">            fi</span><br><span class="line">            #简单写法  mysqldump -u root -p123456 users &gt; /root/mysqlbackup/users-$filename.sql</span><br><span class="line">            $tool -u $username -p$password --databases $database_name &gt; $backup_dir/$database_name/$dd/$database_name-$dd-$minute.sql</span><br><span class="line">            #写创建备份日志</span><br><span class="line">            echo "`date +%Y-%m-%d` `date +%H`:`date +%M` create $backup_dir/$database_name/$database_name-$dd.dupm" &gt;&gt; $backup_dir/$database_name/log.txt</span><br><span class="line">            #找出需要删除的备份</span><br><span class="line">           delfile=`ls -l   $backup_dir/$database_name/ | grep ^d | awk '&#123;print $9 &#125;' | head -1`</span><br><span class="line">           #判断现在的备份数量是否大于$number</span><br><span class="line">           count=`ls -l  $backup_dir/$database_name/ | grep ^d | awk '&#123;print $9 &#125;' | wc -l`</span><br><span class="line">            if [ $count -gt $number ]</span><br><span class="line">           then</span><br><span class="line">            #删除最早生成的备份，只保留number数量的备份</span><br><span class="line">           rm -rf  $backup_dir/$database_name/$delfile</span><br><span class="line">            #写删除文件日志</span><br><span class="line">            echo "`date +%Y-%m-%d` `date +%H`:`date +%M`  delete $backup_dir/$database_name/$delfile" &gt;&gt; $backup_dir/$database_name/log.txt</span><br><span class="line">           fi</span><br><span class="line">         echo $database_name 'end backup....'  </span><br><span class="line">    done</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line">backupMysql $database_names;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-给脚本设置执行权限"><a href="#1-3-给脚本设置执行权限" class="headerlink" title="1.3 给脚本设置执行权限"></a>1.3 给脚本设置执行权限</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x backup.sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建定时任务"><a href="#2-创建定时任务" class="headerlink" title="2.创建定时任务"></a>2.创建定时任务</h4><h5 id="2-1-输入命令-crontab-e"><a href="#2-1-输入命令-crontab-e" class="headerlink" title="2.1 输入命令 crontab  -e"></a>2.1 输入命令 crontab  -e</h5><h5 id="2-2-输入如下命令：每天凌晨两点执行"><a href="#2-2-输入如下命令：每天凌晨两点执行" class="headerlink" title="2.2 输入如下命令：每天凌晨两点执行"></a>2.2 输入如下命令：每天凌晨两点执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 2 * * * /home/mysql-backup/backup.sh</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-保存退出，crontab-l-可查看下定时任务"><a href="#2-3-保存退出，crontab-l-可查看下定时任务" class="headerlink" title="2.3 保存退出，crontab -l 可查看下定时任务"></a>2.3 保存退出，crontab -l 可查看下定时任务</h5><h4 id="3-如何还原数据库"><a href="#3-如何还原数据库" class="headerlink" title="3.如何还原数据库"></a>3.如何还原数据库</h4><h5 id="3-1方式一"><a href="#3-1方式一" class="headerlink" title="3.1方式一"></a>3.1方式一</h5><h5 id="在系统命令行中，输入如下实现还原：-mysql-uroot-p123456-lt-home-mysql-backup-XX-sql"><a href="#在系统命令行中，输入如下实现还原：-mysql-uroot-p123456-lt-home-mysql-backup-XX-sql" class="headerlink" title="在系统命令行中，输入如下实现还原： mysql -uroot  -p123456 &lt; /home/mysql-backup/XX.sql"></a>在系统命令行中，输入如下实现还原： mysql -uroot  -p123456 &lt; /home/mysql-backup/XX.sql</h5><h5 id="3-2方式二"><a href="#3-2方式二" class="headerlink" title="3.2方式二"></a>3.2方式二</h5><h5 id="在登录进入mysql系统中-通过source指令找到对应系统中的文件进行还原：-mysql-gt-source-home-mysql-backup-XX-sql"><a href="#在登录进入mysql系统中-通过source指令找到对应系统中的文件进行还原：-mysql-gt-source-home-mysql-backup-XX-sql" class="headerlink" title="在登录进入mysql系统中,通过source指令找到对应系统中的文件进行还原： mysql&gt; source /home/mysql-backup/XX.sql"></a>在登录进入mysql系统中,通过source指令找到对应系统中的文件进行还原： mysql&gt; source /home/mysql-backup/XX.sql</h5><h4 id="4-需要注意的地方"><a href="#4-需要注意的地方" class="headerlink" title="4. 需要注意的地方"></a>4. 需要注意的地方</h4><h5 id="4-1-p密码-中间是没有空格的"><a href="#4-1-p密码-中间是没有空格的" class="headerlink" title="4.1  -p密码 中间是没有空格的"></a>4.1  -p密码 中间是没有空格的</h5><p>mysqldump -u 用户名 -p密码 –databases XX&gt;/home/mysql-backup/XX.sql</p>
+<h5 id="4-2-如果文件在windows中编辑过-可能会有-bin-bash-M-坏的解释器-报错，尝试使用如下进行修改"><a href="#4-2-如果文件在windows中编辑过-可能会有-bin-bash-M-坏的解释器-报错，尝试使用如下进行修改" class="headerlink" title="4.2 如果文件在windows中编辑过,可能会有 /bin/bash^M: 坏的解释器 报错，尝试使用如下进行修改"></a>4.2 如果文件在windows中编辑过,可能会有 /bin/bash^M: 坏的解释器 报错，尝试使用如下进行修改</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/\r$//&apos; backup.sh</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-3-还原数据库时：source-home-mysql-backup-XXX-sql-ERROR-Failed-to-open-file-……"><a href="#4-3-还原数据库时：source-home-mysql-backup-XXX-sql-ERROR-Failed-to-open-file-……" class="headerlink" title="4.3 还原数据库时：source /home/mysql_backup/XXX.sql; ERROR: Failed to open file ……"></a>4.3 还原数据库时：source /home/mysql_backup/XXX.sql; ERROR: Failed to open file ……</h5><p>我的路径写错了，是mysql-backup不是mysql_backup</p>
+<p>参考资料：</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/91e97d99fa53" target="_blank" rel="noopener">mysql定时备份单个或多个数据库 - 简书 (jianshu.com)</a></p>
+<p><a href="https://www.jianshu.com/p/076796ee4c16" target="_blank" rel="noopener">mysql 数据库 定时自动备份 - 简书 (jianshu.com)</a></p>
+<p><a href="https://blog.csdn.net/liuqiyao_01/article/details/41542101" target="_blank" rel="noopener">解决 linux下编译make文件报错“/bin/bash^M: 坏的解释器：没有那个文件或目录” 问题<em>671coder的专栏-CSDN博客</em>/bin/bash^m: 坏的解释器: 没有那个文件或目录</a></p>
+<p><a href="https://blog.csdn.net/helloxiaozhe/article/details/77680255" target="_blank" rel="noopener">MySql数据库备份与恢复——使用mysqldump 导入与导出方法总结_helloxiaozhe的博客-CSDN博客_mysql数据库备份与恢复</a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">gitalk</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">备份</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/教程//" class="article-tag-list-link color3">教程</a>
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2021/12/21/mysql备份文件记录/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/12/15/Hexo主题yilia增加gitalk评论插件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo主题yilia增加gitalk评论插件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-对多个数据库进行备份"><span class="toc-number">1.</span> <span class="toc-text">1.对多个数据库进行备份</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-创建备份脚本文件-backup-sh"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 创建备份脚本文件 backup.sh</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-修改如下脚本中的username、password、database-names-改成自己的"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 修改如下脚本中的username、password、database_names 改成自己的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-给脚本设置执行权限"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 给脚本设置执行权限</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-创建定时任务"><span class="toc-number">2.</span> <span class="toc-text">2.创建定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-输入命令-crontab-e"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 输入命令 crontab  -e</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-输入如下命令：每天凌晨两点执行"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 输入如下命令：每天凌晨两点执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-保存退出，crontab-l-可查看下定时任务"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 保存退出，crontab -l 可查看下定时任务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-如何还原数据库"><span class="toc-number">3.</span> <span class="toc-text">3.如何还原数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1方式一"><span class="toc-number">3.1.</span> <span class="toc-text">3.1方式一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#在系统命令行中，输入如下实现还原：-mysql-uroot-p123456-lt-home-mysql-backup-XX-sql"><span class="toc-number">3.2.</span> <span class="toc-text">在系统命令行中，输入如下实现还原： mysql -uroot  -p123456 &lt; /home/mysql-backup/XX.sql</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2方式二"><span class="toc-number">3.3.</span> <span class="toc-text">3.2方式二</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#在登录进入mysql系统中-通过source指令找到对应系统中的文件进行还原：-mysql-gt-source-home-mysql-backup-XX-sql"><span class="toc-number">3.4.</span> <span class="toc-text">在登录进入mysql系统中,通过source指令找到对应系统中的文件进行还原： mysql&gt; source /home/mysql-backup/XX.sql</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-需要注意的地方"><span class="toc-number">4.</span> <span class="toc-text">4. 需要注意的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-p密码-中间是没有空格的"><span class="toc-number">4.1.</span> <span class="toc-text">4.1  -p密码 中间是没有空格的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-如果文件在windows中编辑过-可能会有-bin-bash-M-坏的解释器-报错，尝试使用如下进行修改"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 如果文件在windows中编辑过,可能会有 /bin/bash^M: 坏的解释器 报错，尝试使用如下进行修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-还原数据库时：source-home-mysql-backup-XXX-sql-ERROR-Failed-to-open-file-……"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 还原数据库时：source /home/mysql_backup/XXX.sql; ERROR: Failed to open file ……</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+  
+       <div id="gitalk-container"></div>
+       <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '7fb26742ca952e7d1677',
+  	clientSecret: '08789c732c0cb011bd935a07a7400c2eebb5dbfb',
+  	repo: 'jianlong-sun.github.io',
+  	owner: 'jianlong-sun',
+  	admin: ['jianlong-sun'],
+  	id: 'Tue Dec 21 2021 09:56:04 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+}
+</script>
+
+  
+  
+
+  
 
 
           </div>
@@ -278,9 +461,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

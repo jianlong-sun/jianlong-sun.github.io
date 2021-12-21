@@ -172,6 +172,122 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-alipay" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/22/alipay/">alipay</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2019/10/22/alipay/" class="archive-article-date">
+  	<time datetime="2019-10-22T06:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="对支付宝支付接口的使用做一个简单总结"><a href="#对支付宝支付接口的使用做一个简单总结" class="headerlink" title="对支付宝支付接口的使用做一个简单总结"></a>对支付宝支付接口的使用做一个简单总结</h1><h4 id="1、条件有限，我是在支付宝的沙箱环境下进行开发测试的，整个流程就是用户下单，然后跳转到支付页面，用户扫二维码，跳转回系统，完成下单操作。demo地址在文章结尾。"><a href="#1、条件有限，我是在支付宝的沙箱环境下进行开发测试的，整个流程就是用户下单，然后跳转到支付页面，用户扫二维码，跳转回系统，完成下单操作。demo地址在文章结尾。" class="headerlink" title="1、条件有限，我是在支付宝的沙箱环境下进行开发测试的，整个流程就是用户下单，然后跳转到支付页面，用户扫二维码，跳转回系统，完成下单操作。demo地址在文章结尾。"></a>1、条件有限，我是在支付宝的沙箱环境下进行开发测试的，整个流程就是用户下单，然后跳转到支付页面，用户扫二维码，跳转回系统，完成下单操作。demo地址在文章结尾。</h4><blockquote>
+<p>产品特点：<br> 用户仅出示手机扫码即可完成付款，方便快捷；<br> 资金实时到账，无现金流压力。</p>
+</blockquote>
+<h4 id="首先要有支付宝账号，然后访问支付宝开放平台沙箱环境"><a href="#首先要有支付宝账号，然后访问支付宝开放平台沙箱环境" class="headerlink" title="首先要有支付宝账号，然后访问支付宝开放平台沙箱环境"></a>首先要有支付宝账号，然后访问<a href="https://openhome.alipay.com/platform/appDaily.htm?tab=info" target="_blank" rel="noopener">支付宝开放平台沙箱环境</a></h4><h4 id="2、在沙箱环境中会自动生成一个沙箱应用，会显示出APPID和支付宝网关等信息，点击设置RSA2-SHA256-密钥-推荐），在弹出的窗口中选择公钥。通过下面的签名工具生成公钥填入页面，然后会生成应用公钥（商户公钥）和支付宝公钥"><a href="#2、在沙箱环境中会自动生成一个沙箱应用，会显示出APPID和支付宝网关等信息，点击设置RSA2-SHA256-密钥-推荐），在弹出的窗口中选择公钥。通过下面的签名工具生成公钥填入页面，然后会生成应用公钥（商户公钥）和支付宝公钥" class="headerlink" title="2、在沙箱环境中会自动生成一个沙箱应用，会显示出APPID和支付宝网关等信息，点击设置RSA2(SHA256)密钥(推荐），在弹出的窗口中选择公钥。通过下面的签名工具生成公钥填入页面，然后会生成应用公钥（商户公钥）和支付宝公钥"></a>2、在沙箱环境中会自动生成一个沙箱应用，会显示出APPID和支付宝网关等信息，点击设置RSA2(SHA256)密钥(推荐），在弹出的窗口中选择公钥。通过下面的签名工具生成公钥填入页面，然后会生成应用公钥（商户公钥）和支付宝公钥</h4><h4 id="3、介绍几个概念-①商户appid-②商户公钥、私钥-③支付宝公钥-④支付宝网关地址"><a href="#3、介绍几个概念-①商户appid-②商户公钥、私钥-③支付宝公钥-④支付宝网关地址" class="headerlink" title="3、介绍几个概念 ①商户appid  ②商户公钥、私钥  ③支付宝公钥  ④支付宝网关地址"></a>3、介绍几个概念 ①商户appid  ②商户公钥、私钥  ③支付宝公钥  ④支付宝网关地址</h4><blockquote>
+<p>1.商户appid是识别商户的唯一ID，是让支付宝识别，我们到底是哪一个商户，这样支付宝就能识别商户对应的账号、用户号、收款账号…等等一系列信息。<br> 2.商户公钥、私钥以及支付宝公钥这3个参数是对商户系统与支付宝进行信息交互的数字签名用的我们需要对发送之前的信息加把锁（用商户私钥进行签名），然后再发送给支付宝。支付宝收到商户发送的信息之后，发现上了把锁，那肯定得要一把钥匙（商户公钥）来解锁对吧，所以商户在跟支付宝签约APP支付功能的时候，就得把这把钥匙上传给支付宝了，支付宝就可以用商户的公钥进行解锁了。反过来也是一样，支付宝需要发送信息给商户信息，先用支付宝的私钥进行签名，再发送给商户系统，商户系统收到支付宝反馈过来的信息后，再用支付宝的公钥进行解密。在这里我们并没有用到支付宝的私钥，所以我们并不需要得到支付宝的私钥。这里放一个生成私钥公钥的<a href="http://p.tb.cn/rmsportal_6680_secret_key_tools_RSA_win.zip" target="_blank" rel="noopener">支付宝官方工具</a><br>  3.支付宝网关地址，是用来配置发送给支付宝的网关地址的。</p>
+</blockquote>
+<h4 id="４、在下载钱包处选择下载沙箱钱包，这样基本的准备工作就做好了-沙箱钱包会提供账号密码，里面有资金可以供测试使用，-0-◇-0-假装自己有好多好多money。"><a href="#４、在下载钱包处选择下载沙箱钱包，这样基本的准备工作就做好了-沙箱钱包会提供账号密码，里面有资金可以供测试使用，-0-◇-0-假装自己有好多好多money。" class="headerlink" title="４、在下载钱包处选择下载沙箱钱包，这样基本的准备工作就做好了,沙箱钱包会提供账号密码，里面有资金可以供测试使用，(0^◇^0)/ 假装自己有好多好多money。"></a>４、在下载钱包处选择下载沙箱钱包，这样基本的准备工作就做好了,沙箱钱包会提供账号密码，里面有资金可以供测试使用，(0^◇^0)/ 假装自己有好多好多money。</h4><h4 id="5、基本的流程"><a href="#5、基本的流程" class="headerlink" title="5、基本的流程"></a>5、基本的流程</h4><p><img src="https://gw.alipayobjects.com/zos/skylark-tools/public/files/89f16c1633dd657952dba97d9e12ba92.png" alt><br>需要特别说明的是<strong>最终的支付结果是以异步通知为准，以及对返回的数据进行验签处理，以保证是支付宝返回的数据</strong>,</p>
+        
+          <a class="article-more-a" href="/2019/10/22/alipay/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">支付</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/22/alipay/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ControllerIssu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1196,10 +1312,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1216,10 +1328,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
@@ -1232,7 +1340,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1240,11 +1352,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1256,11 +1368,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备份</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spider</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1268,7 +1388,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color2">spider</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1292,15 +1412,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1308,11 +1420,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
               </li>
             
             <div class="clearfix"></div>
