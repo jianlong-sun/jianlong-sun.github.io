@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="jianlong_sun的博客">
 <meta property="og:description" content="使用mysqldump及cron定时任务备份数据库">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-12-21T02:38:36.515Z">
+<meta property="og:updated_time" content="2021-12-21T03:08:28.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql备份文件记录">
 <meta name="twitter:description" content="使用mysqldump及cron定时任务备份数据库">
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">732字</span>
+        <span class="post-count">931字</span>
       </span>
     </span>
 
@@ -208,7 +208,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -224,6 +224,8 @@ var _hmt = _hmt || [];
 <h5 id="1-2-修改如下脚本中的username、password、database-names-改成自己的"><a href="#1-2-修改如下脚本中的username、password、database-names-改成自己的" class="headerlink" title="1.2 修改如下脚本中的username、password、database_names 改成自己的"></a>1.2 修改如下脚本中的username、password、database_names 改成自己的</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>保存备份个数，备份10天数据</span><br><span class="line">number=10</span><br><span class="line"><span class="meta">#</span>备份保存路径</span><br><span class="line">backup_dir=/home/mysql-backup</span><br><span class="line"><span class="meta">#</span>日期</span><br><span class="line">dd=`date +%Y%m%d`</span><br><span class="line">minute=`date +%H%M`</span><br><span class="line"><span class="meta">#</span>备份工具</span><br><span class="line">tool=mysqldump</span><br><span class="line"><span class="meta">#</span>用户名</span><br><span class="line">username=数据库用户名</span><br><span class="line"><span class="meta">#</span>密码</span><br><span class="line">password=数据库密码</span><br><span class="line"><span class="meta">#</span>将要备份的数据库,逗号分隔</span><br><span class="line">database_names="数据库1,数据库2,...."</span><br><span class="line">function backupMysql()&#123;</span><br><span class="line">    OLD_IFS="$IFS"</span><br><span class="line">    IFS=","</span><br><span class="line"><span class="meta">   #</span>代表第一个参数</span><br><span class="line">    arr=($1)</span><br><span class="line">    IFS="$OLD_IFS"</span><br><span class="line">    for database_name in $&#123;arr[@]&#125; </span><br><span class="line">    do</span><br><span class="line">            echo $database_name 'start backup....'</span><br><span class="line">           #如果文件夹不存在则创建</span><br><span class="line">            if [ ! -d $backup_dir/$database_name/$dd ]; </span><br><span class="line">            then     </span><br><span class="line">                mkdir -p $backup_dir/$database_name/$dd/;</span><br><span class="line">            fi</span><br><span class="line">            #简单写法  mysqldump -u root -p123456 users &gt; /root/mysqlbackup/users-$filename.sql</span><br><span class="line">            $tool -u $username -p$password --databases $database_name &gt; $backup_dir/$database_name/$dd/$database_name-$dd-$minute.sql</span><br><span class="line">            #写创建备份日志</span><br><span class="line">            echo "`date +%Y-%m-%d` `date +%H`:`date +%M` create $backup_dir/$database_name/$database_name-$dd.dupm" &gt;&gt; $backup_dir/$database_name/log.txt</span><br><span class="line">            #找出需要删除的备份</span><br><span class="line">           delfile=`ls -l   $backup_dir/$database_name/ | grep ^d | awk '&#123;print $9 &#125;' | head -1`</span><br><span class="line">           #判断现在的备份数量是否大于$number</span><br><span class="line">           count=`ls -l  $backup_dir/$database_name/ | grep ^d | awk '&#123;print $9 &#125;' | wc -l`</span><br><span class="line">            if [ $count -gt $number ]</span><br><span class="line">           then</span><br><span class="line">            #删除最早生成的备份，只保留number数量的备份</span><br><span class="line">           rm -rf  $backup_dir/$database_name/$delfile</span><br><span class="line">            #写删除文件日志</span><br><span class="line">            echo "`date +%Y-%m-%d` `date +%H`:`date +%M`  delete $backup_dir/$database_name/$delfile" &gt;&gt; $backup_dir/$database_name/log.txt</span><br><span class="line">           fi</span><br><span class="line">         echo $database_name 'end backup....'  </span><br><span class="line">    done</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line">backupMysql $database_names;</span><br></pre></td></tr></table></figure>
 
 <h5 id="1-3-给脚本设置执行权限"><a href="#1-3-给脚本设置执行权限" class="headerlink" title="1.3 给脚本设置执行权限"></a>1.3 给脚本设置执行权限</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x backup.sh</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-4-备份下另一种方式"><a href="#1-4-备份下另一种方式" class="headerlink" title="1.4 备份下另一种方式"></a>1.4 备份下另一种方式</h5><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">PRODUCT=哪个项目</span><br><span class="line">DATE=$(date +%F_%H-%M-%S)</span><br><span class="line">HOST=localhost</span><br><span class="line">USER= 只读用户</span><br><span class="line">PASS= 密码</span><br><span class="line">BACKUP_DIR=/home/db-backup</span><br><span class="line">DB_LIST=$(mysql -h$HOST -u$USER -p$PASS -s -e "show databases;" 2&gt;/dev/null |egrep -v "Database|information_schema|mysql|performance_schema|sys")</span><br><span class="line"></span><br><span class="line">for DB in $DB_LIST; do</span><br><span class="line">    BACKUP_DB_DIR=$BACKUP_DIR/$&#123;DB&#125;</span><br><span class="line">    BACKUP_NAME=$BACKUP_DB_DIR/$&#123;DB&#125;_$&#123;DATE&#125;.sql</span><br><span class="line">    [ ! -d $BACKUP_DB_DIR ] &amp;&amp; mkdir -p $BACKUP_DB_DIR &amp;&gt;/dev/null</span><br><span class="line">    if ! mysqldump -h$HOST -u$USER -p$PASS  --routines --events --single-transaction --databases $DB &gt; $BACKUP_NAME 2&gt;/dev/null; then</span><br><span class="line">      echo "$BACKUP_NAME 备份失败!"</span><br><span class="line">    fi</span><br><span class="line">    gzip -c $BACKUP_NAME &gt; $BACKUP_NAME.gz;rm -rf $BACKUP_NAME;</span><br><span class="line">    ssh root@172.18.136.XX "[ ! -d /data1/backup/db/$PRODUCT/$DATE ] &amp;&amp; mkdir -p /data1/backup/db/$PRODUCT/$DATE &amp;&gt;/dev/null"</span><br><span class="line">    scp $BACKUP_NAME.gz root@172.18.136.XX:/data1/backup/db/$PRODUCT/$DATE</span><br><span class="line">    find $BACKUP_DB_DIR -mtime +10 -name "*.gz" -exec rm -rf &#123;&#125; \;</span><br><span class="line"></span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> ssh-keygen</span><br><span class="line"><span class="meta">#</span> ssh-copy-id 192.168.3.19</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>00 03 * * *  /opt/db-backup.sh &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-创建定时任务"><a href="#2-创建定时任务" class="headerlink" title="2.创建定时任务"></a>2.创建定时任务</h4><h5 id="2-1-输入命令-crontab-e"><a href="#2-1-输入命令-crontab-e" class="headerlink" title="2.1 输入命令 crontab  -e"></a>2.1 输入命令 crontab  -e</h5><h5 id="2-2-输入如下命令：每天凌晨两点执行"><a href="#2-2-输入如下命令：每天凌晨两点执行" class="headerlink" title="2.2 输入如下命令：每天凌晨两点执行"></a>2.2 输入如下命令：每天凌晨两点执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 2 * * * /home/mysql-backup/backup.sh</span><br></pre></td></tr></table></figure>
 
@@ -384,7 +386,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-对多个数据库进行备份"><span class="toc-number">1.</span> <span class="toc-text">1.对多个数据库进行备份</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-创建备份脚本文件-backup-sh"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 创建备份脚本文件 backup.sh</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-修改如下脚本中的username、password、database-names-改成自己的"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 修改如下脚本中的username、password、database_names 改成自己的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-给脚本设置执行权限"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 给脚本设置执行权限</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-创建定时任务"><span class="toc-number">2.</span> <span class="toc-text">2.创建定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-输入命令-crontab-e"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 输入命令 crontab  -e</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-输入如下命令：每天凌晨两点执行"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 输入如下命令：每天凌晨两点执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-保存退出，crontab-l-可查看下定时任务"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 保存退出，crontab -l 可查看下定时任务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-如何还原数据库"><span class="toc-number">3.</span> <span class="toc-text">3.如何还原数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1方式一"><span class="toc-number">3.1.</span> <span class="toc-text">3.1方式一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2方式二"><span class="toc-number">3.2.</span> <span class="toc-text">3.2方式二</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-需要注意的地方"><span class="toc-number">4.</span> <span class="toc-text">4. 需要注意的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-p密码-中间是没有空格的"><span class="toc-number">4.1.</span> <span class="toc-text">4.1  -p密码 中间是没有空格的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-如果文件在windows中编辑过-可能会有-bin-bash-M-坏的解释器-报错，尝试使用如下进行修改"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 如果文件在windows中编辑过,可能会有 /bin/bash^M: 坏的解释器 报错，尝试使用如下进行修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-还原数据库时：source-home-mysql-backup-XXX-sql-ERROR-Failed-to-open-file-……"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 还原数据库时：source /home/mysql_backup/XXX.sql; ERROR: Failed to open file ……</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-对多个数据库进行备份"><span class="toc-number">1.</span> <span class="toc-text">1.对多个数据库进行备份</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-创建备份脚本文件-backup-sh"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 创建备份脚本文件 backup.sh</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-修改如下脚本中的username、password、database-names-改成自己的"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 修改如下脚本中的username、password、database_names 改成自己的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-给脚本设置执行权限"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 给脚本设置执行权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-备份下另一种方式"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 备份下另一种方式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-创建定时任务"><span class="toc-number">2.</span> <span class="toc-text">2.创建定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-输入命令-crontab-e"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 输入命令 crontab  -e</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-输入如下命令：每天凌晨两点执行"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 输入如下命令：每天凌晨两点执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-保存退出，crontab-l-可查看下定时任务"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 保存退出，crontab -l 可查看下定时任务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-如何还原数据库"><span class="toc-number">3.</span> <span class="toc-text">3.如何还原数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1方式一"><span class="toc-number">3.1.</span> <span class="toc-text">3.1方式一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2方式二"><span class="toc-number">3.2.</span> <span class="toc-text">3.2方式二</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-需要注意的地方"><span class="toc-number">4.</span> <span class="toc-text">4. 需要注意的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-p密码-中间是没有空格的"><span class="toc-number">4.1.</span> <span class="toc-text">4.1  -p密码 中间是没有空格的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-如果文件在windows中编辑过-可能会有-bin-bash-M-坏的解释器-报错，尝试使用如下进行修改"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 如果文件在windows中编辑过,可能会有 /bin/bash^M: 坏的解释器 报错，尝试使用如下进行修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-还原数据库时：source-home-mysql-backup-XXX-sql-ERROR-Failed-to-open-file-……"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 还原数据库时：source /home/mysql_backup/XXX.sql; ERROR: Failed to open file ……</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -529,14 +531,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -549,6 +543,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
               </li>
              
@@ -557,19 +559,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,7 +587,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,7 +595,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,11 +607,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,19 +635,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
