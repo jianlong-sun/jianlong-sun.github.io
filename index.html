@@ -442,7 +442,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">486字</span>
+        <span class="post-count">466字</span>
       </span>
     </span>
 
@@ -472,7 +472,7 @@ var _hmt = _hmt || [];
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.gitalk.enable)&#123; %&gt;</span><br><span class="line">       &lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">       &lt;%- include post/gitalk.ejs %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 
 <h4 id="4-第四步"><a href="#4-第四步" class="headerlink" title="4.第四步"></a>4.第四步</h4><p>最后在<code>yilia</code>主题配置文件中新增<code>gitalk</code>相关的配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#gitalk评论</span><br><span class="line">gitalk:</span><br><span class="line">  enable:  true</span><br><span class="line">  githubID: 写自己github的ID</span><br><span class="line">  repo: 新建存放评论的仓库名</span><br><span class="line">  ClientID:  下面讲述如何书写 需要注册 OAuth Application</span><br><span class="line">  ClientSecret:  下面讲述如何书 需要注册 OAuth Application</span><br><span class="line">#不这样书写容易报错</span><br><span class="line">  adminUser: &quot;[&apos;仓库名&apos;,&apos;仓库名&apos;]&quot;</span><br><span class="line">  labels: gitalk</span><br><span class="line">  perPage: 15</span><br><span class="line">  pagerDirection: last</span><br><span class="line">  createIssueManually: true</span><br><span class="line">  distractionFreeMode: true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#gitalk评论</span><br><span class="line">gitalk:</span><br><span class="line">  enable:  true</span><br><span class="line">  githubID: 写自己github的ID</span><br><span class="line">  repo: 新建存放评论的仓库名</span><br><span class="line">  ClientID:  下面讲述如何书写 需要注册 OAuth Application</span><br><span class="line">  ClientSecret:  下面讲述如何书 需要注册 OAuth Application</span><br><span class="line">  adminUser: admin</span><br><span class="line">  labels: gitalk</span><br><span class="line">  perPage: 15</span><br><span class="line">  pagerDirection: last</span><br><span class="line">  createIssueManually: true</span><br><span class="line">  distractionFreeMode: true</span><br></pre></td></tr></table></figure>
 
 <h4 id="5-第五步"><a href="#5-第五步" class="headerlink" title="5.第五步"></a>5.第五步</h4><p>第四步的ClientId 和ClientSecret获取方式<br><a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a></p>
 <p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112150842566.png" alt="image-20211215084255150"></p>
@@ -1861,19 +1861,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1901,11 +1901,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1925,15 +1929,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1941,15 +1937,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">打包</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
