@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jianlong-sun.github.io">
-  <title>idea 使用 | jianlong_sun的博客</title>
+  <title>使用新版本git连不上服务器了- Permission denied (publickey) | jianlong_sun的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="idea 基本使用">
-<meta name="keywords" content="idea">
+  <meta name="description" content="git版本 2.34.1 Permission denied (publickey)">
+<meta name="keywords" content="Java,Git,Linux,Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="idea 使用">
-<meta property="og:url" content="https://jianlong-sun.github.io/2020/08/13/idea-使用/index.html">
+<meta property="og:title" content="使用新版本git连不上服务器了- Permission denied (publickey)">
+<meta property="og:url" content="https://jianlong-sun.github.io/2021/12/22/震惊，使用新版本git连不上服务器了/index.html">
 <meta property="og:site_name" content="jianlong_sun的博客">
-<meta property="og:description" content="idea 基本使用">
+<meta property="og:description" content="git版本 2.34.1 Permission denied (publickey)">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-08-13T02:18:05.063Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112221136165.png">
+<meta property="og:updated_time" content="2021-12-22T03:36:59.138Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="idea 使用">
-<meta name="twitter:description" content="idea 基本使用">
+<meta name="twitter:title" content="使用新版本git连不上服务器了- Permission denied (publickey)">
+<meta name="twitter:description" content="git版本 2.34.1 Permission denied (publickey)">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112221136165.png">
   
     <link rel="alternative" href="/atom.xml" title="jianlong_sun的博客" type="application/atom+xml">
   
@@ -171,14 +173,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-idea-使用" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-震惊，使用新版本git连不上服务器了" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      idea 使用
+      使用新版本git连不上服务器了- Permission denied (publickey)
     </h1>
   
 
@@ -190,8 +192,8 @@ var _hmt = _hmt || [];
         </span>
 
 
-<a href="/2020/08/13/idea-使用/" class="archive-article-date">
-  	<time datetime="2020-08-13T02:10:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-13</time>
+<a href="/2021/12/22/震惊，使用新版本git连不上服务器了/" class="archive-article-date">
+  	<time datetime="2021-12-22T03:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
 </a>
         
           <div style="margin-top:10px;">
@@ -199,7 +201,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">22字</span>
+        <span class="post-count">136字</span>
       </span>
     </span>
 
@@ -219,7 +221,22 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="开发工具idea使用方式看这篇就基本够用了"><a href="#开发工具idea使用方式看这篇就基本够用了" class="headerlink" title="开发工具idea使用方式看这篇就基本够用了"></a>开发工具idea使用方式看这篇就基本够用了</h2><p><a href="https://www.cnblogs.com/zyx110/p/10666082.html" target="_blank" rel="noopener">idea使用方式</a></p>
+        <h4 id="1-升级新版本git后连不上代码仓库"><a href="#1-升级新版本git后连不上代码仓库" class="headerlink" title="1.升级新版本git后连不上代码仓库"></a>1.升级新版本git后连不上代码仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git version</span><br><span class="line">git version 2.34.1.windows.1</span><br></pre></td></tr></table></figure>
+
+<p>报错信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">XXXXXXXXXXXX（git地址）:  Permission denied (publickey).</span><br><span class="line">Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-解决办法"><a href="#2-解决办法" class="headerlink" title="2.解决办法"></a>2.解决办法</h4><p>使用新的算法生成秘钥，替换服务器上的ssh</p>
+<h5 id="2-1-生成新的"><a href="#2-1-生成新的" class="headerlink" title="2.1 生成新的"></a>2.1 生成新的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your@example.email&quot;</span><br></pre></td></tr></table></figure>
+
+<p>2.2 查看并赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<p>2.3 替换github/gitee/gerrit上的ssh keys</p>
+<h4 id="3-原因"><a href="#3-原因" class="headerlink" title="3.原因"></a>3.原因</h4><p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112221136165.png" alt="image-20211222113629674"></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/cjmqas/article/details/120980593" target="_blank" rel="noopener">git 2.33.1 访问服务器报Permission denied (publickey)_chenjm的专栏-CSDN博客</a></p>
+</blockquote>
 
       
 
@@ -249,24 +266,13 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">idea</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/idea//" class="article-tag-list-link color5">idea</a>
+        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
@@ -321,7 +327,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2020/08/13/idea-使用/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2021/12/22/震惊，使用新版本git连不上服务器了/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -335,18 +341,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2020/08/18/Cannot-add-foreign-key-constraint-错误解决办法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Cannot add foreign key constraint 错误解决办法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/07/13/idea自动生成JPA元模型对象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">idea自动生成JPA元模型对象</div>
+    <a href="/2021/12/21/mysql备份文件记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql备份文件记录（本地、远程）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -373,7 +370,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发工具idea使用方式看这篇就基本够用了"><span class="toc-number">1.</span> <span class="toc-text">开发工具idea使用方式看这篇就基本够用了</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-升级新版本git后连不上代码仓库"><span class="toc-number">1.</span> <span class="toc-text">1.升级新版本git后连不上代码仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-解决办法"><span class="toc-number">2.</span> <span class="toc-text">2.解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-生成新的"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 生成新的</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-原因"><span class="toc-number">3.</span> <span class="toc-text">3.原因</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -404,7 +401,7 @@ if(true){
   	repo: 'jianlong-sun.github.io',
   	owner: 'jianlong-sun',
   	admin: ['jianlong-sun'],
-  	id: 'Thu Aug 13 2020 10:10:07 GMT+0800',
+  	id: 'Wed Dec 22 2021 11:27:44 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container')

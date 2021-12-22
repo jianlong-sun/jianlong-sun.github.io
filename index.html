@@ -172,6 +172,118 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-震惊，使用新版本git连不上服务器了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/22/震惊，使用新版本git连不上服务器了/">使用新版本git连不上服务器了- Permission denied (publickey)</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2021/12/22/震惊，使用新版本git连不上服务器了/" class="archive-article-date">
+  	<time datetime="2021-12-22T03:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">136字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-升级新版本git后连不上代码仓库"><a href="#1-升级新版本git后连不上代码仓库" class="headerlink" title="1.升级新版本git后连不上代码仓库"></a>1.升级新版本git后连不上代码仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git version</span><br><span class="line">git version 2.34.1.windows.1</span><br></pre></td></tr></table></figure>
+
+<p>报错信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">XXXXXXXXXXXX（git地址）:  Permission denied (publickey).</span><br><span class="line">Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-解决办法"><a href="#2-解决办法" class="headerlink" title="2.解决办法"></a>2.解决办法</h4><p>使用新的算法生成秘钥，替换服务器上的ssh</p>
+<h5 id="2-1-生成新的"><a href="#2-1-生成新的" class="headerlink" title="2.1 生成新的"></a>2.1 生成新的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your@example.email&quot;</span><br></pre></td></tr></table></figure>
+
+<p>2.2 查看并赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<p>2.3 替换github/gitee/gerrit上的ssh keys</p>
+<h4 id="3-原因"><a href="#3-原因" class="headerlink" title="3.原因"></a>3.原因</h4><p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112221136165.png" alt="image-20211222113629674"></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/cjmqas/article/details/120980593" target="_blank" rel="noopener">git 2.33.1 访问服务器报Permission denied (publickey)_chenjm的专栏-CSDN博客</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/22/震惊，使用新版本git连不上服务器了/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql备份文件记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1601,123 +1713,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Sharding-JDBC实现读写分离-Springboot-docker-mysql8-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/20/Sharding-JDBC实现读写分离-Springboot-docker-mysql8-二/">Sharding-JDBC实现读写分离,Springboot,docker,mysql8(二)</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2021/04/20/Sharding-JDBC实现读写分离-Springboot-docker-mysql8-二/" class="archive-article-date">
-  	<time datetime="2021-04-20T07:40:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">414字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-前提"><a href="#1-前提" class="headerlink" title="1.前提"></a>1.前提</h2><p>在 <a href="https://jianlong-sun.github.io/2021/04/20/Sharding-JDBC%E5%AE%9E%E7%8E%B0%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB-Springboot-docker-mysql8/">Sharding-JDBC实现读写分离,Springboot,docker,mysql8(一)</a>中主要介绍了数据库读写分离中关于数据库同步方面的问题，本篇主要介绍shardingJDBC与SpringBoot整合</p>
-<h2 id="2-遇到的小问题"><a href="#2-遇到的小问题" class="headerlink" title="2. 遇到的小问题"></a>2. 遇到的小问题</h2><p>1.与SpringBoot整合基本比较顺利，主要注意数据库地址、账号、密码不要填错。<br>2.由于使用了mysql8,springboot使用了1.5.1.RELEASE ,mysql-connector-java依赖默认版本较低，对其做了修改</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.20<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-步骤-分三步"><a href="#3-步骤-分三步" class="headerlink" title="3.步骤(分三步)"></a>3.步骤(分三步)</h3><h3 id="3-1-修改pom文件-增加sharding-jdbc依赖"><a href="#3-1-修改pom文件-增加sharding-jdbc依赖" class="headerlink" title="3.1 修改pom文件 增加sharding-jdbc依赖"></a>3.1 修改pom文件 增加sharding-jdbc依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.shardingjdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sharding-jdbc-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-修改yml配置-xxx部分替换成自己的配置"><a href="#3-2-修改yml配置-xxx部分替换成自己的配置" class="headerlink" title="3.2 修改yml配置,xxx部分替换成自己的配置"></a>3.2 修改yml配置,<strong>xxx</strong>部分替换成自己的配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8081</span></span><br><span class="line"><span class="string">sharding.jdbc:</span></span><br><span class="line"><span class="attr">  data-sources:</span></span><br><span class="line"><span class="attr">    ds_master:</span></span><br><span class="line"><span class="attr">      driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">      jdbcUrl:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">      username:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">      password:</span> <span class="string">xxx</span></span><br><span class="line">      <span class="comment">#hikari:</span></span><br><span class="line"><span class="attr">      maximumPoolSize:</span> <span class="number">60</span></span><br><span class="line"><span class="attr">      minimumIdle:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">      idleTimeout:</span> <span class="number">500000</span></span><br><span class="line"><span class="attr">      maxLifetime:</span> <span class="number">1500000</span></span><br><span class="line"><span class="attr">      connectionTimeout:</span> <span class="number">5000</span></span><br><span class="line"><span class="attr">      validationTimeout:</span> <span class="number">3000</span></span><br><span class="line"><span class="attr">    ds_slave_1:</span></span><br><span class="line"><span class="attr">      driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">      jdbcUrl:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">      username:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">      password:</span> <span class="string">xxx</span></span><br><span class="line">      <span class="comment">#hikari:</span></span><br><span class="line"><span class="attr">      readOnly:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      maximumPoolSize:</span> <span class="number">120</span></span><br><span class="line"><span class="attr">      minimumIdle:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">      idleTimeout:</span> <span class="number">500000</span></span><br><span class="line"><span class="attr">      maxLifetime:</span> <span class="number">1500000</span></span><br><span class="line"><span class="attr">      connectionTimeout:</span> <span class="number">5000</span></span><br><span class="line"><span class="attr">      validationTimeout:</span> <span class="number">3000</span></span><br><span class="line"><span class="attr">  masterSlaveRule:</span></span><br><span class="line"><span class="attr">    load-balance-algorithm-type:</span> <span class="string">round_robin</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">db_ms</span></span><br><span class="line"><span class="attr">    masterDataSourceName:</span> <span class="string">ds_master</span></span><br><span class="line"><span class="attr">    slaveDataSourceNames:</span> <span class="string">ds_slave_1</span></span><br><span class="line"><span class="attr">  props:</span></span><br><span class="line"><span class="attr">    sql-show:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-增加sharding-jdbc配置"><a href="#3-3-增加sharding-jdbc配置" class="headerlink" title="3.3 增加sharding-jdbc配置"></a>3.3 增加sharding-jdbc配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"sharding.jdbc"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShardingDataSourceConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, HikariDataSource&gt; dataSources = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MasterSlaveRuleConfiguration masterSlaveRule;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span>(<span class="string">"masterSlaveDataSource"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">masterSlaveDataSource</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        Map&lt;String, DataSource&gt; dm = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        dataSources.forEach((k, v) -&gt; configDataSource(v));</span><br><span class="line">        dm.putAll(dataSources);</span><br><span class="line">        DataSource dataSource = MasterSlaveDataSourceFactory.createDataSource(dm, masterSlaveRule, <span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">configDataSource</span><span class="params">(HikariDataSource hikariDataSource)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String, HikariDataSource&gt; <span class="title">getDataSources</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dataSources;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataSources</span><span class="params">(Map&lt;String, HikariDataSource&gt; dataSources)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dataSources = dataSources;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MasterSlaveRuleConfiguration <span class="title">getMasterSlaveRule</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> masterSlaveRule;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMasterSlaveRule</span><span class="params">(MasterSlaveRuleConfiguration masterSlaveRule)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.masterSlaveRule = masterSlaveRule;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读写分离</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/20/Sharding-JDBC实现读写分离-Springboot-docker-mysql8-二/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1826,6 +1821,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1835,14 +1838,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gitalk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1874,11 +1869,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1886,11 +1881,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1938,19 +1933,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">反编译</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">打包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
