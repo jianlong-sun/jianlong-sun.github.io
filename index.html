@@ -185,7 +185,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.8k字</span>
+        <span class="post-count">2.9k字</span>
       </span>
     </span>
 
@@ -218,7 +218,7 @@ var _hmt = _hmt || [];
 
 <h4 id="3-2-yaml配置查看官网"><a href="#3-2-yaml配置查看官网" class="headerlink" title="3.2 yaml配置查看官网"></a>3.2 yaml配置查看官网</h4><p><a href="https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/configuration/config-yaml/" target="_blank" rel="noopener">Yaml配置 :: ShardingSphere (apache.org)</a></p>
 <p>精简版：只分表不分库</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">sharding.jdbc:</span></span><br><span class="line">	<span class="attr">dataSources:</span></span><br><span class="line"><span class="attr">      ds_0:</span> <span class="type">!!com</span><span class="string">.zaxxer.hikari.HikariDataSource</span></span><br><span class="line"><span class="attr">        driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">        jdbcUrl:</span> <span class="attr">jdbc:mysql://localhost:3306/XXX?autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8</span></span><br><span class="line"><span class="attr">        username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">        password:</span> <span class="number">123456</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">    shardingRule:</span></span><br><span class="line"><span class="attr">      tables:</span></span><br><span class="line">      <span class="comment"># 指定逻辑表</span></span><br><span class="line"><span class="attr">        t_question_error_detail:</span></span><br><span class="line">        <span class="comment">#指定主键字段，默认用雪花算法生成</span></span><br><span class="line"><span class="attr">          keyGeneratorColumnName:</span> <span class="string">id</span></span><br><span class="line">          <span class="comment">#配置实际节点，这里的ds就是引用上面定义的名称</span></span><br><span class="line"><span class="attr">          actualDataNodes:</span> <span class="string">ds_0.t_question_error_detail_$&#123;0..1&#125;</span></span><br><span class="line">          <span class="comment">#数据库的分片策略 根据user_id，分成ds_0,ds_1两个数据库</span></span><br><span class="line">          <span class="comment">#databaseStrategy: </span></span><br><span class="line">            <span class="comment">#inline:</span></span><br><span class="line">              <span class="comment">#shardingColumn: </span></span><br><span class="line">              <span class="comment">#algorithmExpression: ds_$&#123;user_id % 2&#125;</span></span><br><span class="line">          <span class="comment">#表的分片策略根据 根据question_error_id分成两个表</span></span><br><span class="line"><span class="attr">          tableStrategy:</span> </span><br><span class="line"><span class="attr">            inline:</span> </span><br><span class="line"><span class="attr">              shardingColumn:</span> <span class="string">question_error_id</span></span><br><span class="line"><span class="attr">              algorithmExpression:</span> <span class="string">t_question_error_detail_$&#123;question_error_id</span> <span class="string">%</span> <span class="number">2</span><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">sharding.jdbc:</span></span><br><span class="line"><span class="attr">    dataSources:</span></span><br><span class="line"><span class="attr">      ds_0:</span> <span class="type">!!com</span><span class="string">.zaxxer.hikari.HikariDataSource</span></span><br><span class="line"><span class="attr">        driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">        jdbcUrl:</span> <span class="attr">jdbc:mysql://localhost:3306/XXX?autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8</span></span><br><span class="line"><span class="attr">        username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">        password:</span> <span class="number">123456</span></span><br><span class="line"><span class="attr">      ds_1:</span> <span class="type">!!com</span><span class="string">.zaxxer.hikari.HikariDataSource</span></span><br><span class="line"><span class="attr">        driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">        jdbcUrl:</span> <span class="attr">jdbc:mysql://localhost:3307/XXX?autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8</span></span><br><span class="line"><span class="attr">        username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">        password:</span> <span class="number">123456</span>    </span><br><span class="line"><span class="attr">    shardingRule:</span></span><br><span class="line"><span class="attr">      tables:</span></span><br><span class="line">      <span class="comment"># 指定逻辑表</span></span><br><span class="line"><span class="attr">        t_question_error_detail:</span></span><br><span class="line">        <span class="comment">#指定主键字段，默认用雪花算法生成</span></span><br><span class="line"><span class="attr">          keyGeneratorColumnName:</span> <span class="string">id</span></span><br><span class="line">          <span class="comment">#配置实际节点，这里的ds就是引用上面定义的名称</span></span><br><span class="line"><span class="attr">          actualDataNodes:</span> <span class="string">ds_0.t_question_error_detail_$&#123;0..1&#125;</span></span><br><span class="line">          <span class="comment">#数据库的分片策略 根据user_id，分成ds_0,ds_1两个数据库</span></span><br><span class="line">          <span class="comment">#databaseStrategy: </span></span><br><span class="line">            <span class="comment">#inline:</span></span><br><span class="line">              <span class="comment">#shardingColumn: </span></span><br><span class="line">              <span class="comment">#algorithmExpression: ds_$&#123;user_id % 2&#125;</span></span><br><span class="line">          <span class="comment">#表的分片策略根据 根据question_error_id分成两个表</span></span><br><span class="line"><span class="attr">          tableStrategy:</span> </span><br><span class="line"><span class="attr">            inline:</span> </span><br><span class="line"><span class="attr">              shardingColumn:</span> <span class="string">question_error_id</span></span><br><span class="line"><span class="attr">              algorithmExpression:</span> <span class="string">t_question_error_detail_$&#123;question_error_id</span> <span class="string">%</span> <span class="number">2</span><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2021/12/30/简单记录下sharding-jdbc分库分表/#more">more >></a>
         
@@ -1807,14 +1807,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1827,7 +1819,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+                <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1843,7 +1835,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1851,15 +1847,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1871,7 +1871,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1883,11 +1895,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">打包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1904,38 +1936,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">多个tag</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">打包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
               </li>
             
             <div class="clearfix"></div>
