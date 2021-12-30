@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jianlong-sun.github.io">
-  <title>Tag: mysql | jianlong_sun的博客</title>
+  <title>简单记录下sharding-jdbc（ShardingSphere）分库分表 | jianlong_sun的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
-<meta name="keywords" content="Java,Git,Linux,Spring">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jianlong_sun的博客">
-<meta property="og:url" content="https://jianlong-sun.github.io/tags/mysql/index.html">
+  <meta name="description" content="简单记录下sharding-jdbc分库分表">
+<meta name="keywords" content="sharding-jdbc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单记录下sharding-jdbc（ShardingSphere）分库分表">
+<meta property="og:url" content="https://jianlong-sun.github.io/2021/12/30/简单记录下sharding-jdbc分库分表/index.html">
 <meta property="og:site_name" content="jianlong_sun的博客">
-<meta property="og:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta property="og:description" content="简单记录下sharding-jdbc分库分表">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-12-30T10:58:59.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jianlong_sun的博客">
-<meta name="twitter:description" content="记录后端常用技术及日常开发中遇到的一些问题，小小菜鸟，努力学习。">
+<meta name="twitter:title" content="简单记录下sharding-jdbc（ShardingSphere）分库分表">
+<meta name="twitter:description" content="简单记录下sharding-jdbc分库分表">
   
     <link rel="alternative" href="/atom.xml" title="jianlong_sun的博客" type="application/atom+xml">
   
@@ -160,134 +161,267 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-简单记录下sharding-jdbc分库分表" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2021/12/14/MySql-手机号、邮箱等加密后数据模糊搜索/" class="archive-article-date">
-  	<time datetime="2021-12-14T08:32:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/14/MySql-手机号、邮箱等加密后数据模糊搜索/">MySql 手机号、邮箱等加密后数据模糊搜索</a>
+    <h1 class="article-title" itemprop="name">
+      简单记录下sharding-jdbc（ShardingSphere）分库分表
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/2021/12/30/简单记录下sharding-jdbc分库分表/" class="archive-article-date">
+  	<time datetime="2021-12-30T10:32:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-30</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">11分</span>
+      </span>
+    </span>
+</div>
+
           
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-需求"><a href="#1-需求" class="headerlink" title="1.需求"></a>1.需求</h4><p>由于某表数据量太大，需要对表进行拆分</p>
+<h4 id="2-sharding-jdbc（ShardingSphere）简介"><a href="#2-sharding-jdbc（ShardingSphere）简介" class="headerlink" title="2.sharding-jdbc（ShardingSphere）简介"></a>2.sharding-jdbc（ShardingSphere）简介</h4><p>在3.0以后就更改成了ShardingSphere</p>
+<p>一般分库分表，有两种方式，一种是根据业务垂直拆分、一种是根据表进行水平拆分。</p>
+<blockquote>
+<p><strong>水平拆分：</strong>统一个表的数据拆到不同的库不同的表中。可以根据时间、地区、或某个业务键维度，也可以通过hash进行拆分，最后通过路由访问到具体的数据。拆分后的每个表结构保持一致。</p>
+<p><strong>垂直拆分：</strong>就是把一个有很多字段的表给拆分成多个表，或者是多个库上去。每个库表的结构都不一样，每个库表都包含部分字段。一般来说，可以根据业务维度进行拆分，如订单表可以拆分为订单、订单支持、订单地址、订单商品、订单扩展等表；也可以，根据数据冷热程度拆分，20%的热点字段拆到一个表，80%的冷字段拆到另外一个表。</p>
+</blockquote>
+<h4 id="3-springboot项目引入sharing-jdbc"><a href="#3-springboot项目引入sharing-jdbc" class="headerlink" title="3.springboot项目引入sharing-jdbc"></a>3.springboot项目引入sharing-jdbc</h4><h4 id="3-1-pom"><a href="#3-1-pom" class="headerlink" title="3.1 pom"></a>3.1 pom</h4><p>这里使用的是3.1.0版本</p>
+<p>这里步骤最详细：<a href="https://shardingsphere.apache.org/document/legacy/3.x/document/cn/overview/" target="_blank" rel="noopener">概览 :: ShardingSphere (apache.org)</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.shardingsphere<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sharding-jdbc-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-yaml配置查看官网"><a href="#3-2-yaml配置查看官网" class="headerlink" title="3.2 yaml配置查看官网"></a>3.2 yaml配置查看官网</h4><p><a href="https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/configuration/config-yaml/" target="_blank" rel="noopener">Yaml配置 :: ShardingSphere (apache.org)</a></p>
+<p>精简版：只分表不分库</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">sharding.jdbc:</span></span><br><span class="line">	<span class="attr">dataSources:</span></span><br><span class="line"><span class="attr">  ds_0:</span> <span class="type">!!com</span><span class="string">.zaxxer.hikari.HikariDataSource</span></span><br><span class="line"><span class="attr">    driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">    jdbcUrl:</span> <span class="attr">jdbc:mysql://localhost:3306/grouppaper?autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">    shardingRule:</span></span><br><span class="line"><span class="attr">      tables:</span></span><br><span class="line">      <span class="comment"># 指定逻辑表</span></span><br><span class="line"><span class="attr">        t_question_error_detail:</span></span><br><span class="line">        <span class="comment">#指定主键字段，默认用雪花算法生成</span></span><br><span class="line"><span class="attr">          keyGeneratorColumnName:</span> <span class="string">id</span></span><br><span class="line">          <span class="comment">#配置实际节点，这里的ds就是引用上面定义的名称</span></span><br><span class="line"><span class="attr">          actualDataNodes:</span> <span class="string">ds_0.t_question_error_detail_$&#123;0..1&#125;</span></span><br><span class="line">          <span class="comment">#数据库的分片策略 根据user_id，分成ds_0,ds_1两个数据库</span></span><br><span class="line">          <span class="comment">#databaseStrategy: </span></span><br><span class="line">            <span class="comment">#inline:</span></span><br><span class="line">              <span class="comment">#shardingColumn: </span></span><br><span class="line">              <span class="comment">#algorithmExpression: ds_$&#123;user_id % 2&#125;</span></span><br><span class="line">          <span class="comment">#表的分片策略根据 根据question_error_id分成两个表</span></span><br><span class="line"><span class="attr">          tableStrategy:</span> </span><br><span class="line"><span class="attr">            inline:</span> </span><br><span class="line"><span class="attr">              shardingColumn:</span> <span class="string">question_error_id</span></span><br><span class="line"><span class="attr">              algorithmExpression:</span> <span class="string">t_question_error_detail_$&#123;question_error_id</span> <span class="string">%</span> <span class="number">2</span><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>完整版：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以下配置截止版本为3.1</span></span><br><span class="line"><span class="comment"># 配置文件中,必须配置的项目为schemaName,dataSources,并且sharidngRule,masterSlaveRule,配置其中一个(注意,除非server.yaml中定义了Orchestration,否则必须至少有一个config-xxxx配置文件),除此之外的其他项目为可选项</span></span><br><span class="line"><span class="attr">schemaName:</span> <span class="string">test</span> <span class="comment"># schema名称,每个文件都是单独的schema,多个schema则是多个yaml文件,yaml文件命名要求是config-xxxx.yaml格式,虽然没有强制要求,但推荐名称中的xxxx与配置的schemaName保持一致,方便维护</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dataSources:</span> <span class="comment"># 配置数据源列表,必须是有效的jdbc配置,目前仅支持MySQL与PostgreSQL,另外通过一些未公开(代码中可查,但可能会在未来有变化)的变量,可以配置来兼容其他支持JDBC的数据库,但由于没有足够的测试支持,可能会有严重的兼容性问题,配置时候要求至少有一个</span></span><br><span class="line"><span class="attr">  master_ds_0:</span> <span class="comment"># 数据源名称,可以是合法的字符串,目前的校验规则中,没有强制性要求,只要是合法的yaml字符串即可,但如果要用于分库分表配置,则需要有有意义的标志(在分库分表配置中详述),以下为目前公开的合法配置项目,不包含内部配置参数</span></span><br><span class="line">    <span class="comment"># 以下参数为必备参数</span></span><br><span class="line"><span class="attr">    url:</span> <span class="string">jdbc:mysql://127.0.0.1:3306/demo_ds_slave_1?serverTimezone=UTC&amp;useSSL=false</span> <span class="comment"># 这里的要求合法的jdbc连接串即可,目前尚未兼容MySQL 8.x,需要在maven编译时候,升级MySQL JDBC版本到5.1.46或者47版本(不建议升级到JDBC的8.x系列版本,需要修改源代码,并且无法通过很多测试case)</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span> <span class="comment"># MySQL用户名</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">password</span> <span class="comment"># MySQL用户的明文密码</span></span><br><span class="line">    <span class="comment"># 以下参数为可选参数,给出示例为默认配置,主要用于连接池控制</span></span><br><span class="line"><span class="attr">    connectionTimeoutMilliseconds:</span> <span class="number">30000</span> <span class="comment">#连接超时控制</span></span><br><span class="line"><span class="attr">    idleTimeoutMilliseconds:</span> <span class="number">60000</span> <span class="comment"># 连接空闲时间设置</span></span><br><span class="line"><span class="attr">    maxLifetimeMilliseconds:</span> <span class="number">0</span> <span class="comment"># 连接的最大持有时间,0为无限制</span></span><br><span class="line"><span class="attr">    maxPoolSize:</span> <span class="number">50</span> <span class="comment"># 连接池中最大维持的连接数量</span></span><br><span class="line"><span class="attr">    minPoolSize:</span> <span class="number">1</span> <span class="comment"># 连接池的最小连接数量</span></span><br><span class="line"><span class="attr">    maintenanceIntervalMilliseconds:</span> <span class="number">30000</span> <span class="comment"># 连接维护的时间间隔 atomikos框架需求</span></span><br><span class="line">  <span class="comment"># 以下配置的假设是,3307是3306的从库,3309,3310是3308的从库</span></span><br><span class="line"><span class="attr">  slave_ds_0:</span></span><br><span class="line"><span class="attr">    url:</span> <span class="string">jdbc:mysql://127.0.0.1:3307/demo_ds_slave_1?serverTimezone=UTC&amp;useSSL=false</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">  master_ds_1:</span></span><br><span class="line"><span class="attr">    url:</span> <span class="string">jdbc:mysql://127.0.0.1:3308/demo_ds_slave_1?serverTimezone=UTC&amp;useSSL=false</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">  slave_ds_1:</span></span><br><span class="line"><span class="attr">    url:</span> <span class="string">jdbc:mysql://127.0.0.1:3309/demo_ds_slave_1?serverTimezone=UTC&amp;useSSL=false</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">  slave_ds_1_slave2:</span></span><br><span class="line"><span class="attr">    url:</span> <span class="string">jdbc:mysql://127.0.0.1:3310/demo_ds_slave_1?serverTimezone=UTC&amp;useSSL=false</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">masterSlaveRule:</span> <span class="comment"># 这里配置这个规则的话,相当于是全局读写分离配置</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">ds_rw</span> <span class="comment"># 名称,合法的字符串即可,但如果涉及到在读写分离的基础上设置分库分表,则名称需要有意义才可以,另外,虽然目前没有强制要求,但主从库配置需要配置在实际关联的主从库上,如果配置的数据源之间主从是断开的状态,那么可能会发生写入的数据对于只读会话无法读取到的问题</span></span><br><span class="line">  <span class="comment"># 如果一个会话发生了写入并且没有提交(显式打开事务),sharidng sphere在后续的路由中,select都会在主库执行,直到会话提交</span></span><br><span class="line"><span class="attr">  masterDataSourceName:</span> <span class="string">master_ds_0</span> <span class="comment"># 主库的DataSource名称</span></span><br><span class="line"><span class="attr">  slaveDataSourceNames:</span> <span class="comment"># 从库的DataSource列表,至少需要有一个</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">slave_ds_0</span></span><br><span class="line"><span class="attr">  loadBalanceAlgorithmClassName:</span> <span class="string">io.shardingsphere.api.algorithm.masterslave</span> <span class="comment"># MasterSlaveLoadBalanceAlgorithm接口的实现类,允许自定义实现 默认提供两个,配置路径为io.shardingsphere.api.algorithm.masterslave下的RandomMasterSlaveLoadBalanceAlgorithm(随机Random)与RoundRobinMasterSlaveLoadBalanceAlgorithm(轮询:次数%从库数量)</span></span><br><span class="line"><span class="attr">  loadBalanceAlgorithmType:</span> <span class="comment">#从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若loadBalanceAlgorithmClassName存在则忽略该配置,默认为ROUND_ROBIN</span></span><br><span class="line"></span><br><span class="line"><span class="attr">shardingRule:</span> <span class="comment"># sharding的配置</span></span><br><span class="line">  <span class="comment"># 配置主要分两类,一类是对整个sharding规则所有表生效的默认配置,一个是sharing具体某张表时候的配置</span></span><br><span class="line">  <span class="comment"># 首先说默认配置</span></span><br><span class="line"><span class="attr">  masterSlaveRules:</span> <span class="comment"># 在shardingRule中也可以配置shardingRule,对分片生效,具体内容与全局masterSlaveRule一致,但语法为:</span></span><br><span class="line"><span class="attr">    master_test_0:</span></span><br><span class="line"><span class="attr">      masterDataSourceName:</span> <span class="string">master_ds_0</span></span><br><span class="line"><span class="attr">      slaveDataSourceNames:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">slave_ds_0</span></span><br><span class="line"><span class="attr">    master_test_1:</span></span><br><span class="line"><span class="attr">      masterDataSourceName:</span> <span class="string">master_ds_1</span></span><br><span class="line"><span class="attr">      slaveDataSourceNames:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">slave_ds_1</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">slave_ds_1_slave2</span></span><br><span class="line"><span class="attr">  defaultDataSourceName:</span> <span class="string">master_test_0</span> <span class="comment"># 这里的数据源允许是dataSources的配置项目或者masterSlaveRules配置的名称,配置为masterSlaveRule的话相当于就是配置读写分离了</span></span><br><span class="line"><span class="attr">  broadcastTables:</span> <span class="comment"># 广播表 这里配置的表列表,对于发生的所有数据变更,都会不经sharidng处理,而是直接发送到所有数据节点,注意此处为列表,每个项目为一个表名称</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">broad_1</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">broad_2</span></span><br><span class="line"><span class="attr">  bindingTables:</span> <span class="comment"># 绑定表,也就是实际上哪些配置的sharidng表规则需要实际生效的列表,配置为yaml列表,并且允许单个条目中以逗号切割,所配置表必须已经配置为逻辑表</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">sharding_t1</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">sharding_t2,sharding_t3</span></span><br><span class="line"><span class="attr">  defaultDatabaseShardingStrategy:</span> <span class="comment"># 默认库级别sharidng规则,对应代码中ShardingStrategy接口的实现类,目前支持none,inline,hint,complex,standard五种配置 注意此处默认配置仅可以配置五个中的一个</span></span><br><span class="line">  <span class="comment"># 规则配置同样适合表sharding配置,同样是在这些算法中选择</span></span><br><span class="line"><span class="attr">    none:</span> <span class="comment"># 不配置任何规则,SQL会被发给所有节点去执行,这个规则没有子项目可以配置</span></span><br><span class="line"><span class="attr">    inline:</span> <span class="comment"># 行表达式分片</span></span><br><span class="line"><span class="attr">      shardingColumn:</span> <span class="string">test_id</span> <span class="comment"># 分片列名称</span></span><br><span class="line"><span class="attr">      algorithmExpression:</span> <span class="string">master_test_$&#123;test_id</span> <span class="string">%</span> <span class="number">2</span><span class="string">&#125;</span> <span class="comment"># 分片表达式,根据指定的表达式计算得到需要路由到的数据源名称 需要是合法的groovy表达式,示例配置中,取余为0则语句路由到master_test_0,取余为1则路由到master_test_1</span></span><br><span class="line"><span class="attr">    hint:</span> <span class="comment">#基于标记的sharding分片</span></span><br><span class="line"><span class="attr">      shardingAlgorithm:</span> <span class="comment"># 需要是HintShardingAlgorithm接口的实现,目前代码中,仅有为测试目的实现的OrderDatabaseHintShardingAlgorithm,没有生产环境可用的实现</span></span><br><span class="line"><span class="attr">    complex:</span> <span class="comment"># 支持多列的shariding,目前无生产可用实现</span></span><br><span class="line"><span class="attr">      shardingColumns:</span> <span class="comment"># 逗号切割的列</span></span><br><span class="line"><span class="attr">      shardingAlgorithm:</span> <span class="comment"># ComplexKeysShardingAlgorithm接口的实现类</span></span><br><span class="line"><span class="attr">    standard:</span> <span class="comment"># 单列sharidng算法,需要配合对应的preciseShardingAlgorithm,rangeShardingAlgorithm接口的实现使用,目前无生产可用实现</span></span><br><span class="line"><span class="attr">      shardingColumn:</span> <span class="comment"># 列名,允许单列</span></span><br><span class="line"><span class="attr">      preciseShardingAlgorithm:</span> <span class="comment"># preciseShardingAlgorithm接口的实现类</span></span><br><span class="line"><span class="attr">      rangeShardingAlgorithm:</span> <span class="comment"># rangeShardingAlgorithm接口的实现类</span></span><br><span class="line"><span class="attr">  defaultTableStrategy:</span> <span class="comment">#配置参考defaultDatabaseShardingStrategy,区别在于,inline算法的配置中,algorithmExpression的配置算法结果需要是实际的物理表名称,而非数据源名称</span></span><br><span class="line"><span class="attr">  defaultKeyGenerator:</span> <span class="comment">#默认的主键生成算法 如果没有设置,默认为SNOWFLAKE算法</span></span><br><span class="line"><span class="attr">    column:</span> <span class="comment"># 自增键对应的列名称</span></span><br><span class="line"><span class="attr">    type:</span> <span class="comment">#自增键的类型,主要用于调用内置的主键生成算法有三个可用值:SNOWFLAKE(时间戳+worker id+自增id),UUID(java.util.UUID类生成的随机UUID),LEAF,其中Snowflake算法与UUID算法已经实现,LEAF目前(2018-01-14)尚未实现</span></span><br><span class="line"><span class="attr">    className:</span> <span class="comment"># 非内置的其他实现了KeyGenerator接口的类,需要注意,如果设置这个,就不能设置type,否则type的设置会覆盖class的设置</span></span><br><span class="line"><span class="attr">    props:</span></span><br><span class="line">      <span class="comment"># 定制算法需要设置的参数,比如SNOWFLAKE算法的worker.id与max.tolerate.time.difference.milliseconds</span></span><br><span class="line"><span class="attr">  tables:</span> <span class="comment">#配置表sharding的主要位置</span></span><br><span class="line"><span class="attr">    sharding_t1:</span></span><br><span class="line"><span class="attr">      actualDataNodes:</span> <span class="string">master_test_$&#123;0..1&#125;.t_order$&#123;0..1&#125;</span> <span class="comment"># sharidng 表对应的数据源以及物理名称,需要用表达式处理,表示表实际上在哪些数据源存在,配置示例中,意思是总共存在4个分片master_test_0.t_order0,master_test_0.t_order1,master_test_1.t_order0,master_test_1.t_order1</span></span><br><span class="line">      <span class="comment"># 需要注意的是,必须保证设置databaseStrategy可以路由到唯一的dataSource,tableStrategy可以路由到dataSource中唯一的物理表上,否则可能导致错误:一个insert语句被插入到多个实际物理表中</span></span><br><span class="line"><span class="attr">      databaseStrategy:</span> <span class="comment"># 局部设置会覆盖全局设置,参考defaultDatabaseShardingStrategy</span></span><br><span class="line"><span class="attr">      tableStrategy:</span> <span class="comment"># 局部设置会覆盖全局设置,参考defaultTableStrategy</span></span><br><span class="line"><span class="attr">      keyGenerator:</span> <span class="comment"># 局部设置会覆盖全局设置,参考defaultKeyGenerator</span></span><br><span class="line"><span class="attr">      logicIndex:</span> <span class="comment"># 逻辑索引名称 由于Oracle,PG这种数据库中,索引与表共用命名空间,如果接受到drop index语句,执行之前,会通过这个名称配置的确定对应的实际物理表名称</span></span><br><span class="line"><span class="attr">props:</span></span><br><span class="line">  <span class="string">sql.show:</span> <span class="comment">#是否开启SQL显示，默认值: false</span></span><br><span class="line">  <span class="string">acceptor.size:</span> <span class="comment"># accept连接的线程数量,默认为cpu核数2倍</span></span><br><span class="line">  <span class="string">executor.size:</span> <span class="comment">#工作线程数量最大，默认值: 无限制</span></span><br><span class="line">  <span class="string">max.connections.size.per.query:</span> <span class="comment"># 每个查询可以打开的最大连接数量,默认为1</span></span><br><span class="line">  <span class="string">proxy.frontend.flush.threshold:</span> <span class="comment"># proxy的服务时候,对于单个大查询,每多少个网络包返回一次</span></span><br><span class="line">  <span class="string">check.table.metadata.enabled:</span> <span class="comment">#是否在启动时检查分表元数据一致性，默认值: false</span></span><br><span class="line">  <span class="string">proxy.transaction.type:</span> <span class="comment"># 默认LOCAL,proxy的事务模型 允许LOCAL,XA,BASE三个值 LOCAL无分布式事务,XA则是采用atomikos实现的分布式事务 BASE目前尚未实现</span></span><br><span class="line">  <span class="string">proxy.opentracing.enabled:</span> <span class="comment"># 是否启用opentracing</span></span><br><span class="line">  <span class="string">proxy.backend.use.nio:</span> <span class="comment"># 是否采用netty的NIO机制连接后端数据库,默认False ,使用epoll机制</span></span><br><span class="line">  <span class="string">proxy.backend.max.connections:</span> <span class="comment"># 使用NIO而非epoll的话,proxy后台连接每个netty客户端允许的最大连接数量(注意不是数据库连接限制) 默认为8</span></span><br><span class="line">  <span class="string">proxy.backend.connection.timeout.seconds:</span> <span class="comment">#使用nio而非epoll的话,proxy后台连接的超时时间,默认60s</span></span><br><span class="line">  <span class="string">check.table.metadata.enabled:</span> <span class="comment"># 是否在启动时候,检查sharing的表的实际元数据是否一致,默认False</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="attr">configMap:</span> <span class="comment">#用户自定义配置</span></span><br><span class="line"><span class="attr">  key1:</span> <span class="string">value1</span></span><br><span class="line"><span class="attr">  key2:</span> <span class="string">value2</span></span><br><span class="line"><span class="attr">  keyx:</span> <span class="string">valuex</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-TODO-分布式事务"><a href="#3-3-TODO-分布式事务" class="headerlink" title="3.3 TODO:分布式事务"></a>3.3 TODO:分布式事务</h4><p>@ShardingTransactionType(TransactionType.LOCAL) </p>
+<p>@ShardingTransactionType(TransactionType.XA)</p>
+<p> @ShardingTransactionType(TransactionType.BASE)</p>
+<blockquote>
+<p><a href="https://shardingsphere.apache.org/document/legacy/3.x/document/cn/overview/" target="_blank" rel="noopener">概览 :: ShardingSphere (apache.org)</a></p>
+<p><a href="https://www.kuangstudy.com/zl/sharding#1369532356595126274" target="_blank" rel="noopener">ShardingShpere数据库中间件- 专栏 </a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sharding-jdbc</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Mysql//" class="article-tag-list-link color1">Mysql</a>
+        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2021/12/30/简单记录下sharding-jdbc分库分表/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/12/22/震惊，使用新版本git连不上服务器了/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用新版本git连不上服务器了- Permission denied (publickey)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/08/18/Cannot-add-foreign-key-constraint-错误解决办法/" class="archive-article-date">
-  	<time datetime="2020-08-18T06:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-18</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-需求"><span class="toc-number">1.</span> <span class="toc-text">1.需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-sharding-jdbc（ShardingSphere）简介"><span class="toc-number">2.</span> <span class="toc-text">2.sharding-jdbc（ShardingSphere）简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-springboot项目引入sharing-jdbc"><span class="toc-number">3.</span> <span class="toc-text">3.springboot项目引入sharing-jdbc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-pom"><span class="toc-number">4.</span> <span class="toc-text">3.1 pom</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-yaml配置查看官网"><span class="toc-number">5.</span> <span class="toc-text">3.2 yaml配置查看官网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-TODO-分布式事务"><span class="toc-number">6.</span> <span class="toc-text">3.3 TODO:分布式事务</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/18/Cannot-add-foreign-key-constraint-错误解决办法/">Cannot add foreign key constraint 错误解决办法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
+
   
 
-    
+  
+
+  
+  
+       <div id="gitalk-container"></div>
+       <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '7fb26742ca952e7d1677',
+  	clientSecret: '08789c732c0cb011bd935a07a7400c2eebb5dbfb',
+  	repo: 'jianlong-sun.github.io',
+  	owner: 'jianlong-sun',
+  	admin: ['jianlong-sun'],
+  	id: 'Thu Dec 30 2021 18:32:40 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+}
+</script>
+
+  
+  
+
+  
 
 
           </div>
@@ -321,9 +455,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

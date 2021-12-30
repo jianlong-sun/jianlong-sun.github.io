@@ -162,6 +162,129 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-简单记录下sharding-jdbc分库分表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/30/简单记录下sharding-jdbc分库分表/">简单记录下sharding-jdbc（ShardingSphere）分库分表</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2021/12/30/简单记录下sharding-jdbc分库分表/" class="archive-article-date">
+  	<time datetime="2021-12-30T10:32:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-30</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">11分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-需求"><a href="#1-需求" class="headerlink" title="1.需求"></a>1.需求</h4><p>由于某表数据量太大，需要对表进行拆分</p>
+<h4 id="2-sharding-jdbc（ShardingSphere）简介"><a href="#2-sharding-jdbc（ShardingSphere）简介" class="headerlink" title="2.sharding-jdbc（ShardingSphere）简介"></a>2.sharding-jdbc（ShardingSphere）简介</h4><p>在3.0以后就更改成了ShardingSphere</p>
+<p>一般分库分表，有两种方式，一种是根据业务垂直拆分、一种是根据表进行水平拆分。</p>
+<blockquote>
+<p><strong>水平拆分：</strong>统一个表的数据拆到不同的库不同的表中。可以根据时间、地区、或某个业务键维度，也可以通过hash进行拆分，最后通过路由访问到具体的数据。拆分后的每个表结构保持一致。</p>
+<p><strong>垂直拆分：</strong>就是把一个有很多字段的表给拆分成多个表，或者是多个库上去。每个库表的结构都不一样，每个库表都包含部分字段。一般来说，可以根据业务维度进行拆分，如订单表可以拆分为订单、订单支持、订单地址、订单商品、订单扩展等表；也可以，根据数据冷热程度拆分，20%的热点字段拆到一个表，80%的冷字段拆到另外一个表。</p>
+</blockquote>
+<h4 id="3-springboot项目引入sharing-jdbc"><a href="#3-springboot项目引入sharing-jdbc" class="headerlink" title="3.springboot项目引入sharing-jdbc"></a>3.springboot项目引入sharing-jdbc</h4><h4 id="3-1-pom"><a href="#3-1-pom" class="headerlink" title="3.1 pom"></a>3.1 pom</h4><p>这里使用的是3.1.0版本</p>
+<p>这里步骤最详细：<a href="https://shardingsphere.apache.org/document/legacy/3.x/document/cn/overview/" target="_blank" rel="noopener">概览 :: ShardingSphere (apache.org)</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.shardingsphere<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sharding-jdbc-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-yaml配置查看官网"><a href="#3-2-yaml配置查看官网" class="headerlink" title="3.2 yaml配置查看官网"></a>3.2 yaml配置查看官网</h4><p><a href="https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/configuration/config-yaml/" target="_blank" rel="noopener">Yaml配置 :: ShardingSphere (apache.org)</a></p>
+<p>精简版：只分表不分库</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">sharding.jdbc:</span></span><br><span class="line">	<span class="attr">dataSources:</span></span><br><span class="line"><span class="attr">  ds_0:</span> <span class="type">!!com</span><span class="string">.zaxxer.hikari.HikariDataSource</span></span><br><span class="line"><span class="attr">    driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">    jdbcUrl:</span> <span class="attr">jdbc:mysql://localhost:3306/grouppaper?autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">    shardingRule:</span></span><br><span class="line"><span class="attr">      tables:</span></span><br><span class="line">      <span class="comment"># 指定逻辑表</span></span><br><span class="line"><span class="attr">        t_question_error_detail:</span></span><br><span class="line">        <span class="comment">#指定主键字段，默认用雪花算法生成</span></span><br><span class="line"><span class="attr">          keyGeneratorColumnName:</span> <span class="string">id</span></span><br><span class="line">          <span class="comment">#配置实际节点，这里的ds就是引用上面定义的名称</span></span><br><span class="line"><span class="attr">          actualDataNodes:</span> <span class="string">ds_0.t_question_error_detail_$&#123;0..1&#125;</span></span><br><span class="line">          <span class="comment">#数据库的分片策略 根据user_id，分成ds_0,ds_1两个数据库</span></span><br><span class="line">          <span class="comment">#databaseStrategy: </span></span><br><span class="line">            <span class="comment">#inline:</span></span><br><span class="line">              <span class="comment">#shardingColumn: </span></span><br><span class="line">              <span class="comment">#algorithmExpression: ds_$&#123;user_id % 2&#125;</span></span><br><span class="line">          <span class="comment">#表的分片策略根据 根据question_error_id分成两个表</span></span><br><span class="line"><span class="attr">          tableStrategy:</span> </span><br><span class="line"><span class="attr">            inline:</span> </span><br><span class="line"><span class="attr">              shardingColumn:</span> <span class="string">question_error_id</span></span><br><span class="line"><span class="attr">              algorithmExpression:</span> <span class="string">t_question_error_detail_$&#123;question_error_id</span> <span class="string">%</span> <span class="number">2</span><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/12/30/简单记录下sharding-jdbc分库分表/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sharding-jdbc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/30/简单记录下sharding-jdbc分库分表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-震惊，使用新版本git连不上服务器了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1572,137 +1695,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-idea插件easyYApi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/20/idea插件easyYApi/">&#39;idea插件easyYApi&#39;</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2021/04/20/idea插件easyYApi/" class="archive-article-date">
-  	<time datetime="2021-04-20T08:24:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">449字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-前提"><a href="#1-前提" class="headerlink" title="1.前提"></a>1.前提</h2><p>团队使用<a href="https://github.com/YMFE/yapi" target="_blank" rel="noopener">yapi</a>做为接口文档管理工具，由于api接口初期变化较大而且需要分别维护代码注释及yapi文档，导致yapi文档更新不及时或漏更新，<br>后发现idea插件easyYapi.经过实际使用这种几乎对代码无侵入或者少侵入以及可以灵活配置符合我的使用要求。</p>
-<h3 id="2-使用方式"><a href="#2-使用方式" class="headerlink" title="2.使用方式"></a>2.使用方式</h3><p>1.File →setting → Plugins → Marketplace → 搜索“EasyYapi” → 安装该插件 → 重启IDE<br>2.支持以下使用方法</p>
-<blockquote>
-<p>打开项目中的包含api/rpc的文件或者在I.DEA的左边项目文件区域选择文件或者文件夹 使用快捷键alt shift E(windows)/ctrl E(mac) 然后选择要导出的API,选择导出渠道Yapi/Markdown/Postman 点击[✔]按钮或者按回车键完成导出</p>
-</blockquote>
-<blockquote>
-<p>打开项目中的包含api/rpc的文件 右键文件内容选择Generate…或者用[Alt + Insert]/<a href="快捷键可能不一样">Ctrl+Enter</a>“ 然后选择ExportYapi/ExportPostman/ExportMarkdown</p>
-</blockquote>
-<blockquote>
-<p>在IDEA的左边项目文件区域选择文件或者文件夹 鼠标点击最上方Code &gt; ExportYapi/ExportPostman/ExportMarkdown</p>
-</blockquote>
-<blockquote>
-<p>鼠标点击最上方Code &gt; YapiDashBoard 然后就可以用鼠标将左边的API拖动到右边yapi目录中，完成API导出到Yapi</p>
-</blockquote>
-<blockquote>
-<p>鼠标点击最上方Code &gt; ApiDashBoard 然后就可以用鼠标将左边的API拖动到右边postman目录中，完成API导出到Postman</p>
-</blockquote>
-<blockquote>
-<p>打开项目中的包含api/rpc的文件 右键文件内容选择Generate…或者用[Alt + Insert]/[Ctrl+Enter] (快捷键可能不一样)” 然后选择Call,就可以发起对当前文件中的API的请求</p>
-</blockquote>
-<p><strong>在初次使用的时候需要输入yapi部署地址及项目token,去如下位置寻找</strong><br><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141931024.png" alt="yapi服务器及token位置"></p>
-<h3 id="3-参考资料"><a href="#3-参考资料" class="headerlink" title="3.参考资料"></a>3.参考资料</h3><blockquote>
-<p><a href="https://easyyapi.com/index.html" target="_blank" rel="noopener">easyyapi官方文档</a><br><a href="https://www.cnblogs.com/allennote/articles/13154966.html" target="_blank" rel="noopener">IDEA 插件 EasyYapi</a></p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">idea</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/idea//" class="article-tag-list-link color5">idea</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/20/idea插件easyYApi/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1811,11 +1803,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Issu</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1835,15 +1827,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1851,15 +1839,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1867,7 +1851,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1875,7 +1863,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1884,6 +1872,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">远程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1896,6 +1888,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1915,19 +1911,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1939,7 +1927,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
               </li>
             
             <div class="clearfix"></div>
