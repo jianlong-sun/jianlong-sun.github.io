@@ -162,6 +162,161 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-lamda" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/21/lamda/">lamda</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2019/08/21/lamda/" class="archive-article-date">
+  	<time datetime="2019-08-21T09:14:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">564字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>引用自 <a href="https://www.processon.com/special/template/5c6caeefe4b03334b521f752#map" target="_blank" rel="noopener">Java 8 函数式编程</a></p>
+</blockquote>
+<h1 id="1-Lambda表达式"><a href="#1-Lambda表达式" class="headerlink" title="1.Lambda表达式"></a>1.Lambda表达式</h1><h2 id="1-1-去除大量模板代码，使代码变得紧凑，增强可读性"><a href="#1-1-去除大量模板代码，使代码变得紧凑，增强可读性" class="headerlink" title="1.1 去除大量模板代码，使代码变得紧凑，增强可读性"></a>1.1 去除大量模板代码，使代码变得紧凑，增强可读性</h2><ul>
+<li><p>1.2 表现形式</p>
+<ul>
+<li><p>(类型 参数) -&gt; {方法体}</p>
+<ul>
+<li><p>例如 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BinaryOperator&lt;Long&gt; add = (x, y) -&gt; x + y;</span><br><span class="line">BinaryOperator&lt;Long&gt; addExplicit = (Long x, Long y) -&gt; x + y;</span><br><span class="line">Runnable task = () -&gt; &#123;System.out.println(<span class="string">"hello lambda"</span>);&#125;;</span><br><span class="line">ActionListener oneArgument = event -&gt; System.out.println(<span class="string">"button clicked"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类型可选，一般javac会自动推断出参数类型（也存在无法推断的情况） 没有参数时，省略类型和参数<br>有且仅有一个参数时，参数括号可省略<br>方法体如果只有一行语句，可省略花括号</p>
+<ul>
+<li>方法引用</li>
+</ul>
+</li>
+<li><p>类名::方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String&gt; intToStr = String::valueOf; // 等同于 e -&gt; String.valueOf(e)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当参数仅有一个，且返回值为类的一个方法(静态或非静态均可)返回值时，可省略参数，使用 类名::方法名 的方式描述</p>
+</li>
+<li><p>使用 类名::new 来引用类的构造方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;char[], String&gt; newStrFromCharArray = String::new; // 调用的是 new String(char[] cs)构造方法 String[]::new 来引用数组的构造方法</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>值引用</p>
+<ul>
+<li><p>同匿名内部类类似，在Lambda表达式中引用的变量，需要声明为final或在既成事实上为final 即终态变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String name = &quot;Alex&quot;; // name自声明以来仅赋值一次，</span><br><span class="line">//     虽然没有显式声明为final，但为既成事实上的final变量</span><br><span class="line">button.addActionListener(event -&gt; System.out.println(&quot;hi &quot; + name));</span><br><span class="line">name = &quot;Jack&quot;; // 再次赋值会导致上一行lambda表达式报错</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>此特性表明lambda表达式中变量实际上为值引用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数式接口</p>
+<ul>
+<li>一元接口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Predicate&lt;T&gt;:</span><br><span class="line">    boolean test(T t) 谓词函数，传入一个变量，根据一定规则进行布尔判断</span><br><span class="line">Function&lt;T, R&gt;</span><br><span class="line">    R apply(T t) 一般函数，传入一个变量，输出另一个变量</span><br><span class="line">UnaryOperator&lt;T&gt;</span><br><span class="line">    T apply(T t) 算子函数，输入输出同类型</span><br><span class="line">    形如XXOperator的接口均为算子函数式接口，入参出参类型相同</span><br><span class="line">Consumer&lt;T&gt;:</span><br><span class="line">     void accept(T t) 消费函数，传入一个变量，执行无返回值的操作</span><br><span class="line">Supplier&lt;T&gt;</span><br><span class="line">      T get() 生产函数，没有输入，输出一个变量</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>java</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java8</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/21/lamda/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-日常项目中经验积累-RequestBody" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -495,10 +650,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
@@ -515,11 +666,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+                <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,15 +678,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">seata</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,11 +770,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
