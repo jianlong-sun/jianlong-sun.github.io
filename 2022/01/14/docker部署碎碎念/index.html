@@ -8,20 +8,22 @@
   <meta name="google-site-verification" content="rtZcZB5YYxgIt46Sf4CO3OUFG8OGpYZfGvbohL6XheM">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jianlong-sun.github.io">
-  <title>java 后台启动 | jianlong_sun的博客</title>
+  <title>docker部署碎碎念 | jianlong_sun的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="windows java 后台启动命令">
-<meta name="keywords" content="jar包启动">
+  <meta name="description" content="关于docker部署遇到的一些小问题">
+<meta name="keywords" content="Java,Git,Linux,Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java 后台启动">
-<meta property="og:url" content="https://jianlong-sun.github.io/2020/10/23/java-后台启动/index.html">
+<meta property="og:title" content="docker部署碎碎念">
+<meta property="og:url" content="https://jianlong-sun.github.io/2022/01/14/docker部署碎碎念/index.html">
 <meta property="og:site_name" content="jianlong_sun的博客">
-<meta property="og:description" content="windows java 后台启动命令">
+<meta property="og:description" content="关于docker部署遇到的一些小问题">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-10-23T02:12:50.967Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114101641294.png">
+<meta property="og:updated_time" content="2022-01-14T02:53:33.654Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java 后台启动">
-<meta name="twitter:description" content="windows java 后台启动命令">
+<meta name="twitter:title" content="docker部署碎碎念">
+<meta name="twitter:description" content="关于docker部署遇到的一些小问题">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114101641294.png">
   
     <link rel="alternative" href="/atom.xml" title="jianlong_sun的博客" type="application/atom+xml">
   
@@ -163,14 +165,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java-后台启动" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-docker部署碎碎念" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java 后台启动
+      docker部署碎碎念
     </h1>
   
 
@@ -182,8 +184,8 @@ var _hmt = _hmt || [];
         </span>
 
 
-<a href="/2020/10/23/java-后台启动/" class="archive-article-date">
-  	<time datetime="2020-10-23T02:08:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-23</time>
+<a href="/2022/01/14/docker部署碎碎念/" class="archive-article-date">
+  	<time datetime="2022-01-14T02:52:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
 </a>
         
           <div style="margin-top:10px;">
@@ -191,7 +193,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">39字</span>
+        <span class="post-count">592字</span>
       </span>
     </span>
 
@@ -200,7 +202,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -211,9 +213,41 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="windows-java-后台启动命令"><a href="#windows-java-后台启动命令" class="headerlink" title="windows java 后台启动命令"></a>windows java 后台启动命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javaw -jar xxx.jar</span><br></pre></td></tr></table></figure>
+        <h2 id="docker-部署碎碎念"><a href="#docker-部署碎碎念" class="headerlink" title="docker 部署碎碎念"></a>docker 部署碎碎念</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id="docker-容器迁移"><a href="#docker-容器迁移" class="headerlink" title="docker 容器迁移"></a>docker 容器迁移</h2><h3 id="docker-save-load-命令"><a href="#docker-save-load-命令" class="headerlink" title="docker save/load 命令"></a>docker save/load 命令</h3><h4 id="docker-save-用来持久化镜像"><a href="#docker-save-用来持久化镜像" class="headerlink" title="docker save 用来持久化镜像"></a>docker save 用来持久化镜像</h4><p>首先查看镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
 
-<p>注意日志不会在黑窗口显示，看日志需要在项目配置的文件中看。</p>
+<p>保存,以nginx为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o nginx.tar nginx:latest</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-load"><a href="#docker-load" class="headerlink" title="docker load"></a>docker load</h4><p>将上面生成的nginx.tar 复制到其他服务器上，然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load &lt; nginx.tar</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-export-import"><a href="#docker-export-import" class="headerlink" title="docker export/import"></a>docker export/import</h4><p>使用docker export/import 命令导出容器，在导入后启动容器的时候会有类似下面的错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:346: starting container process caused &quot;exec: \&quot;XXXXXXXXXX\&quot;: executable file not found in $PATH&quot;: unknown</span><br></pre></td></tr></table></figure>
+
+<p>解决这种问题，经过查询需要在后面加上一些命令，如：/bin/bash 主要是看你运行的是啥东西，docker history 看下，感觉还是使用save 、load命令来的实在</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114101641294.png" alt="image-20220114101641294"></p>
+<h2 id="部署tomcat"><a href="#部署tomcat" class="headerlink" title="部署tomcat"></a>部署tomcat</h2><p>一般部署tomcat的时候，不都是类似这样部署的嘛</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9091:8080 -v /home/XXXX/docker/tomcat/webapps/:/usr/local/tomcat/webapps/ --name managertomcat  tomcat</span><br></pre></td></tr></table></figure>
+
+<p>我运行的时候改成了，挂载/webapps上一级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9091:8080 -v /home/XXXX/docker/tomcat/:/usr/local/tomcat/ --name managertomcat  tomcat</span><br></pre></td></tr></table></figure>
+
+<p>就报错了,类似这样，后面需要注意下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: &quot;catalina.sh&quot;: executable file not found in $PATH: unknown.</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署nginx"><a href="#部署nginx" class="headerlink" title="部署nginx"></a>部署nginx</h2><h3 id="参考了下面博客，做了些修改"><a href="#参考了下面博客，做了些修改" class="headerlink" title="参考了下面博客，做了些修改"></a>参考了下面博客，做了些修改</h3><p><a href="https://www.cnblogs.com/linjiqin/p/10478631.html" target="_blank" rel="noopener">Docker中运行nginx并挂载本地目录到镜像中 - Ruthless - 博客园 (cnblogs.com)</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite or internal redirection cycle while internally redirecting to &quot;/inde</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.csdn.net/default7/article/details/42720079" target="_blank" rel="noopener">解决nginx 报错提示：rewrite or internal redirection cycle while internally redirecting to “/“,_____-CSDN博客</a></p>
+<h3 id="批量创建存放目录"><a href="#批量创建存放目录" class="headerlink" title="批量创建存放目录"></a>批量创建存放目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/nginx/&#123;conf,conf.d,html,logs&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-data-nginx-conf-nginx-conf"><a href="#vim-data-nginx-conf-nginx-conf" class="headerlink" title="vim /data/nginx/conf/nginx.conf"></a>vim /data/nginx/conf/nginx.conf</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  nginx;</span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">error_log</span>  /var/log/nginx/error.log <span class="literal">warn</span>;</span><br><span class="line"><span class="attribute">pid</span>        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       /etc/nginx/mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request</span>" '</span></span><br><span class="line">                      <span class="string">'<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$http_referer</span>" '</span></span><br><span class="line">                      <span class="string">'"<span class="variable">$http_user_agent</span>" "<span class="variable">$http_x_forwarded_for</span>"'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span>  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-data-nginx-conf-d-default-conf"><a href="#vim-data-nginx-conf-d-default-conf" class="headerlink" title="vim /data/nginx/conf.d/default.conf"></a>vim /data/nginx/conf.d/default.conf</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;  </span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;  </span><br><span class="line">    <span class="attribute">server_name</span>  localhost;  </span><br><span class="line">  </span><br><span class="line">    <span class="attribute">location</span> / &#123;  </span><br><span class="line">        <span class="attribute">root</span>   /usr/share/nginx/html;  <span class="comment">#注意：这块我与上面那个博客写的不同，我觉得这块不该是宿主机的路径</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;  </span><br><span class="line">        <span class="attribute">autoindex</span>  <span class="literal">on</span>;  </span><br><span class="line">    	<span class="attribute">try_files</span> <span class="variable">$uri</span> =<span class="number">404</span>; <span class="comment">#这里也做了修改  </span></span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;  </span><br><span class="line">    <span class="attribute">location</span> = /50x.html &#123;  </span><br><span class="line">        <span class="attribute">root</span>   /usr/share/nginx/html;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx -d -p <span class="number">80</span>:<span class="number">80</span>  -v /data/nginx/html:/usr/share/nginx/html -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf  -v /data/nginx/logs:/var/log/nginx -v /data/nginx/conf.d:/etc/nginx/conf.d nginx</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -243,24 +277,13 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jar包启动</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/docker//" class="article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
@@ -315,7 +338,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2020/10/23/java-后台启动/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jianlong-sun.github.io/2022/01/14/docker部署碎碎念/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -329,18 +352,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2020/10/23/多模块项目打包/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          多模块项目打包
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/08/18/Cannot-add-foreign-key-constraint-错误解决办法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Cannot add foreign key constraint 错误解决办法</div>
+    <a href="/2022/01/11/SpringCloudAlibaba-Seata/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringCloudAlibaba-Seata</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -367,7 +381,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows-java-后台启动命令"><span class="toc-number">1.</span> <span class="toc-text">windows java 后台启动命令</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-部署碎碎念"><span class="toc-number">1.</span> <span class="toc-text">docker 部署碎碎念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">2.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-容器迁移"><span class="toc-number">3.</span> <span class="toc-text">docker 容器迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-save-load-命令"><span class="toc-number">3.1.</span> <span class="toc-text">docker save/load 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-save-用来持久化镜像"><span class="toc-number">3.1.1.</span> <span class="toc-text">docker save 用来持久化镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-load"><span class="toc-number">3.1.2.</span> <span class="toc-text">docker load</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-export-import"><span class="toc-number">3.1.3.</span> <span class="toc-text">docker export/import</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署tomcat"><span class="toc-number">4.</span> <span class="toc-text">部署tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署nginx"><span class="toc-number">5.</span> <span class="toc-text">部署nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考了下面博客，做了些修改"><span class="toc-number">5.1.</span> <span class="toc-text">参考了下面博客，做了些修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#批量创建存放目录"><span class="toc-number">5.2.</span> <span class="toc-text">批量创建存放目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-data-nginx-conf-nginx-conf"><span class="toc-number">5.3.</span> <span class="toc-text">vim /data/nginx/conf/nginx.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-data-nginx-conf-d-default-conf"><span class="toc-number">5.4.</span> <span class="toc-text">vim /data/nginx/conf.d/default.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行"><span class="toc-number">5.5.</span> <span class="toc-text">运行</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -398,7 +412,7 @@ if(true){
   	repo: 'jianlong-sun.github.io',
   	owner: 'jianlong-sun',
   	admin: ['jianlong-sun'],
-  	id: 'Fri Oct 23 2020 10:08:27 GMT+0800',
+  	id: 'Fri Jan 14 2022 10:52:57 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container')

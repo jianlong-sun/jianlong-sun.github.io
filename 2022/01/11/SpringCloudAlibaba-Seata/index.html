@@ -10,18 +10,20 @@
   <link rel="dns-prefetch" href="https://jianlong-sun.github.io">
   <title>SpringCloudAlibaba-Seata | jianlong_sun的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
+  <meta name="description" content="SpringCloudAlibaba seata 初步学习">
 <meta name="keywords" content="seata">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringCloudAlibaba-Seata">
 <meta property="og:url" content="https://jianlong-sun.github.io/2022/01/11/SpringCloudAlibaba-Seata/index.html">
 <meta property="og:site_name" content="jianlong_sun的博客">
-<meta property="og:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
+<meta property="og:description" content="SpringCloudAlibaba seata 初步学习">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2022-01-11T06:22:43.010Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114110356086.png">
+<meta property="og:updated_time" content="2022-01-14T03:08:57.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloudAlibaba-Seata">
-<meta name="twitter:description" content="附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面">
+<meta name="twitter:description" content="SpringCloudAlibaba seata 初步学习">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114110356086.png">
   
     <link rel="alternative" href="/atom.xml" title="jianlong_sun的博客" type="application/atom+xml">
   
@@ -191,7 +193,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">17字</span>
+        <span class="post-count">282字</span>
       </span>
     </span>
 
@@ -211,8 +213,19 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://seata.io/zh-cn/" target="_blank" rel="noopener">seata官网</a></p>
-<p>todo:记录下seata用来解决分布式事务</p>
+        <h2 id="SpringCloudAlibaba-Seata（初识）"><a href="#SpringCloudAlibaba-Seata（初识）" class="headerlink" title="SpringCloudAlibaba-Seata（初识）"></a>SpringCloudAlibaba-Seata（初识）</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[toc]</p>
+<h2 id="seata介绍"><a href="#seata介绍" class="headerlink" title="seata介绍"></a>seata介绍</h2><p><a href="https://seata.io/zh-cn/" target="_blank" rel="noopener">seata官网</a></p>
+<blockquote>
+<p>Seata 是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务。在 Seata 开源之前，Seata 对应的内部版本在阿里经济体内部一直扮演着分布式一致性中间件的角色，帮助经济体平稳的度过历年的双11，对各BU业务进行了有力的支撑。经过多年沉淀与积累，商业化产品先后在阿里云、金融云进行售卖。2019.1 为了打造更加完善的技术生态和普惠技术成果，Seata 正式宣布对外开源，未来 Seata 将以社区共建的形式帮助其技术更加可靠与完备。</p>
+</blockquote>
+<h2 id="下载seata服务包，我这里使用的是windows包-v0-9-0"><a href="#下载seata服务包，我这里使用的是windows包-v0-9-0" class="headerlink" title="下载seata服务包，我这里使用的是windows包 v0.9.0"></a>下载seata服务包，我这里使用的是windows包 v0.9.0</h2><p><a href="https://github.com/seata/seata/releases" target="_blank" rel="noopener">Releases · seata/seata (github.com)</a></p>
+<p>解压后长这个样子，就简单几个文件</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114110356086.png" alt="image-20220114110356086"></p>
+<h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><p><a href="https://seata.io/zh-cn/docs/user/quickstart.html" target="_blank" rel="noopener">Seata 快速开始</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p><a href="https://seata.io/zh-cn/index.html" target="_blank" rel="noopener">Seata</a></p>
+<p><a href="https://www.bilibili.com/video/BV18E411x7eT?p=138" target="_blank" rel="noopener">尚硅谷SpringCloud框架开发教程(SpringCloudAlibaba微服务分布式架构丨Spring Cloud)_哔哩哔哩_bilibili</a></p>
+</blockquote>
 
       
 
@@ -328,6 +341,15 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
+    <a href="/2022/01/14/docker部署碎碎念/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          docker部署碎碎念
+        
+      </div>
+    </a>
+  
   
     <a href="/2022/01/11/idea快捷键i¼-动图版/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">idea快捷键(动图版)</div>
@@ -357,7 +379,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringCloudAlibaba-Seata（初识）"><span class="toc-number">1.</span> <span class="toc-text">SpringCloudAlibaba-Seata（初识）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">2.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#seata介绍"><span class="toc-number">3.</span> <span class="toc-text">seata介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载seata服务包，我这里使用的是windows包-v0-9-0"><span class="toc-number">4.</span> <span class="toc-text">下载seata服务包，我这里使用的是windows包 v0.9.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速启动"><span class="toc-number">5.</span> <span class="toc-text">快速启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">6.</span> <span class="toc-text">参考资料</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -502,10 +524,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
@@ -522,15 +540,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,19 +552,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">seata</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,15 +568,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">快捷键</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动图</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,15 +584,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">备份</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">远程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,11 +600,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+                <a href="javascript:void(0)" class="js-tag color4">快捷键</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,6 +636,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">打包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备份</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">远程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -630,23 +664,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+                <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">打包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
               </li>
             
             <div class="clearfix"></div>

@@ -164,6 +164,137 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-docker部署碎碎念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/14/docker部署碎碎念/">docker部署碎碎念</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2022/01/14/docker部署碎碎念/" class="archive-article-date">
+  	<time datetime="2022-01-14T02:52:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">592字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="docker-部署碎碎念"><a href="#docker-部署碎碎念" class="headerlink" title="docker 部署碎碎念"></a>docker 部署碎碎念</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id="docker-容器迁移"><a href="#docker-容器迁移" class="headerlink" title="docker 容器迁移"></a>docker 容器迁移</h2><h3 id="docker-save-load-命令"><a href="#docker-save-load-命令" class="headerlink" title="docker save/load 命令"></a>docker save/load 命令</h3><h4 id="docker-save-用来持久化镜像"><a href="#docker-save-用来持久化镜像" class="headerlink" title="docker save 用来持久化镜像"></a>docker save 用来持久化镜像</h4><p>首先查看镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>保存,以nginx为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o nginx.tar nginx:latest</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-load"><a href="#docker-load" class="headerlink" title="docker load"></a>docker load</h4><p>将上面生成的nginx.tar 复制到其他服务器上，然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load &lt; nginx.tar</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-export-import"><a href="#docker-export-import" class="headerlink" title="docker export/import"></a>docker export/import</h4><p>使用docker export/import 命令导出容器，在导入后启动容器的时候会有类似下面的错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:346: starting container process caused &quot;exec: \&quot;XXXXXXXXXX\&quot;: executable file not found in $PATH&quot;: unknown</span><br></pre></td></tr></table></figure>
+
+<p>解决这种问题，经过查询需要在后面加上一些命令，如：/bin/bash 主要是看你运行的是啥东西，docker history 看下，感觉还是使用save 、load命令来的实在</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114101641294.png" alt="image-20220114101641294"></p>
+<h2 id="部署tomcat"><a href="#部署tomcat" class="headerlink" title="部署tomcat"></a>部署tomcat</h2><p>一般部署tomcat的时候，不都是类似这样部署的嘛</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9091:8080 -v /home/XXXX/docker/tomcat/webapps/:/usr/local/tomcat/webapps/ --name managertomcat  tomcat</span><br></pre></td></tr></table></figure>
+
+<p>我运行的时候改成了，挂载/webapps上一级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9091:8080 -v /home/XXXX/docker/tomcat/:/usr/local/tomcat/ --name managertomcat  tomcat</span><br></pre></td></tr></table></figure>
+
+<p>就报错了,类似这样，后面需要注意下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: &quot;catalina.sh&quot;: executable file not found in $PATH: unknown.</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署nginx"><a href="#部署nginx" class="headerlink" title="部署nginx"></a>部署nginx</h2><h3 id="参考了下面博客，做了些修改"><a href="#参考了下面博客，做了些修改" class="headerlink" title="参考了下面博客，做了些修改"></a>参考了下面博客，做了些修改</h3><p><a href="https://www.cnblogs.com/linjiqin/p/10478631.html" target="_blank" rel="noopener">Docker中运行nginx并挂载本地目录到镜像中 - Ruthless - 博客园 (cnblogs.com)</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite or internal redirection cycle while internally redirecting to &quot;/inde</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.csdn.net/default7/article/details/42720079" target="_blank" rel="noopener">解决nginx 报错提示：rewrite or internal redirection cycle while internally redirecting to “/“,_____-CSDN博客</a></p>
+<h3 id="批量创建存放目录"><a href="#批量创建存放目录" class="headerlink" title="批量创建存放目录"></a>批量创建存放目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/nginx/&#123;conf,conf.d,html,logs&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-data-nginx-conf-nginx-conf"><a href="#vim-data-nginx-conf-nginx-conf" class="headerlink" title="vim /data/nginx/conf/nginx.conf"></a>vim /data/nginx/conf/nginx.conf</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  nginx;</span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">error_log</span>  /var/log/nginx/error.log <span class="literal">warn</span>;</span><br><span class="line"><span class="attribute">pid</span>        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       /etc/nginx/mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request</span>" '</span></span><br><span class="line">                      <span class="string">'<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$http_referer</span>" '</span></span><br><span class="line">                      <span class="string">'"<span class="variable">$http_user_agent</span>" "<span class="variable">$http_x_forwarded_for</span>"'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span>  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-data-nginx-conf-d-default-conf"><a href="#vim-data-nginx-conf-d-default-conf" class="headerlink" title="vim /data/nginx/conf.d/default.conf"></a>vim /data/nginx/conf.d/default.conf</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;  </span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;  </span><br><span class="line">    <span class="attribute">server_name</span>  localhost;  </span><br><span class="line">  </span><br><span class="line">    <span class="attribute">location</span> / &#123;  </span><br><span class="line">        <span class="attribute">root</span>   /usr/share/nginx/html;  <span class="comment">#注意：这块我与上面那个博客写的不同，我觉得这块不该是宿主机的路径</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;  </span><br><span class="line">        <span class="attribute">autoindex</span>  <span class="literal">on</span>;  </span><br><span class="line">    	<span class="attribute">try_files</span> <span class="variable">$uri</span> =<span class="number">404</span>; <span class="comment">#这里也做了修改  </span></span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;  </span><br><span class="line">    <span class="attribute">location</span> = /50x.html &#123;  </span><br><span class="line">        <span class="attribute">root</span>   /usr/share/nginx/html;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx -d -p <span class="number">80</span>:<span class="number">80</span>  -v /data/nginx/html:/usr/share/nginx/html -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf  -v /data/nginx/logs:/var/log/nginx -v /data/nginx/conf.d:/etc/nginx/conf.d nginx</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/docker//" class="article-tag-list-link color2">docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/14/docker部署碎碎念/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SpringCloudAlibaba-Seata" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -187,7 +318,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">17字</span>
+        <span class="post-count">282字</span>
       </span>
     </span>
 
@@ -207,8 +338,19 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://seata.io/zh-cn/" target="_blank" rel="noopener">seata官网</a></p>
-<p>todo:记录下seata用来解决分布式事务</p>
+        <h2 id="SpringCloudAlibaba-Seata（初识）"><a href="#SpringCloudAlibaba-Seata（初识）" class="headerlink" title="SpringCloudAlibaba-Seata（初识）"></a>SpringCloudAlibaba-Seata（初识）</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[toc]</p>
+<h2 id="seata介绍"><a href="#seata介绍" class="headerlink" title="seata介绍"></a>seata介绍</h2><p><a href="https://seata.io/zh-cn/" target="_blank" rel="noopener">seata官网</a></p>
+<blockquote>
+<p>Seata 是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务。在 Seata 开源之前，Seata 对应的内部版本在阿里经济体内部一直扮演着分布式一致性中间件的角色，帮助经济体平稳的度过历年的双11，对各BU业务进行了有力的支撑。经过多年沉淀与积累，商业化产品先后在阿里云、金融云进行售卖。2019.1 为了打造更加完善的技术生态和普惠技术成果，Seata 正式宣布对外开源，未来 Seata 将以社区共建的形式帮助其技术更加可靠与完备。</p>
+</blockquote>
+<h2 id="下载seata服务包，我这里使用的是windows包-v0-9-0"><a href="#下载seata服务包，我这里使用的是windows包-v0-9-0" class="headerlink" title="下载seata服务包，我这里使用的是windows包 v0.9.0"></a>下载seata服务包，我这里使用的是windows包 v0.9.0</h2><p><a href="https://github.com/seata/seata/releases" target="_blank" rel="noopener">Releases · seata/seata (github.com)</a></p>
+<p>解压后长这个样子，就简单几个文件</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114110356086.png" alt="image-20220114110356086"></p>
+<h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><p><a href="https://seata.io/zh-cn/docs/user/quickstart.html" target="_blank" rel="noopener">Seata 快速开始</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p><a href="https://seata.io/zh-cn/index.html" target="_blank" rel="noopener">Seata</a></p>
+<p><a href="https://www.bilibili.com/video/BV18E411x7eT?p=138" target="_blank" rel="noopener">尚硅谷SpringCloud框架开发教程(SpringCloudAlibaba微服务分布式架构丨Spring Cloud)_哔哩哔哩_bilibili</a></p>
+</blockquote>
 
       
 
@@ -1492,7 +1634,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">359字</span>
+        <span class="post-count">371字</span>
       </span>
     </span>
 
@@ -1530,6 +1672,9 @@ var _hmt = _hmt || [];
 <h6 id="4-3-配置github图床"><a href="#4-3-配置github图床" class="headerlink" title="4.3 配置github图床"></a>4.3 配置github图床</h6><p>注意github 主分支由master改成main了</p>
 <p>自定义域名为:<a href="https://raw.githubusercontent.com/用户名/RepositoryName/分支名" target="_blank" rel="noopener">https://raw.githubusercontent.com/用户名/RepositoryName/分支名</a></p>
 <p>这里我设置的是：<a href="https://raw.githubusercontent.com/jianlong-sun/PicBed/main" target="_blank" rel="noopener">https://raw.githubusercontent.com/jianlong-sun/PicBed/main</a></p>
+<p>使用cdn?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cdn.jsdelivr.net/gh/jianlong-sun/PicBed@main</span><br></pre></td></tr></table></figure>
+
 <p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112142006581.png" alt="image-20211214200646536"></p>
 <h5 id="5-回到typora进行测试"><a href="#5-回到typora进行测试" class="headerlink" title="5.回到typora进行测试"></a>5.回到typora进行测试</h5>
       
@@ -1566,110 +1711,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/10/09/typora+picgo+sm.ms实现自动上传/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringSecurity复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/09/SpringSecurity复习/">SpringSecurity复习</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2021/10/09/SpringSecurity复习/" class="archive-article-date">
-  	<time datetime="2021-10-09T08:03:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-09</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="SpringSecurity"><a href="#SpringSecurity" class="headerlink" title="SpringSecurity"></a>SpringSecurity</h1><h4 id="1-第一章"><a href="#1-第一章" class="headerlink" title="1.第一章"></a>1.第一章</h4><p>介绍SpringSecurity并在idea上安装envfile插件及lombok</p>
-<p>文件位置：阿里云盘</p>
-<p><img src="https://s2.loli.net/2021/12/14/ebNjsY3KFtuMgHr.png" alt="image-20210917172546314"></p>
-<h4 id="2-第二章"><a href="#2-第二章" class="headerlink" title="2.第二章"></a>2.第二章</h4><h5 id="2-1-常见过滤器"><a href="#2-1-常见过滤器" class="headerlink" title="2.1 常见过滤器"></a>2.1 常见过滤器</h5><p><img src="https://s2.loli.net/2021/12/14/ferT2UKdcFSYwsH.png" alt="image-20210917171720568.png"></p>
-<h5 id="2-2-今日进度-2021年9月17日17-24-29"><a href="#2-2-今日进度-2021年9月17日17-24-29" class="headerlink" title="2.2 今日进度-2021年9月17日17:24:29"></a>2.2 今日进度-2021年9月17日17:24:29</h5><p><img src="https://s2.loli.net/2021/12/14/bRF9yc6mEgrlwqL.png" alt="image-20210917172435324.png"></p>
-<h5 id="2-3-http-请求头、响应头详解"><a href="#2-3-http-请求头、响应头详解" class="headerlink" title="2.3 http 请求头、响应头详解"></a>2.3 http 请求头、响应头详解</h5><p><a href="https://www.cnblogs.com/widget90/p/7650890.html" target="_blank" rel="noopener">Http消息头中常用的请求头和响应头 - 池的巧克力 - 博客园 (cnblogs.com)</a></p>
-        
-          <a class="article-more-a" href="/2021/10/09/SpringSecurity复习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/09/SpringSecurity复习/">展开全文 >></a>
         </p>
       
 
@@ -1807,10 +1848,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
@@ -1827,15 +1864,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1843,19 +1876,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">seata</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1863,15 +1892,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Thread</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">快捷键</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动图</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1883,15 +1908,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">备份</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">远程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1899,11 +1924,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+                <a href="javascript:void(0)" class="js-tag color4">快捷键</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1927,6 +1960,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">打包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备份</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">远程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -1935,23 +1988,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">反编译</a>
+                <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">打包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
               </li>
             
             <div class="clearfix"></div>
