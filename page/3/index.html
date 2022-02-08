@@ -164,6 +164,351 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jpa-hibernate-validator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/18/jpa-hibernate-validator/">jpa hibernate validator</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2021/01/18/jpa-hibernate-validator/" class="archive-article-date">
+  	<time datetime="2021-01-18T03:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-18</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">5字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141941144.jpg" alt="v2-754d8a8b3603488efc7ea2600914f18c_r"></p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p><a href="https://blog.csdn.net/danielzhou888/article/details/74740817" target="_blank" rel="noopener">validator大全</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jpa</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/18/jpa-hibernate-validator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-关于Springboot中使用-autowired注入对象为null" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/03/关于Springboot中使用-autowired注入对象为null/">关于Springboot中使用@autowired注入对象为null</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2020/12/03/关于Springboot中使用-autowired注入对象为null/" class="archive-article-date">
+  	<time datetime="2020-12-03T07:06:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-03</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">234字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h2><blockquote>
+<p>今天遇到一个问题，使用 @Autowired 注解的时候，有个类怎么都注入不进来，死活不知道哪错了，按道理在类上加上了 @Component 注解，就交给 IOC 容器可以反射创建对象了<br>我在这个类上使用的 @Component    然后在其他地方  new  了一个这个带有 @Component 类的对象。<br>这个时候看着没问题，其实已经错了。</p>
+</blockquote>
+<h2 id="2-原因"><a href="#2-原因" class="headerlink" title="2.原因"></a>2.原因</h2><blockquote>
+<p>当通过new的方式创建一个对象的时候，虽然期望使用了注解@Autowired对这个对象进行装配，但是Spring是不会这么做的，因为Spring不会对任意一个new 出来的对象进行自动装配，只有这个对象也是一个在Spring中注册过的Bean，才会获得自动装配的功能。<br>这时候，只需要把 new  去掉就好了</p>
+</blockquote>
+<p>参考:<a href="https://segmentfault.com/a/1190000021225279" target="_blank" rel="noopener">关于Springboot中使用@autowired注入对象为null</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/03/关于Springboot中使用-autowired注入对象为null/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spider-盗墓笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/03/spider-盗墓笔记/">spider_盗墓笔记(单文件版,Springboot、jpa整合版(源码包))</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2020/12/03/spider-盗墓笔记/" class="archive-article-date">
+  	<time datetime="2020-12-03T03:20:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-03</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">9分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-爬取目标："><a href="#1-爬取目标：" class="headerlink" title="1.爬取目标："></a>1.爬取目标：</h2><p>url:<a href="http://seputu.com/biji1/" target="_blank" rel="noopener">http://seputu.com/biji1/</a><br>单文件版期望结果：将爬取到的内容输出到控制台并保存到excel表格中<br>整合版期望结果：将爬取到的内容输出到控制台并保存到数据库中</p>
+<h2 id="2-收获"><a href="#2-收获" class="headerlink" title="2.收获"></a>2.收获</h2><h3 id="2-1-webmagic"><a href="#2-1-webmagic" class="headerlink" title="2.1.webmagic"></a>2.1.webmagic</h3><h4 id="2-1-1-webmagic-formatter格式转换"><a href="#2-1-1-webmagic-formatter格式转换" class="headerlink" title="2.1.1 webmagic_formatter格式转换"></a>2.1.1 webmagic_formatter格式转换</h4><p><a href="http://webmagic.io/docs/zh/posts/ch5-annotation/formatter.html" target="_blank" rel="noopener">webmagic_formatter</a></p>
+<blockquote>
+<p>5.5.2 显式指定转换类型<br>  一般情况下，Formatter会根据字段类型进行转换，但是特殊情况下，我们会需要手动指定类型。这主要发生在字段是List类型的时候。<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Formatter</span>(value = <span class="string">""</span>,subClazz = Integer.class)</span><br><span class="line"><span class="meta">@ExtractBy</span>(value = <span class="string">"//div[@class='id']/text()"</span>, multi = <span class="keyword">true</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;Integer&gt; ids;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="2-1-2-不使用class中list"><a href="#2-1-2-不使用class中list" class="headerlink" title="2.1.2 不使用class中list"></a>2.1.2 不使用class中list</h4><p>类属性不使用list方式接收，这样导出到表或者数据库中的时候就不用再创建一个对应的类，更加方便了，代码放到下面。</p>
+<h4 id="2-1-3-使用正则对获取的字符串，比如对时间进行提取"><a href="#2-1-3-使用正则对获取的字符串，比如对时间进行提取" class="headerlink" title="2.1.3 使用正则对获取的字符串，比如对时间进行提取"></a>2.1.3 使用正则对获取的字符串，比如对时间进行提取</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [所属目录：    发布时间：2012-5-22    作者：南派三叔]</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NoListPrintPipeline</span> <span class="keyword">implements</span> <span class="title">PageModelPipeline</span>&lt;<span class="title">DaoMuBiJiSpiderNoList</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span>  List&lt;DaoMuBiJiSpiderNoList&gt; rows = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Pattern NUMBER_PATTERN = Pattern.compile(<span class="string">"\\d+-\\d+-\\d+"</span>);</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(DaoMuBiJiSpiderNoList daoMuBiJiSpiderNoList, Task task)</span> </span>&#123;</span><br><span class="line">        System.out.println(daoMuBiJiSpiderNoList);</span><br><span class="line">        String date = daoMuBiJiSpiderNoList.getDate();</span><br><span class="line">        Matcher matcher = NUMBER_PATTERN.matcher(date);</span><br><span class="line">        <span class="keyword">if</span>(matcher.find())&#123;</span><br><span class="line">            daoMuBiJiSpiderNoList.setDate(matcher.group());</span><br><span class="line">        &#125;</span><br><span class="line">        rows.add(daoMuBiJiSpiderNoList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-hutool-poi"><a href="#2-2-hutool-poi" class="headerlink" title="2.2.hutool-poi"></a>2.2.hutool-poi</h3><blockquote>
+<p>对输出的表格进行别名的处理 这个顺序好像也是输出到表格顺序<br>writer.addHeaderAlias(“index”, “序号”);<br>      writer.addHeaderAlias(“origin”, “来源”);</p>
+</blockquote>
+<p>疑问：写出的时候能对别名进行处理，那么读取的时候是不是也可以？？<br>经过测试是可以的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取人员信息</span></span><br><span class="line">ExcelReader reader = ExcelUtil.getReader(<span class="string">"D:\\idm下载\\Compressed\\photos\\工作证信息.xlsx"</span>);</span><br><span class="line">Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;()&#123;&#123;</span><br><span class="line">   <span class="comment">// 这么写证明是可以的put("表格标题字段"，"类属性字段名")</span></span><br><span class="line">    put(<span class="string">"姓名"</span>, <span class="string">"name"</span>);</span><br><span class="line">    put(<span class="string">"部门"</span>, <span class="string">"depart"</span>);</span><br><span class="line">    put(<span class="string">"职务"</span>, <span class="string">"job"</span>);</span><br><span class="line">&#125;&#125;;</span><br><span class="line">reader.setHeaderAlias(map);</span><br><span class="line"></span><br><span class="line">List&lt;ExcelEmp&gt; excelEmp = reader.readAll(ExcelEmp.class);</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/12/03/spider-盗墓笔记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/爬虫//" class="article-tag-list-link color3">爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/03/spider-盗墓笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二分查找法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -932,349 +1277,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-idea自动生成JPA元模型对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/13/idea自动生成JPA元模型对象/">idea自动生成JPA元模型对象</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/07/13/idea自动生成JPA元模型对象/" class="archive-article-date">
-  	<time datetime="2020-07-13T03:35:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">111字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h2><p>项目使用Jpa Model，编译各种报错，需要生成各种Area_类似这样的类</p>
-<h2 id="2-解决"><a href="#2-解决" class="headerlink" title="2.解决"></a>2.解决</h2><h3 id="2-1-在pom中加入依赖-记得刷新下pom"><a href="#2-1-在pom中加入依赖-记得刷新下pom" class="headerlink" title="2.1 在pom中加入依赖,记得刷新下pom"></a>2.1 在pom中加入依赖,记得刷新下pom</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;hibernate-jpamodelgen&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.2.10.Final&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-设置"><a href="#2-2-设置" class="headerlink" title="2.2 设置"></a>2.2 设置</h3><p>在idea File -&gt; settings 在搜索框中输入“Annotation Processors”，选择Enable annotation processing 打勾表示启用。<br><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141941871.png" alt="jpamodel"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">idea</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/idea//" class="article-tag-list-link color5">idea</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/13/idea自动生成JPA元模型对象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringCloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/02/SpringCloud/">SpringCloud</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/06/02/SpringCloud/" class="archive-article-date">
-  	<time datetime="2020-06-02T09:42:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">457字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>对SpringCloud进行一下学习，希望可以学会初步使用，然后逐步运用到项目中去。</p>
-<h2 id="2-今日内容"><a href="#2-今日内容" class="headerlink" title="2.今日内容"></a>2.今日内容</h2><p>项目地址：<a href="https://github.com/Zealon159/light-reading-cloud" target="_blank" rel="noopener">轻松阅读</a>     </p>
-<blockquote>
-<p>基于SpringCloud生态开发的阅读类APP微服务实战项目，涉及 SpringCloud-Config、Eureka、OpenFeign、Hystrix、Jwt、SpringCloud-Gateway、ElasticSearch 等技术栈的应用  </p>
-</blockquote>
-<p>今日主要是将项目客户端及服务端clone了下来，并各自导入到了开发工具。通过阅读项目的readme.md文档<br>对项目有个初步的了解并修改其中的相关配置将项目运行了起来。在运行项目过程中也遇到了一些小问题，稍后进行一下记录。</p>
-<h2 id="3-先展示一下运行结果"><a href="#3-先展示一下运行结果" class="headerlink" title="3.先展示一下运行结果"></a>3.先展示一下运行结果</h2><p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141941055.png" alt="socket"></p>
-        
-          <a class="article-more-a" href="/2020/06/02/SpringCloud/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/02/SpringCloud/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-使用websocket搭建一个简单的聊天室" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/01/使用websocket搭建一个简单的聊天室/">使用websocket搭建一个简单的聊天室</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/06/01/使用websocket搭建一个简单的聊天室/" class="archive-article-date">
-  	<time datetime="2020-06-01T07:18:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.9k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">8分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-上半年回顾"><a href="#1-上半年回顾" class="headerlink" title="1.上半年回顾"></a>1.上半年回顾</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">现在时间是2020年6月1日，2020年的上半年，大部分人因为疫情的影响在家憋了好长时间，2020年的春节也没有再走亲访友，开始上班后，一开始也是只能在家办公。今天公司全体员工终于可以正常上班了，继续记录一下工作中用到的一些东西和学习的东西，以备后续之用。</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-websocket"><a href="#2-websocket" class="headerlink" title="2.websocket"></a>2.websocket</h2><h3 id="2-1-websocket简单介绍"><a href="#2-1-websocket简单介绍" class="headerlink" title="2.1 websocket简单介绍"></a>2.1 websocket简单介绍</h3><p><strong>websocket</strong> 百度百科解释：</p>
-<blockquote>
-<p>WebSocket是一种在单个TCP连接上进行全双工通信的协议。  WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。<br>WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。</p>
-</blockquote>
-<h3 id="2-2-传统“即时通讯”"><a href="#2-2-传统“即时通讯”" class="headerlink" title="2.2 传统“即时通讯”"></a>2.2 传统“即时通讯”</h3><p> <em>HTTP 协议有一个缺陷：通信只能由客户端发起。</em><br>很多网站为了实现即时通讯(real-time)，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔(time interval)（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。这种传统的HTTP request d的模式带来很明显的缺点 – 浏览器需要不断的向服务器发出请求(request)，然而HTTP request 的header是非常长的，里面包含的数据可能只是一个很小的值，这样会占用很多的带宽。</p>
-        
-          <a class="article-more-a" href="/2020/06/01/使用websocket搭建一个简单的聊天室/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/01/使用websocket搭建一个简单的聊天室/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1383,6 +1385,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
@@ -1399,23 +1405,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">seata</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1423,7 +1413,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">seata</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1431,35 +1429,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spider</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1471,7 +1449,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备份</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">远程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spider</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1491,7 +1505,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1503,11 +1521,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">备份</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">远程</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1515,19 +1529,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>

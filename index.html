@@ -164,6 +164,644 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-云起之mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/08/云起之mysql/">云起之mysql笔记</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2022/02/08/云起之mysql/" class="archive-article-date">
+  	<time datetime="2022-02-08T03:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-08</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.2k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MySQL安装与配置"><a href="#MySQL安装与配置" class="headerlink" title="MySQL安装与配置"></a>MySQL安装与配置</h1><p>MySQL是一个关系型数据库管理系统，本步骤指导您如何在ECS实例上安装MySQL。</p>
+<ol>
+<li>执行如下命令，更新YUM源。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh  http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>执行如下命令，安装MySQL。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行如下命令，查看MySQL版本号。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -V</span><br></pre></td></tr></table></figure>
+
+<p>返回结果如下，表示您已成功安装MySQL。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/a087672818024936b5e4e1e5d29c7f3f.png" alt="img"></p>
+<ol start="4">
+<li>执行如下命令，启动MySQL服务。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>执行如下命令，设置MySQL服务开机自启动。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable mysqld</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>配置MySQL的root用户密码。</li>
+</ol>
+<p>执行如下命令，查看/var/log/mysqld.log文件，获取root用户的初始密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;temporary password&apos; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p>返回结果如下所示，您可以查看到root用户的初始密码。</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/a63c22d465b04626901611cad1a8e5ab.png" alt="img"></p>
+<p>执行以下命令，使用root用户登录数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>返回结果如下所示，输入root用户的初始密码。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/78e135657d284b47a4321c012cc0c433.png" alt="img"></p>
+<p>执行以下命令，修改MySQL的root用户的初始密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global validate_password_policy=0;  #修改密码安全策略为低（只校验密码长度，至少8位）。</span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;12345678&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>执行以下命令，授予root用户远程管理权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;12345678&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>输入exit退出数据库。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/379d871e4c3f4790ae057edea1dd33bc.png" alt="img"></p>
+<ol start="7">
+<li><p>执行以下命令，使用root用户登录数据库。</p>
+        
+          <a class="article-more-a" href="/2022/02/08/云起之mysql/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/08/云起之mysql/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-R语言使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/08/R语言使用/">R语言使用</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2022/02/08/R语言使用/" class="archive-article-date">
+  	<time datetime="2022-02-08T03:03:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-08</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">574字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="关于安装R语言那些事"><a href="#关于安装R语言那些事" class="headerlink" title="关于安装R语言那些事"></a>关于安装R语言那些事</h3><h4 id="1-yum-install-无法使用"><a href="#1-yum-install-无法使用" class="headerlink" title="1.yum install 无法使用"></a>1.yum install 无法使用</h4><p>修改了下网卡的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens192</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">#BOOTPROTO=dhcp</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=no</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens192</span><br><span class="line">UUID=d33af78d-1cdf-4213-8eb3-680f45b20c87</span><br><span class="line">DEVICE=ens192</span><br><span class="line">ONBOOT=yes</span><br><span class="line">ZONE=public</span><br><span class="line">DNS1=&quot;172.16.213.102&quot;</span><br><span class="line">DNS2=&quot;202.112.80.168&quot;</span><br><span class="line">IPV6_PEERDNS=yes</span><br><span class="line">IPV6_PEERROUTES=yes</span><br><span class="line">IPADDR=172.18.136.137</span><br><span class="line">PREFIX=24</span><br><span class="line">GATEWAY=172.18.136.1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+
+<p>还不太清楚是不是上面的问题导致yum install无法使用还是因为yum源的问题，修改了yum源</p>
+<p>位置在 /etc/yum.repos.d,首先备份下</p>
+<p>CentOS-Base.repo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d/</span><br></pre></td></tr></table></figure>
+
+<p>改成了如下：163的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[base]</span><br><span class="line">name=Red Hat Enterprise Linux 7.0 -Base</span><br><span class="line">baseurl=http://mirrors.163.com/centos/7/os/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-7</span><br><span class="line">[update]</span><br><span class="line">name=Red Hat Enterprise Linux 7.0 -Updates</span><br><span class="line">baseurl=http://mirrors.163.com/centos/7/updates/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-7</span><br><span class="line">[extras]</span><br><span class="line">name=Red Hat Enterprise Linux 7.0 -Extras</span><br><span class="line">baseurl=http://mirrors.163.com/centos/7/extras/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-7</span><br></pre></td></tr></table></figure>
+
+<p>yum install wget</p>
+<h4 id="2-安装R"><a href="#2-安装R" class="headerlink" title="2.安装R"></a>2.安装R</h4><p>先安装epel-release</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure>
+
+<p>安装R</p>
+<p>一些依赖包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gcc</span><br><span class="line">yum install -y glibc-headers</span><br><span class="line">yum install -y libreadline6-dev gfortran</span><br><span class="line">yum install -y readline-devel</span><br><span class="line">yum install -y wget libXt-devel</span><br><span class="line">yum install -y fonts-chinese tcl tcl-devel tclx tk tk-devel</span><br><span class="line">yum install -y mesa-libGLU mesa-libGLU-devel</span><br><span class="line">yum install -y install bzip2-devel</span><br><span class="line">yum install -y install xz-devel.x86_64</span><br><span class="line">yum install -y install pcre-devel</span><br><span class="line">yum install -y install libcurl</span><br><span class="line">yum install -y install libcurl-devel</span><br><span class="line">yum install -y  texinfo.x86_64</span><br><span class="line">yum install -y texlive-pdftex-doc.noarch</span><br><span class="line">yum install -y texlive</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install R</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-安装-Rserve和mirtCAT"><a href="#3-安装-Rserve和mirtCAT" class="headerlink" title="3.安装 Rserve和mirtCAT"></a>3.安装 Rserve和mirtCAT</h4><h5 id="配置全局代理"><a href="#配置全局代理" class="headerlink" title="配置全局代理"></a>配置全局代理</h5><p>配置下虚拟机代理，让虚拟机通过宿主机访问外网</p>
+<p><a href="https://blog.csdn.net/weixin_30433075/article/details/99428987" target="_blank" rel="noopener">CentOS7 设置代理(转)–系统全局代理部分，测试可用_weixin_30433075的博客-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/cainiao1412/article/details/105612003/" target="_blank" rel="noopener">（转）Linux/CentOS设置全局代理（http）_cainiao1412的博客-CSDN博客_centos设置全局代理</a></p>
+<p><a href="https://www.cnblogs.com/simp/p/15627878.html" target="_blank" rel="noopener">Linux/CentOS设置全局代理（http） - simp00 - 博客园 (cnblogs.com)</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>最后面加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export all_proxy=&quot;代理地址&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+
+<p>现在使用wget命令和curl命令都是通的了，能访问外网</p>
+<h5 id="正式安装Rserve和mirtCAt"><a href="#正式安装Rserve和mirtCAt" class="headerlink" title="正式安装Rserve和mirtCAt"></a>正式安装Rserve和mirtCAt</h5><p><a href="https://blog.csdn.net/u011955252/article/details/65442549" target="_blank" rel="noopener">R语言服务器程序 Rserve详解_红豆和绿豆的博客-CSDN博客_rserve</a></p>
+<p>repo用的是<a href="http://mirrors.tuna.tsinghua.edu.cn/CRAN" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/CRAN</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(&quot;Rserve&quot;,repo=&quot;http://mirrors.tuna.tsinghua.edu.cn/CRAN&quot;)</span><br><span class="line">install.packages(&quot;mirtCAT&quot;,repo=&quot;http://mirrors.tuna.tsinghua.edu.cn/CRAN&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>启动Rserve</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library(Rserve)</span><br><span class="line">Rserve()</span><br></pre></td></tr></table></figure>
+
+<p>安装mirtcat的时候有如下报错，暂未解决</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220115103150470.png" alt="image-20220115103150470"></p>
+<p>解决：是因为gcc版本太低导致</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16423858658134.png" alt="img"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/R语言//" class="article-tag-list-link color4">R语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/08/R语言使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux命令小总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/08/linux命令小总结/">云起之linux命令小总结</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2022/02/08/linux命令小总结/" class="archive-article-date">
+  	<time datetime="2022-02-08T03:00:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-08</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">11.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">42分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="https://developer.aliyun.com/adc/series/wintercamp" target="_blank" rel="noopener">云起</a></p>
+</blockquote>
+<ul>
+<li>使用vim编辑文本</li>
+<li>对文件内容和信息的查看</li>
+<li>使用Linux命令处理文本</li>
+</ul>
+<h1 id="文本编辑工具Vim"><a href="#文本编辑工具Vim" class="headerlink" title="文本编辑工具Vim"></a>文本编辑工具Vim</h1><h3 id="vim的三种操作模式"><a href="#vim的三种操作模式" class="headerlink" title="vim的三种操作模式"></a>vim的三种操作模式</h3><p>vim有三种操作模式，分别是命令模式（Command mode）、输入模式（Insert mode）和底线命令模式（Last line mode）。</p>
+<p>三种模式切换快捷键：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>命令模式</td>
+<td>ESC</td>
+</tr>
+<tr>
+<td>输入模式</td>
+<td>i或a</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:</td>
+</tr>
+</tbody></table>
+<ul>
+<li>命令模式</li>
+</ul>
+<p>在命令模式中控制光标移动和输入命令，可对文本进行复制、粘贴、删除和查找等工作。</p>
+<p>使用命令vim filename后进入编辑器视图后，默认模式就是命令模式，此时敲击键盘字母会被识别为一个命令，例如在键盘上连续敲击两次d，就会删除光标所在行。</p>
+<p>以下是在命令模式中常用的快捷操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>光标左移</td>
+<td>h</td>
+</tr>
+<tr>
+<td>光标右移</td>
+<td>l（小写L）</td>
+</tr>
+<tr>
+<td>光标上移</td>
+<td>k</td>
+</tr>
+<tr>
+<td>光标下移</td>
+<td>j</td>
+</tr>
+<tr>
+<td>光标移动到下一个单词</td>
+<td>w</td>
+</tr>
+<tr>
+<td>光标移动到上一个单词</td>
+<td>b</td>
+</tr>
+<tr>
+<td>移动游标到第n行</td>
+<td>nG</td>
+</tr>
+<tr>
+<td>移动游标到第一行</td>
+<td>gg</td>
+</tr>
+<tr>
+<td>移动游标到最后一行</td>
+<td>G</td>
+</tr>
+<tr>
+<td>快速回到上一次光标所在位置</td>
+<td>Ctrl+o</td>
+</tr>
+<tr>
+<td>删除当前字符</td>
+<td>x</td>
+</tr>
+<tr>
+<td>删除前一个字符</td>
+<td>X</td>
+</tr>
+<tr>
+<td>删除整行</td>
+<td>dd</td>
+</tr>
+<tr>
+<td>删除一个单词</td>
+<td>dw或daw</td>
+</tr>
+<tr>
+<td>删除至行尾</td>
+<td>d$或D</td>
+</tr>
+<tr>
+<td>删除至行首</td>
+<td>d^</td>
+</tr>
+<tr>
+<td>删除到文档末尾</td>
+<td>dG</td>
+</tr>
+<tr>
+<td>删除至文档首部</td>
+<td>d1G</td>
+</tr>
+<tr>
+<td>删除n行</td>
+<td>ndd</td>
+</tr>
+<tr>
+<td>删除n个连续字符</td>
+<td>nx</td>
+</tr>
+<tr>
+<td>将光标所在位置字母变成大写或小写</td>
+<td>~</td>
+</tr>
+<tr>
+<td>复制游标所在的整行</td>
+<td>yy（3yy表示复制3行）</td>
+</tr>
+<tr>
+<td>粘贴至光标后（下）</td>
+<td>p</td>
+</tr>
+<tr>
+<td>粘贴至光标前（上）</td>
+<td>P</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>dd</td>
+</tr>
+<tr>
+<td>交换上下行</td>
+<td>ddp</td>
+</tr>
+<tr>
+<td>替换整行，即删除游标所在行并进入插入模式</td>
+<td>cc</td>
+</tr>
+<tr>
+<td>撤销一次或n次操作</td>
+<td>u{n}</td>
+</tr>
+<tr>
+<td>撤销当前行的所有修改</td>
+<td>U</td>
+</tr>
+<tr>
+<td>恢复撤销操作</td>
+<td>Ctrl+r</td>
+</tr>
+<tr>
+<td>整行将向右缩进</td>
+<td>&gt;&gt;</td>
+</tr>
+<tr>
+<td>整行将向左退回</td>
+<td>&lt;&lt;</td>
+</tr>
+<tr>
+<td>若档案没有更动，则不储存离开，若档案已经被更动过，则储存后离开</td>
+<td>ZZ</td>
+</tr>
+</tbody></table>
+<ul>
+<li>输入模式</li>
+</ul>
+<p>在命令模式下按i或a键就进入了输入模式，在输入模式下，您可以正常的使用键盘按键对文本进行插入和删除等操作。</p>
+<ul>
+<li>底线命令模式</li>
+</ul>
+<p>在命令模式下按:键就进入了底线命令模式，在底线命令模式中可以输入单个或多个字符的命令。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>保存</td>
+<td>:w</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>:q</td>
+</tr>
+<tr>
+<td>保存并退出</td>
+<td>:wq（:wq!表示强制保存退出）</td>
+</tr>
+<tr>
+<td>将文件另存为其他文件名</td>
+<td>:w new_filename</td>
+</tr>
+<tr>
+<td>显示行号</td>
+<td>:set nu</td>
+</tr>
+<tr>
+<td>取消行号</td>
+<td>:set nonu</td>
+</tr>
+<tr>
+<td>使本行内容居中</td>
+<td>:ce</td>
+</tr>
+<tr>
+<td>使本行文本靠右</td>
+<td>:ri</td>
+</tr>
+<tr>
+<td>使本行内容靠左</td>
+<td>:le</td>
+</tr>
+<tr>
+<td>向光标之下寻找一个名称为word的字符串</td>
+<td>:/word</td>
+</tr>
+<tr>
+<td>向光标之上寻找一个字符串名称为word的字符串</td>
+<td>:?word</td>
+</tr>
+<tr>
+<td>重复前一个搜寻的动作</td>
+<td>:n</td>
+</tr>
+<tr>
+<td>从第一行到最后一行寻找word1字符串，并将该字符串取代为word2</td>
+<td>:1,$s/word1/word2/g或 :%s/word1/word2/g</td>
+</tr>
+</tbody></table>
+<h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><p>在本示例将使用vim在文本文件中写入一首唐诗。</p>
+        
+          <a class="article-more-a" href="/2022/02/08/linux命令小总结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/08/linux命令小总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-docker部署碎碎念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1039,707 +1677,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-typora文内链接跳转" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/14/typora文内链接跳转/">typora文内链接跳转</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2021/12/14/typora文内链接跳转/" class="archive-article-date">
-  	<time datetime="2021-12-14T09:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">985字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-记录下typora文内链接跳转"><a href="#1-记录下typora文内链接跳转" class="headerlink" title="1.记录下typora文内链接跳转"></a>1.记录下typora文内链接跳转</h4><p>:smile: <strong>ctrl+鼠标左键单击，进行跳转，网页上经过测试不用按ctrl</strong><a href="#test">转到</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[转到](#test)</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-这里放点东西分隔下，每文一图"><a href="#2-这里放点东西分隔下，每文一图" class="headerlink" title="2.这里放点东西分隔下，每文一图"></a>2.这里放点东西分隔下，每文一图</h4><h5 id="2-1-多个tag"><a href="#2-1-多个tag" class="headerlink" title="2.1 多个tag"></a>2.1 多个tag</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tags:</span><br><span class="line">  - typora</span><br><span class="line">  - 教程</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-2-表情"><a href="#2-2-表情" class="headerlink" title="2.2 表情"></a>2.2 表情</h5><p><a href="https://zhuanlan.zhihu.com/p/351761548" target="_blank" rel="noopener">Markdown语法系列3: 炫酷Emoji(Typora编译器) - 知乎 (zhihu.com)</a></p>
-<p><a href="https://www.cnblogs.com/wangjs-jacky/p/12011208.html" target="_blank" rel="noopener">Typora Emoji图标 - 王家盛 - 博客园 (cnblogs.com)</a></p>
-<table>
-<thead>
-<tr>
-<th>😄 <code>:smile:</code></th>
-<th>😆 <code>:laughing:</code></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>😊 <code>:blush:</code></td>
-<td>😃 <code>:smiley:</code></td>
-<td>☺️ <code>:relaxed:</code></td>
-</tr>
-<tr>
-<td>😏 <code>:smirk:</code></td>
-<td>😍 <code>:heart_eyes:</code></td>
-<td>😘 <code>:kissing_heart:</code></td>
-</tr>
-<tr>
-<td>😚 <code>:kissing_closed_eyes:</code></td>
-<td>😳 <code>:flushed:</code></td>
-<td>😌 <code>:relieved:</code></td>
-</tr>
-<tr>
-<td>😆 <code>:satisfied:</code></td>
-<td>😁 <code>:grin:</code></td>
-<td>😉 <code>:wink:</code></td>
-</tr>
-<tr>
-<td>😜 <code>:stuck_out_tongue_winking_eye:</code></td>
-<td>😝 <code>:stuck_out_tongue_closed_eyes:</code></td>
-<td>😀 <code>:grinning:</code></td>
-</tr>
-<tr>
-<td>😗 <code>:kissing:</code></td>
-<td>😙 <code>:kissing_smiling_eyes:</code></td>
-<td>😛 <code>:stuck_out_tongue:</code></td>
-</tr>
-<tr>
-<td>😴 <code>:sleeping:</code></td>
-<td>😟 <code>:worried:</code></td>
-<td>😦 <code>:frowning:</code></td>
-</tr>
-<tr>
-<td>😧 <code>:anguished:</code></td>
-<td>😮 <code>:open_mouth:</code></td>
-<td>😬 <code>:grimacing:</code></td>
-</tr>
-<tr>
-<td>😕 <code>:confused:</code></td>
-<td>😯 <code>:hushed:</code></td>
-<td>😑 <code>:expressionless:</code></td>
-</tr>
-<tr>
-<td>😒 <code>:unamused:</code></td>
-<td>😅 <code>:sweat_smile:</code></td>
-<td>😓 <code>:sweat:</code></td>
-</tr>
-<tr>
-<td>😥 <code>:disappointed_relieved:</code></td>
-<td>😩 <code>:weary:</code></td>
-<td>😔 <code>:pensive:</code></td>
-</tr>
-<tr>
-<td>😞 <code>:disappointed:</code></td>
-<td>😖 <code>:confounded:</code></td>
-<td>😨 <code>:fearful:</code></td>
-</tr>
-<tr>
-<td>😰 <code>:cold_sweat:</code></td>
-<td>😣 <code>:persevere:</code></td>
-<td>😢 <code>:cry:</code></td>
-</tr>
-<tr>
-<td>😭 <code>:sob:</code></td>
-<td>😂 <code>:joy:</code></td>
-<td>😲 <code>:astonished:</code></td>
-</tr>
-<tr>
-<td>😱 <code>:scream:</code></td>
-<td></td>
-<td>😫 <code>:tired_face:</code></td>
-</tr>
-<tr>
-<td>😠 <code>:angry:</code></td>
-<td>😡 <code>:rage:</code></td>
-<td>😤 <code>:triumph:</code></td>
-</tr>
-<tr>
-<td>😪 <code>:sleepy:</code></td>
-<td>😋 <code>:yum:</code></td>
-<td>😷 <code>:mask:</code></td>
-</tr>
-<tr>
-<td>😎 <code>:sunglasses:</code></td>
-<td>😵 <code>:dizzy_face:</code></td>
-<td>👿 <code>:imp:</code></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>😈 <code>:smiling_imp:</code></td>
-<td>😐 <code>:neutral_face:</code></td>
-<td>😶 <code>:no_mouth:</code></td>
-</tr>
-<tr>
-<td>😇 <code>:innocent:</code></td>
-<td>👽 <code>:alien:</code></td>
-<td>💛 <code>:yellow_heart:</code></td>
-</tr>
-<tr>
-<td>💙 <code>:blue_heart:</code></td>
-<td>💜 <code>:purple_heart:</code></td>
-<td>❤️ <code>:heart:</code></td>
-</tr>
-<tr>
-<td>💚 <code>:green_heart:</code></td>
-<td>💔 <code>:broken_heart:</code></td>
-<td>💓 <code>:heartbeat:</code></td>
-</tr>
-<tr>
-<td>💗 <code>:heartpulse:</code></td>
-<td>💕 <code>:two_hearts:</code></td>
-<td>💞 <code>:revolving_hearts:</code></td>
-</tr>
-<tr>
-<td>💘 <code>:cupid:</code></td>
-<td>💖 <code>:sparkling_heart:</code></td>
-<td>✨ <code>:sparkles:</code></td>
-</tr>
-<tr>
-<td>⭐️ <code>:star:</code></td>
-<td>🌟 <code>:star2:</code></td>
-<td>💫 <code>:dizzy:</code></td>
-</tr>
-<tr>
-<td>💥 <code>:boom:</code></td>
-<td>💥 <code>:collision:</code></td>
-<td>💢 <code>:anger:</code></td>
-</tr>
-<tr>
-<td>❗️ <code>:exclamation:</code></td>
-<td>❓ <code>:question:</code></td>
-<td>❕ <code>:grey_exclamation:</code></td>
-</tr>
-<tr>
-<td>❔ <code>:grey_question:</code></td>
-<td>💤 <code>:zzz:</code></td>
-<td>💨 <code>:dash:</code></td>
-</tr>
-<tr>
-<td>💦 <code>:sweat_drops:</code></td>
-<td>🎶 <code>:notes:</code></td>
-<td>🎵 <code>:musical_note:</code></td>
-</tr>
-<tr>
-<td>🔥 <code>:fire:</code></td>
-<td>💩 <code>:hankey:</code></td>
-<td>💩 <code>:poop:</code></td>
-</tr>
-<tr>
-<td>💩 <code>:shit:</code></td>
-<td>👍 <code>:+1:</code></td>
-<td>👍 <code>:thumbsup:</code></td>
-</tr>
-<tr>
-<td>👎 <code>:-1:</code></td>
-<td>👎 <code>:thumbsdown:</code></td>
-<td>👌 <code>:ok_hand:</code></td>
-</tr>
-<tr>
-<td>👊 <code>:punch:</code></td>
-<td>👊 <code>:facepunch:</code></td>
-<td>✊ <code>:fist:</code></td>
-</tr>
-<tr>
-<td>✌️ <code>:v:</code></td>
-<td>👋 <code>:wave:</code></td>
-<td>✋ <code>:hand:</code></td>
-</tr>
-<tr>
-<td>✋ <code>:raised_hand:</code></td>
-<td>👐 <code>:open_hands:</code></td>
-<td>☝️ <code>:point_up:</code></td>
-</tr>
-<tr>
-<td>👇 <code>:point_down:</code></td>
-<td>👈 <code>:point_left:</code></td>
-<td>👉 <code>:point_right:</code></td>
-</tr>
-<tr>
-<td>🙌 <code>:raised_hands:</code></td>
-<td>🙏 <code>:pray:</code></td>
-<td>👆 <code>:point_up_2:</code></td>
-</tr>
-<tr>
-<td>👏 <code>:clap:</code></td>
-<td>💪 <code>:muscle:</code></td>
-<td>🤘 <code>:metal:</code></td>
-</tr>
-<tr>
-<td>🖕 <code>:fu:</code></td>
-<td>🚶 <code>:walking:</code></td>
-<td>🏃 <code>:runner:</code></td>
-</tr>
-<tr>
-<td>🏃 <code>:running:</code></td>
-<td>👫 <code>:couple:</code></td>
-<td>👪 <code>:family:</code></td>
-</tr>
-<tr>
-<td>👬 <code>:two_men_holding_hands:</code></td>
-<td>👭 <code>:two_women_holding_hands:</code></td>
-<td>💃 <code>:dancer:</code></td>
-</tr>
-<tr>
-<td>👯 <code>:dancers:</code></td>
-<td>🙆 <code>:ok_woman:</code></td>
-<td>🙅 <code>:no_good:</code></td>
-</tr>
-<tr>
-<td>💁 <code>:information_desk_person:</code></td>
-<td>🙋 <code>:raising_hand:</code></td>
-<td>👰 <code>:bride_with_veil:</code></td>
-</tr>
-<tr>
-<td>🙎 <code>:person_with_pouting_face:</code></td>
-<td>🙍 <code>:person_frowning:</code></td>
-<td>🙇 <code>:bow:</code></td>
-</tr>
-<tr>
-<td>💏 <code>:couplekiss:</code></td>
-<td>💑 <code>:couple_with_heart:</code></td>
-<td>💆 <code>:massage:</code></td>
-</tr>
-<tr>
-<td>💇 <code>:haircut:</code></td>
-<td>💅 <code>:nail_care:</code></td>
-<td>👦 <code>:boy:</code></td>
-</tr>
-<tr>
-<td>👧 <code>:girl:</code></td>
-<td>👩 <code>:woman:</code></td>
-<td>👨 <code>:man:</code></td>
-</tr>
-<tr>
-<td>👶 <code>:baby:</code></td>
-<td>👵 <code>:older_woman:</code></td>
-<td>👴 <code>:older_man:</code></td>
-</tr>
-<tr>
-<td>👱 <code>:person_with_blond_hair:</code></td>
-<td>👲 <code>:man_with_gua_pi_mao:</code></td>
-<td>👳 <code>:man_with_turban:</code></td>
-</tr>
-<tr>
-<td>👷 <code>:construction_worker:</code></td>
-<td>👮 <code>:cop:</code></td>
-<td>👼 <code>:angel:</code></td>
-</tr>
-<tr>
-<td>👸 <code>:princess:</code></td>
-<td>😺 <code>:smiley_cat:</code></td>
-<td>😸 <code>:smile_cat:</code></td>
-</tr>
-<tr>
-<td>😻 <code>:heart_eyes_cat:</code></td>
-<td>😽 <code>:kissing_cat:</code></td>
-<td>😼 <code>:smirk_cat:</code></td>
-</tr>
-<tr>
-<td>🙀 <code>:scream_cat:</code></td>
-<td>😿 <code>:crying_cat_face:</code></td>
-<td>😹 <code>:joy_cat:</code></td>
-</tr>
-<tr>
-<td>😾 <code>:pouting_cat:</code></td>
-<td>👹 <code>:japanese_ogre:</code></td>
-<td>👺 <code>:japanese_goblin:</code></td>
-</tr>
-<tr>
-<td>🙈 <code>:see_no_evil:</code></td>
-<td>🙉 <code>:hear_no_evil:</code></td>
-<td>🙊 <code>:speak_no_evil:</code></td>
-</tr>
-<tr>
-<td>💂 <code>:guardsman:</code></td>
-<td>💀 <code>:skull:</code></td>
-<td>🐾 <code>:feet:</code></td>
-</tr>
-<tr>
-<td>👄 <code>:lips:</code></td>
-<td>💋 <code>:kiss:</code></td>
-<td>💧 <code>:droplet:</code></td>
-</tr>
-<tr>
-<td>👂 <code>:ear:</code></td>
-<td>👀 <code>:eyes:</code></td>
-<td>👃 <code>:nose:</code></td>
-</tr>
-<tr>
-<td>👅 <code>:tongue:</code></td>
-<td>💌 <code>:love_letter:</code></td>
-<td>👤 <code>:bust_in_silhouette:</code></td>
-</tr>
-<tr>
-<td>👥 <code>:busts_in_silhouette:</code></td>
-<td>💬 <code>:speech_balloon:</code></td>
-<td>💭 <code>:thought_balloon:</code></td>
-</tr>
-</tbody></table>
-        
-          <a class="article-more-a" href="/2021/12/14/typora文内链接跳转/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">typora</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">表情包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">多个tag</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/教程//" class="article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/14/typora文内链接跳转/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MySql-手机号、邮箱等加密后数据模糊搜索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/14/MySql-手机号、邮箱等加密后数据模糊搜索/">MySql 手机号、邮箱等加密后数据模糊搜索</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2021/12/14/MySql-手机号、邮箱等加密后数据模糊搜索/" class="archive-article-date">
-  	<time datetime="2021-12-14T08:32:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">170字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[toc]</p>
-<h4 id="1-需求"><a href="#1-需求" class="headerlink" title="1.需求"></a>1.需求</h4><p>数据库中邮箱、手机号加密存储，而且后续要求支持对其进行模糊搜索。</p>
-<h4 id="2-解决方式"><a href="#2-解决方式" class="headerlink" title="2.解决方式"></a>2.解决方式</h4><p>将密文十六进制化，再存入varchar/char列。</p>
-<p>插入：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span><span class="string">` `</span><span class="keyword">INTO</span><span class="string">` `</span>t_passwd_2 <span class="string">``</span><span class="keyword">VALUES</span><span class="string">` `</span>(<span class="keyword">HEX</span>(<span class="keyword">AES_ENCRYPT</span>(<span class="string">``</span><span class="string">'hello world'</span><span class="string">``</span>, <span class="string">`秘钥`</span>)));</span><br></pre></td></tr></table></figure>
-
-<p>查询：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">``<span class="keyword">SELECT</span><span class="string">` `</span><span class="keyword">AES_DECRYPT</span>(<span class="keyword">UNHEX</span>(pass1), <span class="string">`秘钥`</span>) <span class="string">``</span><span class="keyword">FROM</span><span class="string">` `</span>t_passwd_2;</span><br></pre></td></tr></table></figure>
-
-<p>如果含有中文需要做下特殊处理：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AND CAST(binary(AES_DECRYPT(UNHEX(pass1),"加密密钥"))</span><br><span class="line">        AS CHAR CHARACTER <span class="keyword">SET</span> UTF8)</span><br><span class="line">        <span class="keyword">LIKE</span> <span class="keyword">CONCAT</span>(<span class="string">'%'</span>,手机号/邮箱,<span class="string">'%'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>参考链接：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_42691149/article/details/119797142" target="_blank" rel="noopener">mysql数据查询，对加密字段进行模糊查询_夜一-CSDN博客_mysql加密后模糊查询</a></p>
-<p><a href="https://blog.csdn.net/gw5205566/article/details/81083446" target="_blank" rel="noopener">MySQL利用AES_ENCRYPT()与AES_DECRYPT()加解密的正确方法示例_gw的博客-CSDN博客_aes_decrypt()</a></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2021/12/14/MySql-手机号、邮箱等加密后数据模糊搜索/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Mysql//" class="article-tag-list-link color1">Mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/14/MySql-手机号、邮箱等加密后数据模糊搜索/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-typora+picgo+sm.ms实现自动上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/09/typora+picgo+sm.ms实现自动上传/">typora+picgo+sm.ms/github图床-实现图片自动上传</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2021/10/09/typora+picgo+sm.ms实现自动上传/" class="archive-article-date">
-  	<time datetime="2021-10-09T09:28:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-09</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">371字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h5><p>使用hexo + github.io 上传图片时图片显示不出来，经过摸索大概有两种方式，一种是（这种不太好用:smiling_imp: ）<a href="https://www.jianshu.com/p/f72aaad7b852" target="_blank" rel="noopener">HEXO插入图片（详细版） - 简书 (jianshu.com)</a>，这个不再做记录，另一种是通过上传到图床的方式(<a href="#smms">sm.ms图床</a> ，实际体验过程中总是上传失败，也不太好用:smiling_imp:， <a href="#github">github图床</a>github图床方式好用 :smile:)，这里记录下，供以后参考。</p>
-<h5 id="1-typora设置及下载picgo-app-将安装路径配置好"><a href="#1-typora设置及下载picgo-app-将安装路径配置好" class="headerlink" title="1.typora设置及下载picgo(app)将安装路径配置好"></a>1.typora设置及下载picgo(app)将安装路径配置好</h5><p><img src="https://i.loli.net/2021/10/09/mMWPk39tbus5xNy.png" alt="image-20211009173022139"></p>
-<h5 id="2-设置picgo"><a href="#2-设置picgo" class="headerlink" title="2.设置picgo"></a>2.设置picgo</h5><p><img src="https://i.loli.net/2021/10/09/97OahGgjJsDZlnz.png" alt="image-20211009173114743"></p>
-<p>搜索并安装插件 smms-user </p>
-<h5 id="3-sm-ms图床"><a href="#3-sm-ms图床" class="headerlink" title="3.sm.ms图床"></a>3.<span id="smms">sm.ms图床</span></h5><h6 id="3-1-注册并登录（github图床请看-github图床）"><a href="#3-1-注册并登录（github图床请看-github图床）" class="headerlink" title="3.1 注册并登录（github图床请看 github图床）"></a>3.1 注册并登录（github图床请看 <a href="#github">github图床</a>）</h6><p><a href="https://sm.ms/" target="_blank" rel="noopener">Image Upload - SM.MS - Simple Free Image Hosting</a></p>
-<h6 id="3-2-依次点击这里"><a href="#3-2-依次点击这里" class="headerlink" title="3.2.依次点击这里"></a>3.2.依次点击这里</h6><p><img src="https://i.loli.net/2021/10/09/wkUvzuFdRSK3lTb.png" alt="image-20211009173237819"></p>
-<p><img src="https://i.loli.net/2021/10/09/6hPsiwQbVKpcCnv.png" alt="image-20211009173319324"></p>
-<p>复制符号3部分的Secret Token,后面要用到</p>
-<h6 id="3-3-回到pic-go"><a href="#3-3-回到pic-go" class="headerlink" title="3.3.回到pic go"></a>3.3.回到pic go</h6><p>点击小齿轮，将第四步骤复制的token粘贴到点击小齿轮后弹出的选项的最后两项，这里不好截图。</p>
-<p><img src="https://i.loli.net/2021/10/09/5krFpCQZfYtn4Rw.png" alt="image-20211009173517725"></p>
-<p>上传区这里选择sm.ms 登录用户</p>
-<p><img src="https://i.loli.net/2021/10/09/YUlXyhHFnCORoWZ.png" alt="image-20211009173809536"></p>
-<h5 id="4-GitHub图床"><a href="#4-GitHub图床" class="headerlink" title="4.GitHub图床"></a>4.<span id="github">GitHub图床</span></h5><h6 id="4-1-创建存放图片的仓库，就像平常创建仓库一样，记得是public的"><a href="#4-1-创建存放图片的仓库，就像平常创建仓库一样，记得是public的" class="headerlink" title="4.1 创建存放图片的仓库，就像平常创建仓库一样，记得是public的"></a>4.1 创建存放图片的仓库，就像平常创建仓库一样，记得是public的</h6><h6 id="4-2-获取可以操作仓库的token-注意保存好token"><a href="#4-2-获取可以操作仓库的token-注意保存好token" class="headerlink" title="4.2 获取可以操作仓库的token,注意保存好token"></a>4.2 获取可以操作仓库的token,注意保存好token</h6><p><a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Personal Access Tokens (github.com)</a></p>
-<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112142004894.png" alt="image-20211214200455845"></p>
-<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112142005969.png" alt="img"></p>
-<h6 id="4-3-配置github图床"><a href="#4-3-配置github图床" class="headerlink" title="4.3 配置github图床"></a>4.3 配置github图床</h6><p>注意github 主分支由master改成main了</p>
-<p>自定义域名为:<a href="https://raw.githubusercontent.com/用户名/RepositoryName/分支名" target="_blank" rel="noopener">https://raw.githubusercontent.com/用户名/RepositoryName/分支名</a></p>
-<p>这里我设置的是：<a href="https://raw.githubusercontent.com/jianlong-sun/PicBed/main" target="_blank" rel="noopener">https://raw.githubusercontent.com/jianlong-sun/PicBed/main</a></p>
-<p>使用cdn?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cdn.jsdelivr.net/gh/jianlong-sun/PicBed@main</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112142006581.png" alt="image-20211214200646536"></p>
-<h5 id="5-回到typora进行测试"><a href="#5-回到typora进行测试" class="headerlink" title="5.回到typora进行测试"></a>5.回到typora进行测试</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图床</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/09/typora+picgo+sm.ms实现自动上传/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1848,6 +1785,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Issu</a>
               </li>
              
@@ -1864,23 +1805,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读写分离</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">seata</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1888,7 +1813,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">seata</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1896,35 +1829,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color2">hutool</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spider</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1936,7 +1849,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jar包启动</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备份</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">远程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spider</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1956,7 +1905,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1968,11 +1921,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">备份</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">远程</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1980,19 +1929,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sharding-jdbc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
