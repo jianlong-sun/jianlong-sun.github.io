@@ -164,135 +164,6 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-typora+picgo+sm.ms实现自动上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/09/typora+picgo+sm.ms实现自动上传/">typora+picgo+sm.ms/github图床-实现图片自动上传</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2021/10/09/typora+picgo+sm.ms实现自动上传/" class="archive-article-date">
-  	<time datetime="2021-10-09T09:28:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-09</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">371字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h5><p>使用hexo + github.io 上传图片时图片显示不出来，经过摸索大概有两种方式，一种是（这种不太好用:smiling_imp: ）<a href="https://www.jianshu.com/p/f72aaad7b852" target="_blank" rel="noopener">HEXO插入图片（详细版） - 简书 (jianshu.com)</a>，这个不再做记录，另一种是通过上传到图床的方式(<a href="#smms">sm.ms图床</a> ，实际体验过程中总是上传失败，也不太好用:smiling_imp:， <a href="#github">github图床</a>github图床方式好用 :smile:)，这里记录下，供以后参考。</p>
-<h5 id="1-typora设置及下载picgo-app-将安装路径配置好"><a href="#1-typora设置及下载picgo-app-将安装路径配置好" class="headerlink" title="1.typora设置及下载picgo(app)将安装路径配置好"></a>1.typora设置及下载picgo(app)将安装路径配置好</h5><p><img src="https://i.loli.net/2021/10/09/mMWPk39tbus5xNy.png" alt="image-20211009173022139"></p>
-<h5 id="2-设置picgo"><a href="#2-设置picgo" class="headerlink" title="2.设置picgo"></a>2.设置picgo</h5><p><img src="https://i.loli.net/2021/10/09/97OahGgjJsDZlnz.png" alt="image-20211009173114743"></p>
-<p>搜索并安装插件 smms-user </p>
-<h5 id="3-sm-ms图床"><a href="#3-sm-ms图床" class="headerlink" title="3.sm.ms图床"></a>3.<span id="smms">sm.ms图床</span></h5><h6 id="3-1-注册并登录（github图床请看-github图床）"><a href="#3-1-注册并登录（github图床请看-github图床）" class="headerlink" title="3.1 注册并登录（github图床请看 github图床）"></a>3.1 注册并登录（github图床请看 <a href="#github">github图床</a>）</h6><p><a href="https://sm.ms/" target="_blank" rel="noopener">Image Upload - SM.MS - Simple Free Image Hosting</a></p>
-<h6 id="3-2-依次点击这里"><a href="#3-2-依次点击这里" class="headerlink" title="3.2.依次点击这里"></a>3.2.依次点击这里</h6><p><img src="https://i.loli.net/2021/10/09/wkUvzuFdRSK3lTb.png" alt="image-20211009173237819"></p>
-<p><img src="https://i.loli.net/2021/10/09/6hPsiwQbVKpcCnv.png" alt="image-20211009173319324"></p>
-<p>复制符号3部分的Secret Token,后面要用到</p>
-<h6 id="3-3-回到pic-go"><a href="#3-3-回到pic-go" class="headerlink" title="3.3.回到pic go"></a>3.3.回到pic go</h6><p>点击小齿轮，将第四步骤复制的token粘贴到点击小齿轮后弹出的选项的最后两项，这里不好截图。</p>
-<p><img src="https://i.loli.net/2021/10/09/5krFpCQZfYtn4Rw.png" alt="image-20211009173517725"></p>
-<p>上传区这里选择sm.ms 登录用户</p>
-<p><img src="https://i.loli.net/2021/10/09/YUlXyhHFnCORoWZ.png" alt="image-20211009173809536"></p>
-<h5 id="4-GitHub图床"><a href="#4-GitHub图床" class="headerlink" title="4.GitHub图床"></a>4.<span id="github">GitHub图床</span></h5><h6 id="4-1-创建存放图片的仓库，就像平常创建仓库一样，记得是public的"><a href="#4-1-创建存放图片的仓库，就像平常创建仓库一样，记得是public的" class="headerlink" title="4.1 创建存放图片的仓库，就像平常创建仓库一样，记得是public的"></a>4.1 创建存放图片的仓库，就像平常创建仓库一样，记得是public的</h6><h6 id="4-2-获取可以操作仓库的token-注意保存好token"><a href="#4-2-获取可以操作仓库的token-注意保存好token" class="headerlink" title="4.2 获取可以操作仓库的token,注意保存好token"></a>4.2 获取可以操作仓库的token,注意保存好token</h6><p><a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Personal Access Tokens (github.com)</a></p>
-<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112142004894.png" alt="image-20211214200455845"></p>
-<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112142005969.png" alt="img"></p>
-<h6 id="4-3-配置github图床"><a href="#4-3-配置github图床" class="headerlink" title="4.3 配置github图床"></a>4.3 配置github图床</h6><p>注意github 主分支由master改成main了</p>
-<p>自定义域名为:<a href="https://raw.githubusercontent.com/用户名/RepositoryName/分支名" target="_blank" rel="noopener">https://raw.githubusercontent.com/用户名/RepositoryName/分支名</a></p>
-<p>这里我设置的是：<a href="https://raw.githubusercontent.com/jianlong-sun/PicBed/main" target="_blank" rel="noopener">https://raw.githubusercontent.com/jianlong-sun/PicBed/main</a></p>
-<p>使用cdn?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cdn.jsdelivr.net/gh/jianlong-sun/PicBed@main</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112142006581.png" alt="image-20211214200646536"></p>
-<h5 id="5-回到typora进行测试"><a href="#5-回到typora进行测试" class="headerlink" title="5.回到typora进行测试"></a>5.回到typora进行测试</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图床</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/09/typora+picgo+sm.ms实现自动上传/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-SpringSecurity复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1165,6 +1036,137 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/01/18/jpa-hibernate-validator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-docker部署碎碎念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/14/docker部署碎碎念/">docker部署碎碎念</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2021/01/14/docker部署碎碎念/" class="archive-article-date">
+  	<time datetime="2021-01-14T02:52:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-14</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">592字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="docker-部署碎碎念"><a href="#docker-部署碎碎念" class="headerlink" title="docker 部署碎碎念"></a>docker 部署碎碎念</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id="docker-容器迁移"><a href="#docker-容器迁移" class="headerlink" title="docker 容器迁移"></a>docker 容器迁移</h2><h3 id="docker-save-load-命令"><a href="#docker-save-load-命令" class="headerlink" title="docker save/load 命令"></a>docker save/load 命令</h3><h4 id="docker-save-用来持久化镜像"><a href="#docker-save-用来持久化镜像" class="headerlink" title="docker save 用来持久化镜像"></a>docker save 用来持久化镜像</h4><p>首先查看镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>保存,以nginx为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o nginx.tar nginx:latest</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-load"><a href="#docker-load" class="headerlink" title="docker load"></a>docker load</h4><p>将上面生成的nginx.tar 复制到其他服务器上，然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load &lt; nginx.tar</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-export-import"><a href="#docker-export-import" class="headerlink" title="docker export/import"></a>docker export/import</h4><p>使用docker export/import 命令导出容器，在导入后启动容器的时候会有类似下面的错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:346: starting container process caused &quot;exec: \&quot;XXXXXXXXXX\&quot;: executable file not found in $PATH&quot;: unknown</span><br></pre></td></tr></table></figure>
+
+<p>解决这种问题，经过查询需要在后面加上一些命令，如：/bin/bash 主要是看你运行的是啥东西，docker history 看下，感觉还是使用save 、load命令来的实在</p>
+<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/image-20220114101641294.png" alt="image-20220114101641294"></p>
+<h2 id="部署tomcat"><a href="#部署tomcat" class="headerlink" title="部署tomcat"></a>部署tomcat</h2><p>一般部署tomcat的时候，不都是类似这样部署的嘛</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9091:8080 -v /home/XXXX/docker/tomcat/webapps/:/usr/local/tomcat/webapps/ --name managertomcat  tomcat</span><br></pre></td></tr></table></figure>
+
+<p>我运行的时候改成了，挂载/webapps上一级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9091:8080 -v /home/XXXX/docker/tomcat/:/usr/local/tomcat/ --name managertomcat  tomcat</span><br></pre></td></tr></table></figure>
+
+<p>就报错了,类似这样，后面需要注意下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: &quot;catalina.sh&quot;: executable file not found in $PATH: unknown.</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署nginx"><a href="#部署nginx" class="headerlink" title="部署nginx"></a>部署nginx</h2><h3 id="参考了下面博客，做了些修改"><a href="#参考了下面博客，做了些修改" class="headerlink" title="参考了下面博客，做了些修改"></a>参考了下面博客，做了些修改</h3><p><a href="https://www.cnblogs.com/linjiqin/p/10478631.html" target="_blank" rel="noopener">Docker中运行nginx并挂载本地目录到镜像中 - Ruthless - 博客园 (cnblogs.com)</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite or internal redirection cycle while internally redirecting to &quot;/inde</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.csdn.net/default7/article/details/42720079" target="_blank" rel="noopener">解决nginx 报错提示：rewrite or internal redirection cycle while internally redirecting to “/“,_____-CSDN博客</a></p>
+<h3 id="批量创建存放目录"><a href="#批量创建存放目录" class="headerlink" title="批量创建存放目录"></a>批量创建存放目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/nginx/&#123;conf,conf.d,html,logs&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-data-nginx-conf-nginx-conf"><a href="#vim-data-nginx-conf-nginx-conf" class="headerlink" title="vim /data/nginx/conf/nginx.conf"></a>vim /data/nginx/conf/nginx.conf</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  nginx;</span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">error_log</span>  /var/log/nginx/error.log <span class="literal">warn</span>;</span><br><span class="line"><span class="attribute">pid</span>        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       /etc/nginx/mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request</span>" '</span></span><br><span class="line">                      <span class="string">'<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$http_referer</span>" '</span></span><br><span class="line">                      <span class="string">'"<span class="variable">$http_user_agent</span>" "<span class="variable">$http_x_forwarded_for</span>"'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span>  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-data-nginx-conf-d-default-conf"><a href="#vim-data-nginx-conf-d-default-conf" class="headerlink" title="vim /data/nginx/conf.d/default.conf"></a>vim /data/nginx/conf.d/default.conf</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;  </span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;  </span><br><span class="line">    <span class="attribute">server_name</span>  localhost;  </span><br><span class="line">  </span><br><span class="line">    <span class="attribute">location</span> / &#123;  </span><br><span class="line">        <span class="attribute">root</span>   /usr/share/nginx/html;  <span class="comment">#注意：这块我与上面那个博客写的不同，我觉得这块不该是宿主机的路径</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;  </span><br><span class="line">        <span class="attribute">autoindex</span>  <span class="literal">on</span>;  </span><br><span class="line">    	<span class="attribute">try_files</span> <span class="variable">$uri</span> =<span class="number">404</span>; <span class="comment">#这里也做了修改  </span></span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;  </span><br><span class="line">    <span class="attribute">location</span> = /50x.html &#123;  </span><br><span class="line">        <span class="attribute">root</span>   /usr/share/nginx/html;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx -d -p <span class="number">80</span>:<span class="number">80</span>  -v /data/nginx/html:/usr/share/nginx/html -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf  -v /data/nginx/logs:/var/log/nginx -v /data/nginx/conf.d:/etc/nginx/conf.d nginx</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/docker//" class="article-tag-list-link color2">docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/14/docker部署碎碎念/">展开全文 >></a>
         </p>
       
 
