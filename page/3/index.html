@@ -164,120 +164,6 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-关于Springboot中使用-autowired注入对象为null" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/03/关于Springboot中使用-autowired注入对象为null/">关于Springboot中使用@autowired注入对象为null</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/12/03/关于Springboot中使用-autowired注入对象为null/" class="archive-article-date">
-  	<time datetime="2020-12-03T07:06:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-03</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">234字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h2><blockquote>
-<p>今天遇到一个问题，使用 @Autowired 注解的时候，有个类怎么都注入不进来，死活不知道哪错了，按道理在类上加上了 @Component 注解，就交给 IOC 容器可以反射创建对象了<br>我在这个类上使用的 @Component    然后在其他地方  new  了一个这个带有 @Component 类的对象。<br>这个时候看着没问题，其实已经错了。</p>
-</blockquote>
-<h2 id="2-原因"><a href="#2-原因" class="headerlink" title="2.原因"></a>2.原因</h2><blockquote>
-<p>当通过new的方式创建一个对象的时候，虽然期望使用了注解@Autowired对这个对象进行装配，但是Spring是不会这么做的，因为Spring不会对任意一个new 出来的对象进行自动装配，只有这个对象也是一个在Spring中注册过的Bean，才会获得自动装配的功能。<br>这时候，只需要把 new  去掉就好了</p>
-</blockquote>
-<p>参考:<a href="https://segmentfault.com/a/1190000021225279" target="_blank" rel="noopener">关于Springboot中使用@autowired注入对象为null</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/03/关于Springboot中使用-autowired注入对象为null/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-spider-盗墓笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1250,6 +1136,122 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/07/13/idea自动生成JPA元模型对象/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringCloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/SpringCloud/">SpringCloud</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2020/06/02/SpringCloud/" class="archive-article-date">
+  	<time datetime="2020-06-02T09:42:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">457字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>对SpringCloud进行一下学习，希望可以学会初步使用，然后逐步运用到项目中去。</p>
+<h2 id="2-今日内容"><a href="#2-今日内容" class="headerlink" title="2.今日内容"></a>2.今日内容</h2><p>项目地址：<a href="https://github.com/Zealon159/light-reading-cloud" target="_blank" rel="noopener">轻松阅读</a>     </p>
+<blockquote>
+<p>基于SpringCloud生态开发的阅读类APP微服务实战项目，涉及 SpringCloud-Config、Eureka、OpenFeign、Hystrix、Jwt、SpringCloud-Gateway、ElasticSearch 等技术栈的应用  </p>
+</blockquote>
+<p>今日主要是将项目客户端及服务端clone了下来，并各自导入到了开发工具。通过阅读项目的readme.md文档<br>对项目有个初步的了解并修改其中的相关配置将项目运行了起来。在运行项目过程中也遇到了一些小问题，稍后进行一下记录。</p>
+<h2 id="3-先展示一下运行结果"><a href="#3-先展示一下运行结果" class="headerlink" title="3.先展示一下运行结果"></a>3.先展示一下运行结果</h2><p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/202112141941055.png" alt="socket"></p>
+        
+          <a class="article-more-a" href="/2020/06/02/SpringCloud/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/02/SpringCloud/">展开全文 >></a>
         </p>
       
 
