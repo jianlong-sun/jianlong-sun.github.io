@@ -164,128 +164,6 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-spider-盗墓笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/03/spider-盗墓笔记/">spider_盗墓笔记(单文件版,Springboot、jpa整合版(源码包))</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/12/03/spider-盗墓笔记/" class="archive-article-date">
-  	<time datetime="2020-12-03T03:20:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-03</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-爬取目标："><a href="#1-爬取目标：" class="headerlink" title="1.爬取目标："></a>1.爬取目标：</h2><p>url:<a href="http://seputu.com/biji1/" target="_blank" rel="noopener">http://seputu.com/biji1/</a><br>单文件版期望结果：将爬取到的内容输出到控制台并保存到excel表格中<br>整合版期望结果：将爬取到的内容输出到控制台并保存到数据库中</p>
-<h2 id="2-收获"><a href="#2-收获" class="headerlink" title="2.收获"></a>2.收获</h2><h3 id="2-1-webmagic"><a href="#2-1-webmagic" class="headerlink" title="2.1.webmagic"></a>2.1.webmagic</h3><h4 id="2-1-1-webmagic-formatter格式转换"><a href="#2-1-1-webmagic-formatter格式转换" class="headerlink" title="2.1.1 webmagic_formatter格式转换"></a>2.1.1 webmagic_formatter格式转换</h4><p><a href="http://webmagic.io/docs/zh/posts/ch5-annotation/formatter.html" target="_blank" rel="noopener">webmagic_formatter</a></p>
-<blockquote>
-<p>5.5.2 显式指定转换类型<br>  一般情况下，Formatter会根据字段类型进行转换，但是特殊情况下，我们会需要手动指定类型。这主要发生在字段是List类型的时候。<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Formatter</span>(value = <span class="string">""</span>,subClazz = Integer.class)</span><br><span class="line"><span class="meta">@ExtractBy</span>(value = <span class="string">"//div[@class='id']/text()"</span>, multi = <span class="keyword">true</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;Integer&gt; ids;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h4 id="2-1-2-不使用class中list"><a href="#2-1-2-不使用class中list" class="headerlink" title="2.1.2 不使用class中list"></a>2.1.2 不使用class中list</h4><p>类属性不使用list方式接收，这样导出到表或者数据库中的时候就不用再创建一个对应的类，更加方便了，代码放到下面。</p>
-<h4 id="2-1-3-使用正则对获取的字符串，比如对时间进行提取"><a href="#2-1-3-使用正则对获取的字符串，比如对时间进行提取" class="headerlink" title="2.1.3 使用正则对获取的字符串，比如对时间进行提取"></a>2.1.3 使用正则对获取的字符串，比如对时间进行提取</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [所属目录：    发布时间：2012-5-22    作者：南派三叔]</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NoListPrintPipeline</span> <span class="keyword">implements</span> <span class="title">PageModelPipeline</span>&lt;<span class="title">DaoMuBiJiSpiderNoList</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span>  List&lt;DaoMuBiJiSpiderNoList&gt; rows = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Pattern NUMBER_PATTERN = Pattern.compile(<span class="string">"\\d+-\\d+-\\d+"</span>);</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(DaoMuBiJiSpiderNoList daoMuBiJiSpiderNoList, Task task)</span> </span>&#123;</span><br><span class="line">        System.out.println(daoMuBiJiSpiderNoList);</span><br><span class="line">        String date = daoMuBiJiSpiderNoList.getDate();</span><br><span class="line">        Matcher matcher = NUMBER_PATTERN.matcher(date);</span><br><span class="line">        <span class="keyword">if</span>(matcher.find())&#123;</span><br><span class="line">            daoMuBiJiSpiderNoList.setDate(matcher.group());</span><br><span class="line">        &#125;</span><br><span class="line">        rows.add(daoMuBiJiSpiderNoList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-hutool-poi"><a href="#2-2-hutool-poi" class="headerlink" title="2.2.hutool-poi"></a>2.2.hutool-poi</h3><blockquote>
-<p>对输出的表格进行别名的处理 这个顺序好像也是输出到表格顺序<br>writer.addHeaderAlias(“index”, “序号”);<br>      writer.addHeaderAlias(“origin”, “来源”);</p>
-</blockquote>
-<p>疑问：写出的时候能对别名进行处理，那么读取的时候是不是也可以？？<br>经过测试是可以的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取人员信息</span></span><br><span class="line">ExcelReader reader = ExcelUtil.getReader(<span class="string">"D:\\idm下载\\Compressed\\photos\\工作证信息.xlsx"</span>);</span><br><span class="line">Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;()&#123;&#123;</span><br><span class="line">   <span class="comment">// 这么写证明是可以的put("表格标题字段"，"类属性字段名")</span></span><br><span class="line">    put(<span class="string">"姓名"</span>, <span class="string">"name"</span>);</span><br><span class="line">    put(<span class="string">"部门"</span>, <span class="string">"depart"</span>);</span><br><span class="line">    put(<span class="string">"职务"</span>, <span class="string">"job"</span>);</span><br><span class="line">&#125;&#125;;</span><br><span class="line">reader.setHeaderAlias(map);</span><br><span class="line"></span><br><span class="line">List&lt;ExcelEmp&gt; excelEmp = reader.readAll(ExcelEmp.class);</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/12/03/spider-盗墓笔记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/爬虫//" class="article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/03/spider-盗墓笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-二分查找法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1252,6 +1130,122 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/02/SpringCloud/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-使用websocket搭建一个简单的聊天室" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/使用websocket搭建一个简单的聊天室/">使用websocket搭建一个简单的聊天室</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2020/06/01/使用websocket搭建一个简单的聊天室/" class="archive-article-date">
+  	<time datetime="2020-06-01T07:18:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.9k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">8分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-上半年回顾"><a href="#1-上半年回顾" class="headerlink" title="1.上半年回顾"></a>1.上半年回顾</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">现在时间是2020年6月1日，2020年的上半年，大部分人因为疫情的影响在家憋了好长时间，2020年的春节也没有再走亲访友，开始上班后，一开始也是只能在家办公。今天公司全体员工终于可以正常上班了，继续记录一下工作中用到的一些东西和学习的东西，以备后续之用。</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-websocket"><a href="#2-websocket" class="headerlink" title="2.websocket"></a>2.websocket</h2><h3 id="2-1-websocket简单介绍"><a href="#2-1-websocket简单介绍" class="headerlink" title="2.1 websocket简单介绍"></a>2.1 websocket简单介绍</h3><p><strong>websocket</strong> 百度百科解释：</p>
+<blockquote>
+<p>WebSocket是一种在单个TCP连接上进行全双工通信的协议。  WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。<br>WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。</p>
+</blockquote>
+<h3 id="2-2-传统“即时通讯”"><a href="#2-2-传统“即时通讯”" class="headerlink" title="2.2 传统“即时通讯”"></a>2.2 传统“即时通讯”</h3><p> <em>HTTP 协议有一个缺陷：通信只能由客户端发起。</em><br>很多网站为了实现即时通讯(real-time)，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔(time interval)（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。这种传统的HTTP request d的模式带来很明显的缺点 – 浏览器需要不断的向服务器发出请求(request)，然而HTTP request 的header是非常长的，里面包含的数据可能只是一个很小的值，这样会占用很多的带宽。</p>
+        
+          <a class="article-more-a" href="/2020/06/01/使用websocket搭建一个简单的聊天室/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/01/使用websocket搭建一个简单的聊天室/">展开全文 >></a>
         </p>
       
 

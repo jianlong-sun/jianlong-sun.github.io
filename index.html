@@ -164,155 +164,6 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-云起之mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/08/云起之mysql/">阿里云活动-云起之mysql笔记</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2022/02/08/云起之mysql/" class="archive-article-date">
-  	<time datetime="2022-02-08T03:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-08</time>
-</a>
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
-
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="MySQL安装与配置"><a href="#MySQL安装与配置" class="headerlink" title="MySQL安装与配置"></a>MySQL安装与配置</h1><p>MySQL是一个关系型数据库管理系统，本步骤指导您如何在ECS实例上安装MySQL。</p>
-<ol>
-<li>执行如下命令，更新YUM源。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh  http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>执行如下命令，安装MySQL。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql-community-server</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>执行如下命令，查看MySQL版本号。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -V</span><br></pre></td></tr></table></figure>
-
-<p>返回结果如下，表示您已成功安装MySQL。</p>
-<p><img src="https://ucc.alicdn.com/pic/developer-ecology/a087672818024936b5e4e1e5d29c7f3f.png" alt="img"></p>
-<ol start="4">
-<li>执行如下命令，启动MySQL服务。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>执行如下命令，设置MySQL服务开机自启动。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable mysqld</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>配置MySQL的root用户密码。</li>
-</ol>
-<p>执行如下命令，查看/var/log/mysqld.log文件，获取root用户的初始密码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;temporary password&apos; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
-
-<p>返回结果如下所示，您可以查看到root用户的初始密码。</p>
-<p><img src="https://raw.githubusercontent.com/jianlong-sun/PicBed/main/img/a63c22d465b04626901611cad1a8e5ab.png" alt="img"></p>
-<p>执行以下命令，使用root用户登录数据库。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
-
-<p>返回结果如下所示，输入root用户的初始密码。</p>
-<p><img src="https://ucc.alicdn.com/pic/developer-ecology/78e135657d284b47a4321c012cc0c433.png" alt="img"></p>
-<p>执行以下命令，修改MySQL的root用户的初始密码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global validate_password_policy=0;  #修改密码安全策略为低（只校验密码长度，至少8位）。</span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;12345678&apos;;</span><br></pre></td></tr></table></figure>
-
-<p>执行以下命令，授予root用户远程管理权限。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;12345678&apos;;</span><br></pre></td></tr></table></figure>
-
-<p>输入exit退出数据库。</p>
-<p><img src="https://ucc.alicdn.com/pic/developer-ecology/379d871e4c3f4790ae057edea1dd33bc.png" alt="img"></p>
-<ol start="7">
-<li><p>执行以下命令，使用root用户登录数据库。</p>
-        
-          <a class="article-more-a" href="/2022/02/08/云起之mysql/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/08/云起之mysql/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-R语言使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1979,6 +1830,110 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/10/09/typora+picgo+sm.ms实现自动上传/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringSecurity复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/09/SpringSecurity复习/">SpringSecurity复习</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2021/10/09/SpringSecurity复习/" class="archive-article-date">
+  	<time datetime="2021-10-09T08:03:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-09</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SpringSecurity"><a href="#SpringSecurity" class="headerlink" title="SpringSecurity"></a>SpringSecurity</h1><h4 id="1-第一章"><a href="#1-第一章" class="headerlink" title="1.第一章"></a>1.第一章</h4><p>介绍SpringSecurity并在idea上安装envfile插件及lombok</p>
+<p>文件位置：阿里云盘</p>
+<p><img src="https://s2.loli.net/2021/12/14/ebNjsY3KFtuMgHr.png" alt="image-20210917172546314"></p>
+<h4 id="2-第二章"><a href="#2-第二章" class="headerlink" title="2.第二章"></a>2.第二章</h4><h5 id="2-1-常见过滤器"><a href="#2-1-常见过滤器" class="headerlink" title="2.1 常见过滤器"></a>2.1 常见过滤器</h5><p><img src="https://s2.loli.net/2021/12/14/ferT2UKdcFSYwsH.png" alt="image-20210917171720568.png"></p>
+<h5 id="2-2-今日进度-2021年9月17日17-24-29"><a href="#2-2-今日进度-2021年9月17日17-24-29" class="headerlink" title="2.2 今日进度-2021年9月17日17:24:29"></a>2.2 今日进度-2021年9月17日17:24:29</h5><p><img src="https://s2.loli.net/2021/12/14/bRF9yc6mEgrlwqL.png" alt="image-20210917172435324.png"></p>
+<h5 id="2-3-http-请求头、响应头详解"><a href="#2-3-http-请求头、响应头详解" class="headerlink" title="2.3 http 请求头、响应头详解"></a>2.3 http 请求头、响应头详解</h5><p><a href="https://www.cnblogs.com/widget90/p/7650890.html" target="_blank" rel="noopener">Http消息头中常用的请求头和响应头 - 池的巧克力 - 博客园 (cnblogs.com)</a></p>
+        
+          <a class="article-more-a" href="/2021/10/09/SpringSecurity复习/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/09/SpringSecurity复习/">展开全文 >></a>
         </p>
       
 
